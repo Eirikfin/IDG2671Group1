@@ -6,6 +6,8 @@ Where is the data supposed to be collected?
 
 How important is design in all of this?
 
+When having to choose between design and technical implementation what should we choose?
+
 What is important when it comes to the way the data is presented?
 
 What are some problems you know of when it comes to conducting studies?
