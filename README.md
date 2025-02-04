@@ -28,7 +28,7 @@ How competent will the users be with this type of content? Designing for those w
 
 Will the product interact with other products/technologies in some way?
 
-How do you stay user-focused?
+How do you stay task-focused?
 
 What role does AI have in all of this? Does it even have one?
 
