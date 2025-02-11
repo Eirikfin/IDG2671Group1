@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Create a new survey:</h1>
+    <form>
+        <label>
+            Title of Survey:
+            <input type="text" placeholder="Title">
+        </label>
+        <br>   <br>
+        <label>
+            New Module:
+            <input list="input-types" name="data-type" placeholder="Choose an input type">
+<datalist id="input-types">
+    <option value="sliding-scale">
+    <option value="text-input">
+    <option value="multiple-choice">
+</datalist>
+    <button>Add Module</button>
+        </label>
+
+    <fieldset>
+        <label>
+            Question
+            <input type="text" placeholder="question for participants here">
+            <button>Add option</button> <br><br>
+            <button>Attach file</button>
+        </label><br><br>
+        <label>Option 1:
+            <input type="text">
+        </label><br>
+        <label>Option 2:
+            <input type="text">
+        </label><br>
+        <label>Option 3:
+            <input type="text">
+        </label>
+    </fieldset>
+    <button>Continue</button>
+    <button>Preview survey</button>
+    </form>
+</body>
+</html>
