@@ -1,0 +1,10 @@
+@use './color-variables/colors.scss' as *;
+
+p {
+    font-size: 28pt;
+    color: $text;
+}
+
+button {
+    background-color: $secondary_btn;
+}

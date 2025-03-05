@@ -1,0 +1,5 @@
+@use './color-variables/colors.scss' as *;
+
+body {
+    background-color: $bg_white;
+}
