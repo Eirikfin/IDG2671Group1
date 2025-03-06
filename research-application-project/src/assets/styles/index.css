@@ -1,3 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 body {
+  padding: 0;
+  margin: 0;
   background-color: #F1FAEE;
+  font-family: "Roboto", sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 1rem;
+}
+.header > h1 {
+  padding-right: 1em;
+}
+.header > nav {
+  font-size: 16pt;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.header > nav .header_menu-button {
+  background: #A8DADC;
+  font-size: 16pt;
+  width: 100%;
+  color: black;
+  border: none;
+  opacity: 0.8;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 0;
+  height: 100%;
+  transition: 0.3s ease;
+}
+.header > nav .header_menu-button:hover {
+  opacity: 1;
+}
+.header > nav .header_menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+  background: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: -moz-fit-content;
+  width: fit-content;
+  z-index: 100;
+}
+.header > nav .header_menu li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  font-size: 12pt;
+}
+.header > nav .header_menu li:last-child {
+  border-bottom: none;
+}
+.header > nav .header_menu li a {
+  text-decoration: none;
+  display: block;
+  transition: color 0.3s ease;
+}
+.header > nav .header_menu li a:hover {
+  color: #007bff;
+}
+.header > nav .header_menu.open {
+  max-height: 200px;
+  opacity: 1;
 }/*# sourceMappingURL=index.css.map */
