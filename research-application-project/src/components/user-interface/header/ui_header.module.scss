@@ -1,6 +1,9 @@
 @import '../../../assets/color-variables/colors.scss';
 
 .header {
+    display: flex;
+    justify-content: space-between;
+
     nav {
         display: flex;
         align-items: center;
@@ -9,7 +12,8 @@
     }
 
     .menuButton {
-        padding: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 
     .menu {

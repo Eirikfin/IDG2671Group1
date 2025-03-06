@@ -1,0 +1,9 @@
+@import '../../../assets/color-variables/colors.scss';
+
+.footer {
+    background-color: $secondary_btn;
+
+    &_text {
+        font-size: 19pt;
+    }
+}
