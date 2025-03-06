@@ -12,7 +12,6 @@ export default function App() {
       <h1>Dashboard</h1>
       <CreateStudy></CreateStudy>
       <CurrentStudy></CurrentStudy>
-      <Footer></Footer>
     </>
   );
 }
