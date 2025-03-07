@@ -1,8 +1,12 @@
 @import '../../../assets/color-variables/colors.scss';
 
 .header {
-    display: flex;
-    justify-content: space-between;
+
+    &_title {
+        padding: 1rem;
+        padding-left: 0.5rem;
+        margin: 0;
+    }
 
     nav {
         display: flex;

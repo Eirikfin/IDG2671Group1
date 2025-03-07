@@ -1,0 +1,9 @@
+.newStudy {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+.newStudy_button {
+  font-size: 20pt;
+  padding: 1rem;
+}/*# sourceMappingURL=CreateStudy.module.css.map */

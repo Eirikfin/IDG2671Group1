@@ -1,0 +1,12 @@
+.currentStudy {
+  padding: 1rem;
+}
+.currentStudy_card {
+  border: 2px solid #457b9d;
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.currentStudy_card > button {
+  margin: 0;
+}/*# sourceMappingURL=CurrentStudy.module.css.map */

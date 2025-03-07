@@ -1,0 +1,12 @@
+@import '../../../assets/color-variables/colors.scss';
+
+.newStudy {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+
+    &_button {
+        font-size: 20pt;
+        padding: 1rem;
+    }
+}

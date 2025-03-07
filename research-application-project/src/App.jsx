@@ -9,7 +9,7 @@ export default function App() {
   return(
     <>
       <Header></Header>
-      <h1>Dashboard</h1>
+      <h1 className="dashboard_title">Dashboard</h1>
       <CreateStudy></CreateStudy>
       <CurrentStudy></CurrentStudy>
       <Footer></Footer>

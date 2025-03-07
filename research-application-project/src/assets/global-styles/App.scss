@@ -11,6 +11,14 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+h1 {
+    padding: 1rem;
+}
+
+a:visited {
+    color: $text;
+}
+
 p {
     color: $text;
 }
@@ -33,11 +41,13 @@ button {
 
 header {
     background-color: $primary_btn;
+    border: 1px inset solid hsla(0, 0, 0, 0);
 }
 
 footer {
-    position: absolute;
+    position: relative;
     width: 100%;
     bottom: 0;
     background-color: $primary_btn;
+    border: 1px solid hsla(0, 0, 0, 0);
 }

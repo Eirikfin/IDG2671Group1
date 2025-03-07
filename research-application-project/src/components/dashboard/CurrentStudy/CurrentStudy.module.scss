@@ -1,0 +1,16 @@
+@import '../../../assets/color-variables/colors.scss';
+
+.currentStudy {
+    padding: 1rem;
+
+    &_card {
+        border: 2px solid $border;
+        border-radius: 5px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+
+        &>button {
+            margin: 0;
+        }
+    }
+}

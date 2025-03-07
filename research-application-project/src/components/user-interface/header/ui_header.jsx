@@ -27,12 +27,9 @@ export default function Header() {
 
     return (
         <header className={styles.header}>
-            <h1>Research Application</h1>
+            <h1 className={styles.header_title}>Research Application</h1>
             
             <nav>
-                <div>
-                    <a href="#">Home</a>
-                </div>
                 <div>
                     <button className={styles.menuButton} onClick={menuDrop}>
                         Menu
@@ -45,6 +42,9 @@ export default function Header() {
                         <li><a href="#">Manage database</a></li>
                         <li><a href="#">Something</a></li>
                     </ul>
+                </div>
+                <div>
+                    <a href="#">Home</a>
                 </div>
             </nav>
         </header>
