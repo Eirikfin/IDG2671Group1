@@ -10,7 +10,12 @@ h1 {
   padding: 1rem;
 }
 
+a {
+  font-weight: bold;
+  font-size: 12pt;
+}
 a:visited {
+  font-weight: bold;
   color: #1e1e1e;
 }
 
@@ -20,9 +25,7 @@ p {
 
 button {
   background-color: #A8DADC;
-  border: 2px solid #457b9d;
-  padding: 0.3rem;
-  margin: 0.4rem;
+  border: 0;
   font-weight: bold;
   cursor: pointer;
   transition: box-shadow 0.2s ease-in-out;

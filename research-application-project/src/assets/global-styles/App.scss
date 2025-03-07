@@ -15,8 +15,14 @@ h1 {
     padding: 1rem;
 }
 
-a:visited {
-    color: $text;
+a {
+    font-weight: bold;
+    font-size: 12pt;
+
+    &:visited {
+        font-weight: bold;
+        color: $text;
+    }
 }
 
 p {
@@ -25,9 +31,7 @@ p {
 
 button {
     background-color: $secondary_btn;
-    border: 2px solid $border;
-    padding: 0.3rem;
-    margin: 0.4rem;
+    border: 0;
     font-weight: bold;
     cursor: pointer;
     transition: box-shadow 0.2s ease-in-out;
