@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './assets/global-styles/App.css'
 import CreateStudy from './components/dashboard/CreateStudy/CreateStudy';
 import CurrentStudy from './components/dashboard/CurrentStudy/CurrentStudy';
+import PastStudy from './components/dashboard/PastStudy/PastStudy';
 import Header from './components/user-interface/header/ui_header';
 import Footer from './components/user-interface/Footer/ui_footer';
 
@@ -12,6 +13,7 @@ export default function App() {
       <h1 className="dashboard_title">Dashboard</h1>
       <CreateStudy></CreateStudy>
       <CurrentStudy></CurrentStudy>
+      <PastStudy></PastStudy>
       <Footer></Footer>
     </>
   );

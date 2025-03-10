@@ -26,5 +26,6 @@
 }
 .study_card_buttons > button {
   padding: 0.4rem;
-  width: 100%;
-}/*# sourceMappingURL=CurrentStudy.module.css.map */
+  width: -moz-fit-content;
+  width: fit-content;
+}/*# sourceMappingURL=PastStudy.module.css.map */
