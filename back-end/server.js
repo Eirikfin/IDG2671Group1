@@ -1,8 +1,11 @@
 import express from "express";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 //global variables
 const app = express();
-const port = 4242;
+
 
 //set view engine and specify the views folder
 app.set("view engine", "ejs");
@@ -19,6 +22,6 @@ app.get("/createsurvey", (req, res) => {
 })
 
 // start server:
-app.listen(port, () => {
-    console.log(`Server is listening at http://localhost:${port}`);
+app.listen(process.env.PORT, () => {
+    console.log(`Server is listening at http://localhost:${process.env.PORT}`);
 });
