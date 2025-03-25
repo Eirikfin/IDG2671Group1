@@ -22,6 +22,6 @@ app.get("/", (req, res) => {
     res.render("dashboard");
 })
 // start server:
-app.listen(port, () => {
-    console.log(`Server is listening at http://localhost:${port}`);
+app.listen(process.env.PORT, () => {
+    console.log(`Server is listening at http://localhost:${process.env.PORT}`);
 });
