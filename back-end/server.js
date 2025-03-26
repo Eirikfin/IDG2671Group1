@@ -22,6 +22,8 @@ app.set("views", "./views");
 
 //routes:
 app.use("/api/researchers", researcherRoutes);
+
+
 app.get("/", (req, res) => {
     res.render("dashboard");
 })

@@ -1,7 +1,7 @@
 import { body, validationResult } from "express-validator";
 
 const sessionValidator = [
-    body("projectId")
+    body("projectId") //project this participant session is part of
         .notEmpty().withMessage("User session must have a projectId.")
         .isMongoId().withMessage("User session must have a valid projectId."),
 
@@ -17,10 +17,11 @@ const sessionValidator = [
 
     (req, res, next) => {
         const errors = validationResult(req);
+        //if there are validation errors, respond with errors:
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
-        next();
+        next(); //move on to next middleware:
     }
 ];
 

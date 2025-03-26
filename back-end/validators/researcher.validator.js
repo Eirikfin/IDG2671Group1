@@ -8,19 +8,20 @@ const researcherValidator = [
     body("name")
         .isString().withMessage("Name must be a string.")
         .notEmpty().withMessage("Name must not be empty."),
-    body("password")
+    body("password") //ensures basic password security
         .isString().withMessage("Please enter a valid password.")
-        .isLength({min: 8, max: 32}).withMessage("Password must be at least 8 characters and not more than 32")
-        .matches(/[A-Z]/).withMessage("Must contain at least 1 uppercase haracter.")
-        .matches(/[a-z]/).withMessage("Must contain at least 1 lovercase character")
+        .isLength({min: 8, max: 40}).withMessage("Password must be between 8 and 40 characters")
+        .matches(/[A-Z]/).withMessage("Must contain at least 1 uppercase character.")
+        .matches(/[a-z]/).withMessage("Must contain at least 1 lowercase character")
         .matches(/[0-9]/).withMessage("Must contain at least 1 number"),
     
     (req, res, next) => {
         const errors = validationResult(req);
+        //if there are validation errors, respond with errors:
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
-        next();
+        next(); //move on to next middleware:
     }
 ];
 
