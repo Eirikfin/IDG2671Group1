@@ -9,7 +9,7 @@ const questionSchema = new mongoose.Schema({
         enum: ["textInput", "MultipleChoice", "SlidingScale"]
     },
     questionAlternatives: [{ type: String }],
-    artifacts:[{ type: mongoose.Schema.Types.ObjectId, ref: "Artifact" }]
+    artifacts:[{ artifactId: { type: mongoose.Schema.Types.ObjectId, ref: "Artifact" }}]
 });
 
 const Question = mongoose.model("Question", questionSchema);
