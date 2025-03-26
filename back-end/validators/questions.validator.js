@@ -1,6 +1,6 @@
 import {body, validationResult} from "express-validator";
 
-const questionSchema = [
+const questionValidator = [
     body("projectId")
         .notEmpty().withMessage("Questions need a projectId")
         .isMongoId().withMessage("Please provide a valid projectId"),
@@ -31,4 +31,4 @@ const questionSchema = [
     }
 ]
 
-export default questionSchema;
+export default questionValidator;
