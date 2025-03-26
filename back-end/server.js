@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import dbConnect from "./db.js";
 import researcherRoutes from "./routes/researcher.routes.js"
-
+import logInRouter from "./routes/login.route.js"
 
 dotenv.config();
 dbConnect();
@@ -22,6 +22,7 @@ app.set("views", "./views");
 
 //routes:
 app.use("/api/researchers", researcherRoutes);
+app.use("/api/log-in", logInRouter);
 
 
 app.get("/", (req, res) => {

@@ -52,7 +52,8 @@ export const findResearcher = async (req, res) => {
             email: foundResearcher.email,
             name: foundResearcher.name
         };
-       
+        
+        //TODO: add authentication so user can do crud actions / give token to front-end or however it works 
         return res.status(200).json(result);
 
     }catch(err){
