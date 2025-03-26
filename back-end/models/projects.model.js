@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 const projectSchema = new mongoose.Schema({
     researcher_id: {type: mongoose.Schema.Types.ObjectId, required: true, ref: "Researcher"},
     title: {type: String, required: true},
-    questions: [{type: mongoose.Schema.Types.ObjectId, ref: "Question"}],
+    questions: [{questionId: {type: mongoose.Schema.Types.ObjectId, ref: "Question"}}],
     status: {
         type: String,
         required: true,
