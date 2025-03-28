@@ -1,7 +1,7 @@
 import { body, validationResult } from "express-validator";
 
 //validating each field for creating a new researcher.
-const researcherValidator = [
+ const researcherValidator = [
     body("email")
         .isEmail().withMessage("Email must be a valid email.")
         .notEmpty().withMessage("please provide an email adress"),

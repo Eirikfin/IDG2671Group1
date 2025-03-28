@@ -47,16 +47,30 @@ export const findResearcher = async (req, res) => {
         if(!foundResearcher){
             return res.status(404).json({message: "No researcher with this id was found"});
         }
-        
         const result = { 
             email: foundResearcher.email,
             name: foundResearcher.name
         };
-        
-        //TODO: add authentication so user can do crud actions / give token to front-end or however it works 
         return res.status(200).json(result);
 
     }catch(err){
         return res.status(500).json({message: "Server error", error: err.message})
+    }
+}
+
+export const findAllResearchers = async (req, res) => {
+    try{
+        const allResearchers = await Researcher.find();
+        if(allResearchers.length === 0){
+            return res.status(404).json({message: "No researchers was found"})
+        }
+        const result = {
+            id: allResearchers._id,
+            name: allResearchers.name,
+            email: allResearchers.email
+        }
+        res.status(200).json(result);
+    }catch(err){
+        return res.status(500).json({ message: "Server error", error: err.message})
     }
 }
