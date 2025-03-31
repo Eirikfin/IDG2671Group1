@@ -10,7 +10,7 @@ dbConnect();
 
 //global variables
 const app = express();
-const port = process.env.PORT || 4242;
+const port = process.env.PORT || 4202;
 
 //Middleware
 app.use(express.json());
@@ -30,6 +30,6 @@ app.get("/", (req, res) => {
 })
 
 // start server:
-app.listen(process.env.PORT, () => {
+app.listen(port, () => {
     console.log(`Server is listening at http://localhost:${port}`);
 });

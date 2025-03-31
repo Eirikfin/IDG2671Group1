@@ -1,5 +1,11 @@
 import Researcher from "../models/researchers.model.js";
+import { createToken } from "../middleware/webtoken.js";
 import { comparePassword } from "../middleware/passwordhandling.js";
+import dotenv from "dotenv"
+
+dotenv.config();
+
+const secretKey = process.env.SECRET_KEY || "topsecretkey";
 
 export const logIn = async (req, res) => {
    try{
@@ -10,8 +16,19 @@ export const logIn = async (req, res) => {
            return res.status(404).json({message: "No researcher with provided email was found"}) 
         }
         if(await comparePassword(password, foundUser.password)){ //compare password-input with password in database
-            //TO DO: add authentication so user can do crud actions/ access to front end.
-            return res.status(200).json({message: "Log in was successful"}) 
+           //if they match, the user logs inn!
+
+           //payload for info stored in token
+            const payload = {
+            username: foundUser.name,
+            id: foundUser._id
+           }
+           
+           //generated a jwt token 
+            const token = await createToken(payload, secretKey,)
+
+           //send success massage and jwt token to client:
+            return res.status(200).json({message: "Log in was successful", token: token, id: foundUser._id});
         }else{
             return res.status(400).json({message: "Wrong password."})
         }
