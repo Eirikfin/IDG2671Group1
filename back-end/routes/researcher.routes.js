@@ -7,8 +7,6 @@ import express from "express";
 
 const router = express.Router();
 
-
-
 //creating a researcher:
 router.post("/", researcherValidator, passwordHash, createResearcher);
 

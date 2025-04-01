@@ -1,6 +1,5 @@
 import Artifact from "../models/artifacts.model.js";
 
-
 //storing uploaded artifact in db:
 export const createArtifact = async (req, res) => {
   try {
@@ -70,44 +69,58 @@ export const updateArtifact = async (req, res) => {
 
 //deleting an artifact:
 export const deleteArtifact = async (req, res) => {
-    try{
+  try {
     //find artifact in db:
     const foundArtifact = await Artifact.findById(req.params.id);
     //if no artifact was found:
-    if(!foundArtifact){
-        return res.status(404).json({ message: "No artifact with this Id was found" });
+    if (!foundArtifact) {
+      return res
+        .status(404)
+        .json({ message: "No artifact with this Id was found" });
     }
     //if authorization don't match artifact:
-    if(req.user.id !== foundArtifact.researcherId.toString()){
-        return res.status(403).json({ message: "Can't delete other researchers Artifacts!"});
+    if (req.user.id !== foundArtifact.researcherId.toString()) {
+      return res
+        .status(403)
+        .json({ message: "Can't delete other researchers Artifacts!" });
     }
-    const deletedArtifact = await Artifact.findByIdAndDelete(req.params.id)
-    return res.status(200).json({ message: "Artifact was deleted", artifact: deletedArtifact});
-}catch(err){
-    return res.status(500).json({ message: "Server error", error: err.message});
-}}
+    const deletedArtifact = await Artifact.findByIdAndDelete(req.params.id);
+    return res
+      .status(200)
+      .json({ message: "Artifact was deleted", artifact: deletedArtifact });
+  } catch (err) {
+    return res
+      .status(500)
+      .json({ message: "Server error", error: err.message });
+  }
+};
 //getting an artifact by id:
 export const getArtifact = async (req, res) => {
-    try{
+  try {
     const foundArtifact = await Artifact.findById(req.params.id);
-    if(!foundArtifact){
-        return res.status(404).json({ message: "No Artifact was found" });
+    if (!foundArtifact) {
+      return res.status(404).json({ message: "No Artifact was found" });
     }
 
     return res.status(200).json(foundArtifact);
-}catch(err){
-    return res.status(500).json( {message: "Server error", error: err.message});
-}}
+  } catch (err) {
+    return res
+      .status(500)
+      .json({ message: "Server error", error: err.message });
+  }
+};
 
 //getting all artifacts uploaded by a researcer
 export const getAllArtifacts = async (req, res) => {
-    try{
-    const foundArtifacts = await Artifact.find({researcherId: req.params.id});
-    if(foundArtifacts.length === 0){
-        return res.status(404).json({message: "No Artifacts found for this researcher"});
+  try {
+    const foundArtifacts = await Artifact.find({ researcherId: req.params.id });
+    if (foundArtifacts.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "No Artifacts found for this researcher" });
     }
-    res.status(200).json(foundArtifacts)
-}catch(err){
-    res.status(500).json({message: "Server error", error: err.message});
-    }
-}
+    res.status(200).json(foundArtifacts);
+  } catch (err) {
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
+};

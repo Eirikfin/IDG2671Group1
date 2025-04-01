@@ -48,10 +48,10 @@ export const deleteResearcher = async (req, res) => {
   try {
     //compare tokenid with request parameter
     if (req.user.id !== req.params.id) {
-        return res
-          .status(403)
-          .json({ message: "You can only delete your own profile." });
-      }
+      return res
+        .status(403)
+        .json({ message: "You can only delete your own profile." });
+    }
 
     const deletedResearcher = await Researcher.findByIdAndDelete(req.params.id);
 
@@ -70,7 +70,6 @@ export const deleteResearcher = async (req, res) => {
 //getting a researchers info:
 export const findResearcher = async (req, res) => {
   try {
-  
     const foundResearcher = await Researcher.findById(req.params.id);
 
     if (!foundResearcher) {

@@ -32,13 +32,11 @@ export const logIn = async (req, res) => {
       const token = await createToken(payload, secretKey);
 
       //send success massage and jwt token to client:
-      return res
-        .status(200)
-        .json({
-          message: "Log in was successful",
-          token: token,
-          id: foundUser._id,
-        });
+      return res.status(200).json({
+        message: "Log in was successful",
+        token: token,
+        id: foundUser._id,
+      });
     } else {
       return res.status(400).json({ message: "Wrong password." });
     }

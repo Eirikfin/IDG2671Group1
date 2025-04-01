@@ -6,7 +6,6 @@ dotenv.config();
 
 const secretKey = process.env.SECRET_KEY || "topsecretkey";
 
-
 //creating a token:
 export const createToken = (payload, secretKey) => {
   const token = jwt.sign(payload, secretKey, { expiresIn: "3d" });
