@@ -7,7 +7,7 @@ import express from "express";
 
 const router = express.Router();
 
-//TO DO: Add authentication for CRUD actions (admin log in)
+
 
 //creating a researcher:
 router.post("/", researcherValidator, passwordHash, createResearcher);
