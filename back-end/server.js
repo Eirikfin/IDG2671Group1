@@ -23,24 +23,18 @@ app.get("/", (req, res) => {
 })
 
 const answersRoute = require('./routes/answersRoute');
+const artifactsRoute = require('./routes/artifactsRoute');
 const projectsRoute = require('./routes/projectsRoute');
 const questionsRoute = require('./routes/questionsRoute');
+const researchersRoute = require('./routes/researchersRoute');
+const sessionsRoute = require('./routes/sessionsRoute');
 
 app.use('/api/answers', answersRoute); // <-- remember to add authorization middleware etc.
+app.use('/api/artifacts', artifactsRoute); // <-- remember to add authorization middleware etc.
 app.use('/api/projects', projectsRoute); // <-- remember to add authorization middleware etc.
 app.use('/api/questions', questionsRoute); // <-- remember to add authorization middleware etc.
-
-app.post('/api/projects') // <-- remember to add authorization middleware etc.
-app.patch('/api/projects/:id') // <-- remember to add authorization middleware etc.
-app.delete('/api/projects/:id') // <-- remember to add authorization middleware etc.
-
-app.post('/api/questions') // <-- remember to add authorization middleware etc.
-app.patch('/api/projects/questions/:id') // <-- remember to add authorization middleware etc.
-app.delete('/api/projects/questions/:id') // <-- remember to add authorization middleware etc.
-
-app.post('/api/answers') // <-- remember to add authorization middleware etc.
-app.patch('/api/projects/questions/answers/:id') // <-- remember to add authorization middleware etc.
-app.delete('/api/projects/questions/answers/:id') // <-- remember to add authorization middleware etc.
+app.use('/api/researchers', researchersRoute); // <-- remember to add authorization middleware etc.
+app.use('/api/sessions', sessionsRoute); // <-- remember to add authorization middleware etc.
 
 // start server:
 app.listen(process.env.PORT, () => {
