@@ -89,8 +89,10 @@ export const findResearcher = async (req, res) => {
   }
 };
 
+//getting all researchers info
 export const findAllResearchers = async (req, res) => {
   try {
+    // TODO: add req.param for superuser token
     const allResearchers = await Researcher.find();
     if (allResearchers.length === 0) {
       return res.status(404).json({ message: "No researchers was found" });

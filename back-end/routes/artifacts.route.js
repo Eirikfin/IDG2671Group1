@@ -1,18 +1,19 @@
 import express from "express";
 import { authenticateToken } from "../middleware/webtoken";
+import artifactValidator from "../validators/artifacts.validator";
 
 const router = express.Router();
 
 //creating an artifact:
-router.post("/",authenticateToken, createartifact);
+router.post("/", artifactValidator, authenticateToken, createartifact);
 
 //updating an artifact:
-router.put("/:id", authenticateToken, updateartifact);
+router.put("/:id", artifactValidator, authenticateToken, updateartifact);
 
 //deleting an artifact:
-router.delete("/:id", authenticateToken, deleteartifact);
+router.delete("/:id", artifactValidator, authenticateToken, deleteartifact);
 
 //find artifact info:
-router.get("/:id", authenticateToken, findartifact);
+router.get("/:id", artifactValidator, authenticateToken, findartifact);
 
 export default router;

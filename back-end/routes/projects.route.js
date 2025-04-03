@@ -1,19 +1,20 @@
 import express from "express";
 import { authenticateToken } from "../middleware/webtoken";
+import projectValidator from "../validators/projects.validator";
 
 
 const router = express.Router();
 
 //creating a project:
-router.post("/", createproject);
+router.post("/", projectValidator, authenticateToken, createproject);
 
 //updating a project:
-router.put("/:id", authenticateToken, updateproject);
+router.put("/:id", projectValidator, authenticateToken, updateproject);
 
 //deleting a project:
-router.delete("/:id", authenticateToken, deleteproject);
+router.delete("/:id", projectValidator, authenticateToken, deleteproject);
 
 //find project info:
-router.get("/:id", authenticateToken, findproject);
+router.get("/:id", projectValidator, authenticateToken, findproject);
 
 export default router;
