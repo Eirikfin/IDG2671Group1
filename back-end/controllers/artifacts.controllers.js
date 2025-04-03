@@ -113,14 +113,31 @@ export const getArtifact = async (req, res) => {
 //getting all artifacts uploaded by a researcer
 export const getAllArtifacts = async (req, res) => {
   try {
-    const foundArtifacts = await Artifact.find({ researcherId: req.params.id });
-    if (foundArtifacts.length === 0) {
-      return res
-        .status(404)
-        .json({ message: "No Artifacts found for this researcher" });
+    const { page = 1, limit = 10, sortBy = "createdAt", order = "desc", mediaType, researcherId } = req.query;
+    const filter = {};
+    
+    if (mediaType) {
+        filter.mediaType = mediaType;
     }
-    res.status(200).json(foundArtifacts);
-  } catch (err) {
-    res.status(500).json({ message: "Server error", error: err.message });
-  }
+    if (researcherId) {
+        filter.researcherId = researcherId;
+    }
+
+    const artifacts = await Artifact.find(filter)
+        .sort({ [sortBy]: order === "asc" ? 1 : -1 })
+        .limit(parseInt(limit))
+        .skip((parseInt(page) - 1) * parseInt(limit));
+
+    const total = await Artifact.countDocuments(filter);
+
+    res.status(200).json({
+        total,
+        page: parseInt(page),
+        totalPages: Math.ceil(total / parseInt(limit)),
+        artifacts,
+    });
+} catch (error) {
+    console.error("Error fetching artifacts:", error);
+    res.status(500).json({ error: error.message });
+}
 };

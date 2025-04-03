@@ -4,7 +4,6 @@ import { passwordHash } from "../middleware/passwordhandling.js";
 import { authenticateToken } from "../middleware/webtoken.js";
 import express from "express";
 
-
 const router = express.Router();
 
 //creating a researcher:
