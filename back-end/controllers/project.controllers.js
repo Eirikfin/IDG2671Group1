@@ -93,12 +93,29 @@ export const getAllProjects = async (req, res) => {
     if(req.user.id !== req.params.id){
         return res.status(403).json({ message: "Can only get your own projects"});
     }
-    const foundProjects = await Project.find({ researcherId: req.params.id});
-    if(foundProjects.length === 0){
-        return res.status(404).json({ message: "No projects were found "});
+    // Set limit to whatever deemed necessary / most visually appealling later...
+    const { page = 1, limit = 5, sortBy = "createdAt", order = "desc", status } = req.query;
+    const filter = {};
+    
+    if (status) {
+        filter.status = status;
     }
-    return res.status(200).json(foundProjects);
-    }catch(err){
-        return res.status(500).json({ message: "Server error", error: err.message});
-    }
+
+    const projects = await Project.find(filter)
+        .sort({ [sortBy]: order === "asc" ? 1 : -1 })
+        .limit(parseInt(limit))
+        .skip((parseInt(page) - 1) * parseInt(limit));
+
+    const total = await Project.countDocuments(filter);
+
+    res.status(200).json({
+        total,
+        page: parseInt(page),
+        totalPages: Math.ceil(total / parseInt(limit)),
+        projects,
+    });
+} catch (error) {
+    console.error("Error fetching projects:", error);
+    res.status(500).json({ error: error.message });
+}
 }
