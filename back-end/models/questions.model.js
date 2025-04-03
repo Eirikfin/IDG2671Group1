@@ -6,6 +6,7 @@ const questionSchema = new mongoose.Schema({
     ref: "Project",
     required: true,
   }, //refrences project.model.js
+  researcherId: { type: mongoose.Schema.Types.ObjectId }, // needed for CRUD REQUESTS
   questionText: { type: String, required: true }, //text for the questions asked
   typeOfQuestion: {
     type: String,

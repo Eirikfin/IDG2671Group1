@@ -5,6 +5,10 @@ const sessionValidator = [
         .notEmpty().withMessage("User session must have a projectId.")
         .isMongoId().withMessage("User session must have a valid projectId."),
 
+    body("researcherId")
+        .notEmpty().withMessage("Question needs a researcherId")
+        .isMongoId().withMessage("Please provide a valid researcherId"),    
+
     body("startTime")
         .optional()
         .notEmpty().withMessage("Session must contain a startTime.")

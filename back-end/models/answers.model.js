@@ -6,6 +6,7 @@ const answerSchema = new mongoose.Schema({
     ref: "Question",
     required: true,
   }, //refrences questions.model.js
+  researcherId: { type: mongoose.Schema.Types.ObjectId }, // needed for CRUD REQUESTS
   sessionId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Session",

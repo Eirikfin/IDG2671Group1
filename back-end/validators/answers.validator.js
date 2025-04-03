@@ -4,6 +4,9 @@ const answerValidator = [
     body("questionId")
         .notEmpty().withMessage("Please provide an questionId")
         .isMongoId().withMessage("Id must be a valid mongo.object.id"), //id of question
+    body("researcherId")
+        .notEmpty().withMessage("Question needs a researcherId")
+        .isMongoId().withMessage("Please provide a valid researcherId"),
     body("sessionId")
         .notEmpty().withMessage("Please provide an sessionId")
         .isMongoId().withMessage("Id must be a valid mongo.object.id"), //id of session
