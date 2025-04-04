@@ -1,0 +1,173 @@
+### Log In
+POST http://localhost:4202/api/log-in
+Content-Type: application/json
+
+{
+    "username": "testuser",
+    "password": "password123"
+}
+
+### Get Answers
+GET http://localhost:4202/api/answers
+Authorization: Bearer {{token}}
+
+### Create an Answer
+POST http://localhost:4202/api/answers
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "questionId": 1,
+    "text": "This is an answer."
+}
+
+### Update an Answer
+PUT http://localhost:4202/api/answers/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "text": "Updated answer."
+}
+
+### Delete an Answer
+DELETE http://localhost:4202/api/answers/1
+Authorization: Bearer {{token}}
+
+### Get Artifacts
+GET http://localhost:4202/api/artifacts
+Authorization: Bearer {{token}}
+
+### Create an Artifact
+POST http://localhost:4202/api/artifacts
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "Artifact Name",
+    "description": "Artifact Description"
+}
+
+### Update an Artifact
+PUT http://localhost:4202/api/artifacts/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "Updated Artifact Name",
+    "description": "Updated Description"
+}
+
+### Delete an Artifact
+DELETE http://localhost:4202/api/artifacts/1
+Authorization: Bearer {{token}}
+
+### Get Projects
+GET http://localhost:4202/api/projects
+Authorization: Bearer {{token}}
+
+### Create a Project
+POST http://localhost:4202/api/projects
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "title": "Project Title",
+    "summary": "Project Summary"
+}
+
+### Update a Project
+PUT http://localhost:4202/api/projects/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "title": "Updated Project Title",
+    "summary": "Updated Summary"
+}
+
+### Delete a Project
+DELETE http://localhost:4202/api/projects/1
+Authorization: Bearer {{token}}
+
+### Get Questions
+GET http://localhost:4202/api/questions
+Authorization: Bearer {{token}}
+
+### Create a Question
+POST http://localhost:4202/api/questions
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "text": "What is your question?"
+}
+
+### Update a Question
+PUT http://localhost:4202/api/questions/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "text": "Updated question text."
+}
+
+### Delete a Question
+DELETE http://localhost:4202/api/questions/1
+Authorization: Bearer {{token}}
+
+### Get Researchers
+GET http://localhost:4202/api/researchers
+Authorization: Bearer {{token}}
+
+### Create a Researcher
+POST http://localhost:4202/api/researchers
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "Researcher Name",
+    "field": "Research Field"
+}
+
+### Update a Researcher
+PUT http://localhost:4202/api/researchers/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "Updated Researcher Name",
+    "field": "Updated Research Field"
+}
+
+### Delete a Researcher
+DELETE http://localhost:4202/api/researchers/1
+Authorization: Bearer {{token}}
+
+### Get Sessions
+GET http://localhost:4202/api/sessions
+Authorization: Bearer {{token}}
+
+### Create a Session
+POST http://localhost:4202/api/sessions
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "title": "Session Title",
+    "description": "Session Description"
+}
+
+### Update a Session
+PUT http://localhost:4202/api/sessions/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "title": "Updated Session Title",
+    "description": "Updated Description"
+}
+
+### Delete a Session
+DELETE http://localhost:4202/api/sessions/1
+Authorization: Bearer {{token}}
