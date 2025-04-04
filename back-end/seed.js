@@ -1,3 +1,5 @@
+
+/*
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import data from "./testparticipant.json" with { type: "json" }; 
@@ -46,3 +48,5 @@ const uploadData = async () => {
 };
 
 uploadData();
+
+*/

@@ -1,19 +1,23 @@
 {
-  "name": "idg2671group1",
-  "version": "1.0.0",
-  "description": "What information is useful for the product implementation? Personal information about the users?",
+  "name": "studyprojects",
+  "version": "0.0.1",
+  "description": "The back end APi for a study application where researcher can create studies, upload artifacts and recieve participant submitted answers",
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm install",
+    "test": "node ./tests/endpoint.intergration.test.js",
     "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
+    "express-validator": "^7.2.1",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.13.0"
   }
 }
