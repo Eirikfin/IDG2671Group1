@@ -1,10 +1,9 @@
 import { logIn } from "../controllers/login.controller.js";
+import { loginValidator } from "../validators/login.validator";
 import express from "express";
-// <-- add login validator
 
 const router = express.Router();
 
-//log in to application (ADD LOGIN VALIDATOR)
-router.post("/", logIn);
+router.post("/", loginValidator, logIn);
 
 export default router;
