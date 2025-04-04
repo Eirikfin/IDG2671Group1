@@ -3,9 +3,14 @@ POST http://localhost:4202/api/log-in
 Content-Type: application/json
 
 {
-    "username": "testuser",
-    "password": "password123"
+    "username": "testuser@hotmail.com",
+    "password": "Password123"
 }
+
+> {% response.body.$.token %}
+
+### Set Token
+@token = {{response.body.token}}
 
 ### Get Answers
 GET http://localhost:4202/api/answers
