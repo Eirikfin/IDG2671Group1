@@ -1,19 +1,16 @@
 import express from "express";
 import dotenv from "dotenv";
 import dbConnect from "./db.js";
-import researcherRoutes from "./routes/researcher.routes.js"
-import logInRouter from "./routes/login.route.js"
-
-const answersRoute = require('./routes/answersRoute');
-const artifactsRoute = require('./routes/artifactsRoute');
-const projectsRoute = require('./routes/projectsRoute');
-const questionsRoute = require('./routes/questionsRoute');
-const researchersRoute = require('./routes/researchersRoute');
-const sessionsRoute = require('./routes/sessionsRoute');
+import researchersRoute from "./routes/researchers.route.js";
+import answersRoute from "./routes/answers.route.js";
+import artifactsRoute from "./routes/artifacts.route.js";
+import projectsRoute from "./routes/projects.route.js";
+import questionsRoute from "./routes/questions.route.js";
+import sessionsRoute from "./routes/sessions.route.js";
+import loginRoute from "./routes/login.route.js";
 
 dotenv.config();
 dbConnect();
-
 
 //global variables
 const app = express();
@@ -28,16 +25,15 @@ app.set("views", "./views");
 
 
 //routes:
-app.use("/api/researchers", researcherRoutes);
-app.use("/api/log-in", logInRouter);
-app.use('/api/answers', answersRoute); // <-- remember to add authorization middleware etc.
-app.use('/api/artifacts', artifactsRoute); // <-- remember to add authorization middleware etc.
-app.use('/api/projects', projectsRoute); // <-- remember to add authorization middleware etc.
-app.use('/api/questions', questionsRoute); // <-- remember to add authorization middleware etc.
-app.use('/api/researchers', researchersRoute); // <-- remember to add authorization middleware etc.
-app.use('/api/sessions', sessionsRoute); // <-- remember to add authorization middleware etc.
+app.use("/api/log-in", loginRoute);
+app.use('/api/answers', answersRoute);
+app.use('/api/artifacts', artifactsRoute);
+app.use('/api/projects', projectsRoute);
+app.use('/api/questions', questionsRoute);
+app.use('/api/researchers', researchersRoute);
+app.use('/api/sessions', sessionsRoute);
 
-app.get("/", (req, res) => {
+app.get("/", (_, res) => {
     res.render("dashboard");
 })
 
