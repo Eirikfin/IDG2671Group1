@@ -8,6 +8,7 @@ import projectsRoute from "./routes/projects.route.js";
 import questionsRoute from "./routes/questions.route.js";
 import sessionsRoute from "./routes/sessions.route.js";
 import loginRoute from "./routes/login.route.js";
+import { authenticateToken } from "./middleware/webtoken.js";
 
 dotenv.config();
 dbConnect();
@@ -23,7 +24,6 @@ app.use(express.json());
 app.set("view engine", "ejs");
 app.set("views", "./views");
 
-
 //routes:
 app.use("/api/log-in", loginRoute);
 app.use('/api/answers', answersRoute);
@@ -33,8 +33,9 @@ app.use('/api/questions', questionsRoute);
 app.use('/api/researchers', researchersRoute);
 app.use('/api/sessions', sessionsRoute);
 
-app.get("/", (_, res) => {
-    res.render("dashboard");
+//restrict dashboard access to researchers/product owners (not sure if I did this 100% correctly)
+app.get("/", authenticateToken, (_, res) => {
+    res.render("dashboard", { user: req.user });
 })
 
 // start server:

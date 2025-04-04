@@ -13,7 +13,7 @@ export const createToken = (payload, secretKey) => {
 };
 
 //authenticating a token:
-export const authenticateToken = (req, res, next) => {
+export const authenticateToken =  async (req, res, next) => {
   try {
     const token = req.headers.authorization?.split(" ")[1]; // getting the token from authorization (removing "Bearer ")
 
