@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #F1FAEE;
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  padding: 1rem;
+}
+
+a {
+  font-weight: bold;
+  font-size: 12pt;
+}
+a:visited {
+  font-weight: bold;
+  color: #1e1e1e;
+}
+
+p {
+  color: #1e1e1e;
+}
+
+button {
+  background-color: #A8DADC;
+  border: 0;
+  font-weight: bold;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease-in-out;
+}
+button:hover {
+  box-shadow: inset 0px 0px 13px -4px rgba(0, 0, 0, 0.75);
+}
+
+header {
+  background-color: #457B9D;
+  border: 1px inset solid hsla(0, 0%, 0%, 0);
+}
+
+footer {
+  position: relative;
+  width: 100%;
+  bottom: 0;
+  background-color: #457B9D;
+  border: 1px solid hsla(0, 0%, 0%, 0);
+}/*# sourceMappingURL=App.css.map */

@@ -1,0 +1,10 @@
+@import '../../../assets/color-variables/colors.scss';
+
+.footer {
+    text-align: center;
+
+    &_text {
+        font-size: 12pt;
+        padding: 1rem;
+    }
+}

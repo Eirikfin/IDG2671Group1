@@ -1,0 +1,11 @@
+.study {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  padding-top: 0;
+}
+.study_button {
+  font-size: 20pt;
+  padding: 1rem;
+}/*# sourceMappingURL=CreateStudy.module.css.map */
