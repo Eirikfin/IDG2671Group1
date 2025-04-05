@@ -1,6 +1,6 @@
 import express from "express";
-import { authenticateToken } from "../middleware/webtoken";
-import artifactValidator from "../validators/artifacts.validator";
+import { authenticateToken } from "../middleware/webtoken.js";
+import artifactValidator from "../validators/artifacts.validator.js";
 
 const router = express.Router();
 
