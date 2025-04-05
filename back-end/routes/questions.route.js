@@ -1,6 +1,7 @@
 import express from "express";
 import { authenticateToken } from "../middleware/webtoken";
 import questionValidator from "../validators/questions.validator";
+import { createQuestion, updateQuestion, deleteQuestion, findQuestion } from "../controllers/questions.controllers";
 
 const router = express.Router();
 
