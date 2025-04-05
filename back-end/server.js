@@ -35,8 +35,15 @@ app.use('/api/sessions', sessionsRoute);
 
 //restrict dashboard access to researchers/product owners (not sure if I did this 100% correctly)
 app.get("/", authenticateToken, (_, res) => {
+    //define which roles are required to access dashboard
+    const allowedRoles = ["researcher", "admin"];
+
+    if (!allowedRoles.includes(req.user.role)) {
+        return res.status(403).json({ message: "Access denied; you are not authorized to access this page." });
+    }
+
     res.render("dashboard", { user: req.user });
-})
+});
 
 // start server:
 app.listen(port, () => {

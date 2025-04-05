@@ -26,6 +26,7 @@ export const logIn = async (req, res) => {
       const payload = {
         username: foundUser.name,
         id: foundUser._id,
+        role: foundUser.role,
       };
 
       //generated a jwt token
