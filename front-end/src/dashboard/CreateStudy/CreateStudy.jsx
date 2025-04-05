@@ -1,5 +1,5 @@
 import styles from './CreateStudy.module.scss';
-export default function CreateStudy() {
+export default function Dashboard_newStudy() {
     return(
         <div>
             <div className={styles.study}>
