@@ -1,7 +1,7 @@
 import express from "express";
 import { authenticateToken } from "../middleware/webtoken.js";
 import sessionValidator from "../validators/sessions.validator.js";
-import { createSession, updateSession, deleteSession, findSession } from "../controllers/sessions.controller";
+import { createSession, updateSession, deleteSession, getSession } from "../controllers/sessions.controller.js";
 
 
 const router = express.Router();
@@ -16,6 +16,6 @@ router.put("/:id", sessionValidator, authenticateToken, updateSession);
 router.delete("/:id", sessionValidator, authenticateToken, deleteSession);
 
 //find Session info:
-router.get("/:id", sessionValidator, authenticateToken, findSession);
+router.get("/:id", sessionValidator, authenticateToken, getSession);
 
 export default router;

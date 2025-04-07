@@ -68,7 +68,7 @@ export const deleteResearcher = async (req, res) => {
 };
 
 //getting a researchers info:
-export const findResearcher = async (req, res) => {
+export const getResearcher = async (req, res) => {
   try {
     const foundResearcher = await Researcher.findById(req.params.id);
 
@@ -90,7 +90,7 @@ export const findResearcher = async (req, res) => {
 };
 
 //getting all researchers info
-export const findAllResearchers = async (req, res) => {
+export const getAllResearchers = async (req, res) => {
   try {
     // TODO: add req.param for superuser token
     const allResearchers = await Researcher.find();

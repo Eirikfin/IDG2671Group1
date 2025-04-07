@@ -10,11 +10,12 @@ h1 {
   padding: 1rem;
 }
 
-a {
+a, .react_link {
   font-weight: bold;
   font-size: 12pt;
+  text-decoration: none;
 }
-a:visited {
+a:visited, .react_link:visited {
   font-weight: bold;
   color: #1e1e1e;
 }
@@ -25,6 +26,7 @@ p {
 
 button {
   background-color: #A8DADC;
+  font-size: 12pt;
   border: 0;
   font-weight: bold;
   cursor: pointer;

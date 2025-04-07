@@ -1,4 +1,5 @@
 import styles from "./CurrentStudy.module.scss";
+import { Link } from "react-router-dom";
 
 export default function CurrentStudy() {
 
@@ -11,7 +12,7 @@ export default function CurrentStudy() {
                     <p>Number of participants: {Math.floor(Math.random() * 100)} (replace with dummy data later)</p>
                     <div className={styles.study_card_buttons}>
                         <button>Copy link</button>
-                        <button>View results</button>
+                        <button><Link to="/results" className={styles.react_Link}>View results</Link></button>
                         <button>Edit study</button>
                     </div>
                 </div>
