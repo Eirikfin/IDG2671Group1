@@ -1,1 +1,14 @@
 @import '../../assets/color-variables/colors.scss';
+
+.container {
+    padding: 1rem;
+    padding-top: 0;
+
+    &_card {
+        border: 2px solid $border;
+        border-radius: 5px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        width: 70vw;
+    }
+}

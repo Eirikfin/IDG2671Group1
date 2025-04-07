@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"Participants.module.css"}
+{"version":3,"sources":["Participants.module.scss","Participants.module.css"],"names":[],"mappings":"AAEA;EACI,aAAA;EACA,cAAA;ACDJ;ADGI;EACI,yBAAA;EACA,kBAAA;EACA,aAAA;EACA,mBAAA;EACA,WAAA;ACDR","file":"Participants.module.css"}

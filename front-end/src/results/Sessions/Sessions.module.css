@@ -1,1 +1,11 @@
-/*# sourceMappingURL=Sessions.module.css.map */
+.container {
+  padding: 1rem;
+  padding-top: 0;
+}
+.container_card {
+  border: 2px solid #457b9d;
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  width: 70vw;
+}/*# sourceMappingURL=Sessions.module.css.map */
