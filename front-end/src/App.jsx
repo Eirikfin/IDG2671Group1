@@ -3,13 +3,21 @@ import './assets/global-styles/App.css'
 import Header from './components/user-interface/header/ui_header';
 import Footer from './components/user-interface/Footer/ui_footer';
 import DashBoard from './dashboard/dashboard';
+import Results from './results/results';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 export default function App() {
   return(
     <>
-      <Header></Header>
-      <DashBoard></DashBoard>
-      <Footer></Footer>
+      <Router>
+        <Header />
+
+        <Routes>
+          <Route path="/" element={<DashBoard />} />
+          <Route path="/results" element={<Results />} />
+        </Routes>
+        <Footer></Footer>
+      </Router>
     </>
   );
 }

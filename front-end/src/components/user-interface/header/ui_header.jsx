@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import styles from './ui_header.module.scss'
+import styles from './ui_header.module.scss';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,13 +39,13 @@ export default function Header() {
                         ref={menuRef}
                         className={`${styles.menu} ${isMenuOpen ? styles.open : ""}`}
                     >
-                        <li><a href="#">Profile</a></li>
-                        <li><a href="#">Manage database</a></li>
-                        <li><a href="#">Something</a></li>
+                        <li><Link to ="/">Profile</Link></li>
+                        <li><Link to="/">Manage database</Link></li>
+                        <li><Link to="/results">Results</Link></li>
                     </ul>
                 </div>
                 <div>
-                    <a className={styles.homeButton} href="#">Home</a>
+                    <Link to="/" className={styles.homeButton} >Home</Link>
                 </div>
             </nav>
         </header>
