@@ -1,7 +1,8 @@
 import express from "express";
-import { authenticateToken } from "../middleware/webtoken";
-import artifactValidator from "../validators/artifacts.validator";
+import { authenticateToken } from "../middleware/webtoken.js";
+import artifactValidator from "../validators/artifacts.validator.js";
 import { createArtifact, updateArtifact, deleteArtifact, findArtifact } from "../controllers/artifacts.controllers";
+
 
 const router = express.Router();
 

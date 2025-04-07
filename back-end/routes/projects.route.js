@@ -1,7 +1,8 @@
 import express from "express";
-import { authenticateToken } from "../middleware/webtoken";
-import projectValidator from "../validators/projects.validator";
+import { authenticateToken } from "../middleware/webtoken.js";
+import projectValidator from "../validators/projects.validator.js";
 import { createProject, updateProject, deleteProject, findProject } from "../controllers/project.controllers";
+
 
 
 const router = express.Router();

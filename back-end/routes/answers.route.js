@@ -1,6 +1,7 @@
 import express from "express";
+
 import answerValidator from "../validators/answers.validator";
-import { createAnswer, updateAnswer, deleteAnswer, findAnswer } from "../controllers/answers.controller";
+import { createAnswer, updateAnswer, deleteAnswer, findAnswer } from "../controllers/answers.controller.js";
 
 const router = express.Router();
 

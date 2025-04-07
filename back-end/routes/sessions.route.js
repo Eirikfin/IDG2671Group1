@@ -1,7 +1,8 @@
 import express from "express";
-import { authenticateToken } from "../middleware/webtoken";
-import sessionValidator from "../validators/sessions.validator";
+import { authenticateToken } from "../middleware/webtoken.js";
+import sessionValidator from "../validators/sessions.validator.js";
 import { createSession, updateSession, deleteSession, findSession } from "../controllers/sessions.controller";
+
 
 const router = express.Router();
 
