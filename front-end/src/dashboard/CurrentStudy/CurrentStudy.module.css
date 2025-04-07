@@ -27,4 +27,7 @@
 .study_card_buttons > button {
   padding: 0.4rem;
   width: 100%;
+}
+.study_card_buttons > button > .react_Link {
+  color: inherit;
 }/*# sourceMappingURL=CurrentStudy.module.css.map */

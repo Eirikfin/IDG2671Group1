@@ -45,7 +45,7 @@ export default function Header() {
                     </ul>
                 </div>
                 <div>
-                    <Link to="/" className={styles.homeButton} >Home</Link>
+                    <button><Link to="/" className={styles.homeButton} >Home</Link></button>
                 </div>
             </nav>
         </header>
