@@ -72,7 +72,7 @@ export const updateSession = async (req, res) => {
           }
       
           return res.status(200).json({
-            message: "Session has been updated sucessfully",
+            message: "Session has been updated successfully",
             Session: updatedSession,
           });
     } catch (err) {
