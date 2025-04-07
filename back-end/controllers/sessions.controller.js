@@ -1,4 +1,4 @@
-import Session from "../models/answers.model";
+import Session from "../models/answers.model.js";
 
 // POST
 export const createSession = async (req, res) => {
@@ -17,7 +17,7 @@ export const createSession = async (req, res) => {
 };
 
 // GET all
-export const findSession = async (req, res) => {
+export const getSession = async (req, res) => {
     try {
         const allSessions = await Session.find({ projectId: req.params.projectId });
         if (allSessions.length === 0) {
@@ -37,7 +37,7 @@ export const findSession = async (req, res) => {
 };
 
 // GET by id
-export const findSessionById = async (req, res) => {
+export const getSessionById = async (req, res) => {
     try {
         const foundSession = await Session.findById(req.params.id);
         if (!foundSession) {

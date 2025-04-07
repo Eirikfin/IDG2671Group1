@@ -1,4 +1,4 @@
-import Answer from "../models/answers.model";
+import Answer from "../models/answers.model.js";
 
 // POST
 export const createAnswer = async (req, res) => {
@@ -17,7 +17,7 @@ export const createAnswer = async (req, res) => {
 };
 
 // GET (get all answers, don't need to get specific answers)
-export const findAnswer = async (req, res) => {
+export const getAnswer = async (req, res) => {
     try {
         const allAnswers = await Answer.find({ questionId: req.params.questionId });
         if (allAnswers.length === 0) {

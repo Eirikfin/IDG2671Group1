@@ -1,5 +1,5 @@
 import researcherValidator from "../validators/researcher.validator.js";
-import { createResearcher, updateResearcher, findResearcher, deleteResearcher } from "../controllers/researchers.controllers.js";
+import { createResearcher, updateResearcher, getResearcher, deleteResearcher } from "../controllers/researchers.controllers.js";
 import { passwordHash } from "../middleware/passwordhandling.js";
 import { authenticateToken } from "../middleware/webtoken.js";
 import { requireAdmin } from "../middleware/roleauth.js";
@@ -17,6 +17,6 @@ router.put("/:id", researcherValidator, authenticateToken, updateResearcher);
 router.delete("/:id", authenticateToken, requireAdmin, deleteResearcher);
 
 //find Researcher info:
-router.get("/:id", authenticateToken, requireAdmin, findResearcher);
+router.get("/:id", authenticateToken, requireAdmin, getResearcher);
 
 export default router;

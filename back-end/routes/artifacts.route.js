@@ -1,7 +1,7 @@
 import express from "express";
 import { authenticateToken } from "../middleware/webtoken.js";
 import artifactValidator from "../validators/artifacts.validator.js";
-import { createArtifact, updateArtifact, deleteArtifact, findArtifact } from "../controllers/artifacts.controllers";
+import { createArtifact, updateArtifact, deleteArtifact, getArtifact } from "../controllers/artifacts.controllers.js";
 
 
 const router = express.Router();
@@ -16,6 +16,6 @@ router.put("/:id", artifactValidator, authenticateToken, updateArtifact);
 router.delete("/:id", artifactValidator, authenticateToken, deleteArtifact);
 
 //find artifact info:
-router.get("/:id", artifactValidator, authenticateToken, findArtifact);
+router.get("/:id", artifactValidator, authenticateToken, getArtifact);
 
 export default router;

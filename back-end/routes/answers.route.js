@@ -1,7 +1,7 @@
 import express from "express";
-
-import answerValidator from "../validators/answers.validator";
-import { createAnswer, updateAnswer, deleteAnswer, findAnswer } from "../controllers/answers.controller.js";
+import { authenticateToken } from "../middleware/webtoken.js";
+import answerValidator from "../validators/answers.validator.js";
+import { createAnswer, updateAnswer, deleteAnswer, getAnswer } from "../controllers/answers.controller.js";
 
 const router = express.Router();
 
@@ -15,6 +15,6 @@ router.put("/:id", answerValidator, authenticateToken, updateAnswer);
 router.delete("/:id", answerValidator, authenticateToken, deleteAnswer);
 
 //find Answer info:
-router.get("/:id", answerValidator, authenticateToken, findAnswer);
+router.get("/:id", answerValidator, authenticateToken, getAnswer);
 
 export default router;
