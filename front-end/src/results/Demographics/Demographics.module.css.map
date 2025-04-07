@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"Demographics.module.css"}
+{"version":3,"sources":["Demographics.module.scss","Demographics.module.css"],"names":[],"mappings":"AAEA;EACI,aAAA;EACA,cAAA;ACDJ;ADGI;EACI,yBAAA;EACA,kBAAA;EACA,aAAA;EACA,mBAAA;EACA,WAAA;ACDR","file":"Demographics.module.css"}
