@@ -1,5 +1,5 @@
 import { useState } from "react";
-import NewQuestionCard from "./questioncard/questionCard";
+import NewQuestionCard from "./questioncard/questionCard"
 
 export default function CreateStudy() {
     const [questionCards, setQuestionCards] = useState([1]);
@@ -8,6 +8,13 @@ export default function CreateStudy() {
         setQuestionCards(prev => [...prev, prev.length + 1]);
     };
 
+    const previewPage = () => {
+        return 
+    };
+    const publishStudy = () => {
+        return
+    }
+
     return (
         <>
             {questionCards.map((num, index) => (
@@ -15,6 +22,8 @@ export default function CreateStudy() {
             ))}
 
             <button onClick={addQuestion}>Add Question</button>
+            <button onClick={previewPage}>Preview page </button>
+            <button onClick={publishStudy}>Publish Study</button>
         </>
     );
 }
