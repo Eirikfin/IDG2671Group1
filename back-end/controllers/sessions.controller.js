@@ -1,4 +1,4 @@
-import Session from "../models/answers.model.js";
+import Session from "../models/sessions.model.js";
 
 // POST
 export const createSession = async (req, res) => {
