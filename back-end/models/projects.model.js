@@ -8,7 +8,7 @@ const projectSchema = new mongoose.Schema({
   }, //refrences researcher.model.js
   title: { type: String, required: true }, //title of project/study
   questions: [
-    { questionId: { type: mongoose.Schema.Types.ObjectId, ref: "Question" } },
+    { type: mongoose.Schema.Types.ObjectId, ref: "Question" },
   ], //an array of questions, refrences questions.model.js
   status: {
     type: String,

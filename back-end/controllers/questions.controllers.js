@@ -5,40 +5,37 @@ import Project from "../models/projects.model.js";
 //create a question:
 export const createQuestion = async (req, res) => {
     try {
-        // get only the wanted input
-        const { questionText, typeOfQuestion, questionAlternatives, artifacts } = req.body;
-        // Fetch the project from the database
-        const project = await Project.findById(req.params.projectId);
-        if (!project) {
-            return res.status(404).json({ message: "Project not found!" });
-        }
+      const { projectId, researcherId, questionText, typeOfQuestion, questionAlternatives } = req.body;
+  
+      // Convert projectId to ObjectId
+      const project = await Project.findById(req.params.projectId);
+  
+      if (!project) {
+        return res.status(404).json({ message: "Project not found!" });
+      }
+  
+      const newQuestion = new Question({
+        projectId,
+        researcherId,
+        questionText,
+        typeOfQuestion,
+        questionAlternatives,
+      });
+  
+      await newQuestion.save();
 
-        // Ensure the researcher owns the project
-        if (req.user.id !== project.researcherId.toString()) {
-            return res.status(403).json({ message: "Can't create questions for another researcher's project!" });
-        }
+      // Add the question ID to the project's questions array
+      project.questions.push(newQuestion._id);
+      await project.save();
 
-        // Create and save the question
-        const question = new Question({
-            projectId: req.params.projectId,
-            researcherId: req.user.id,
-            questionText,
-            typeOfQuestion,
-            questionAlternatives,
-            artifacts,
-        });
-        await question.save();
+      // Populate questions array
+      const updatedProject = await Project.findById(projectId).populate("questions");
 
-        // Add the question ID to the project and save
-        project.questions.push(question._id);
-        await project.save();
-
-        return res.status(201).json({ message: "Question created!", question });
+      return res.status(201).json({ message: "Question created!", question: newQuestion });
     } catch (err) {
-        return res.status(500).json({ message: "Server error", error: err.message });
+      return res.status(500).json({ message: "Server error", error: err.message });
     }
-};
-
+  };
 
 //get a question:
 export const getQuestion = async (req, res) => {

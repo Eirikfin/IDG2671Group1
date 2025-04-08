@@ -17,6 +17,6 @@ router.put("/:id", projectValidator, authenticateToken, updateProject);
 router.delete("/:id", projectValidator, authenticateToken, deleteProject);
 
 //find project info:
-router.get("/:id", projectValidator, authenticateToken, getProject);
+router.get("/:id", authenticateToken, getProject);
 
 export default router;

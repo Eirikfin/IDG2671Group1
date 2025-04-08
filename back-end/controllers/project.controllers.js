@@ -94,7 +94,7 @@ export const deleteProject = async (req, res) => {
 //get a project:
 export const getProject = async (req, res) => {
   try {
-    const project = await Project.findById(req.params.id);
+    const project = await Project.findById(req.params.id).populate("questions");
 
     if (!project) {
       return res.status(404).json({ message: "No project/study was found." });

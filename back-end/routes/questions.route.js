@@ -7,7 +7,7 @@ import { createQuestion, updateQuestion, deleteQuestion, getQuestion } from "../
 const router = express.Router();
 
 //creating a Question:
-router.post("/", questionValidator, authenticateToken, createQuestion);
+router.post("/:projectId", questionValidator, authenticateToken, createQuestion);
 
 //updating a Question:
 router.put("/:id", questionValidator, authenticateToken, updateQuestion);
