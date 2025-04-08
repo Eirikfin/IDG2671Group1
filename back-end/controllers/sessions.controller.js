@@ -25,8 +25,10 @@ export const getSession = async (req, res) => {
         }
         const result = {
             id: allSessions._id,
-            name: allSessions.name,
-            email: allSessions.email,
+            // deviceType: allSessions.deviceType
+            startTime: allSessions.startTime,
+            finishedTime: allSessions.finishedTime,
+            projectId: allSessions.projectId,
         };
         res.status(200).json(result);
     } catch (err) {
@@ -55,7 +57,7 @@ export const getSessionById = async (req, res) => {
 // Patch
 export const updateSession = async (req, res) => {
     try {
-        if (req.user.id !== req.params.id) {
+        if (req.user.role !== "admin" && req.user.id !== req.params.id) {
             return res
               .status(403)
               .json({ message: "You can only update Sessions from your own Projects." });
