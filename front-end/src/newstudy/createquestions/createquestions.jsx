@@ -9,22 +9,35 @@ export default function CreateStudy() {
         setQuestionCards(prev => [...prev, prev.length + 1]);
     };
 
-    const previewPage = () => {
-        return 
+    const deleteQuestion = (indexToRemove) => {
+        setQuestionCards(prev => prev.filter((_, index) => index !== indexToRemove));
     };
+
+    const previewPage = () => {
+        return;
+    };
+
     const publishStudy = () => {
-        return
-    }
+        return;
+    };
+
+    const addSection = () => {
+        return window.location.reload();
+    };
 
     return (
         <>
-            <NewArtifactCard/>
+            <NewArtifactCard />
             {questionCards.map((num, index) => (
-                <NewQuestionCard key={index} number={num} />
+                <div key={index}>
+                    <button onClick={() => deleteQuestion(index)}>Remove</button>
+                    <NewQuestionCard number={index + 1} />
+                </div>
             ))}
 
             <button onClick={addQuestion}>Add Question</button>
-            <button onClick={previewPage}>Preview page </button>
+            <button onClick={addSection}>Add new section</button>
+            <button onClick={previewPage}>Preview page</button>
             <button onClick={publishStudy}>Publish Study</button>
         </>
     );
