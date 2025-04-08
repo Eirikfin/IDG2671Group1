@@ -78,7 +78,7 @@ export const updateQuestion = async (req, res) => {
             return res.status(404).json({ message: "Question was not found"});
         }
 
-        if(req.user.id !== question.researcherId){
+        if(req.user.role !== "admin" && req.user.id !== question.researcherId){
             return res.status(403).json({ message: "Can't update someone elses question"});
         }
 
