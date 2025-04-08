@@ -1,5 +1,6 @@
 import { useState } from "react";
 import style from './newstudy.module.scss';
+import {Link} from 'react-router-dom';
 
 export default function CreateStudy() {
 
@@ -11,7 +12,7 @@ return(
         <input type="text" name="title"></input>
         <label>Description:</label>
         <textarea></textarea>
-        <input type="submit"></input>
+        <Link to={"questions"}><input type="submit"></input></Link>
     </form>
     </div>
 );

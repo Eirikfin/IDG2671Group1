@@ -8,8 +8,6 @@ export default function NewQuestionCard({ number }) {
     //states
     const [type, SetType] = useState(null);
     const [alternatives, setAlternatives] = useState(['']);
-    const [file, setFile] = useState(null);
-    const fileInputRef = useRef(null);
     //handlers
     const handleTypeChange = (e) => {
         SetType(e.target.value);
@@ -23,19 +21,6 @@ export default function NewQuestionCard({ number }) {
 
     const addAlternatives = () => {
         setAlternatives([...alternatives, '']);
-    };
-
-    const handleFileChange = (e) => {
-        const selectedFile = e.target.files[0];
-        setFile(selectedFile);
-        if (selectedFile) {
-            console.log('Selected file:', selectedFile);
-        }
-    };
-
-    const triggerFileInput = (e) => {
-        e.preventDefault(); // prevent button from submitting form
-        fileInputRef.current.click();
     };
 
     //output
@@ -82,21 +67,6 @@ export default function NewQuestionCard({ number }) {
                         <input type="number" name="max" />
                     </div>
                 )}
-
-                <h3>Artifacts:</h3>
-                <div className={styles.buttons}>
-                    <button type="button">Existing Artifact</button>
-                    <button type="button" onClick={triggerFileInput}>
-                        Upload Artifact
-                    </button>
-                    <input
-                        type="file"
-                        ref={fileInputRef}
-                        style={{ display: 'none' }}
-                        onChange={handleFileChange}
-                    />
-                    {file && <p>Selected file: {file.name}</p>}
-                </div>
 
                 <input type="submit" value="Create" />
             </form>

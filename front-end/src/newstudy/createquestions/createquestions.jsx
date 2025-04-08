@@ -1,5 +1,6 @@
 import { useState } from "react";
-import NewQuestionCard from "./questioncard/questionCard"
+import NewQuestionCard from "./questioncard/QuestionCard";
+import NewArtifactCard from "./artifactcard/AttachArtifactCard";
 
 export default function CreateStudy() {
     const [questionCards, setQuestionCards] = useState([1]);
@@ -17,6 +18,7 @@ export default function CreateStudy() {
 
     return (
         <>
+            <NewArtifactCard/>
             {questionCards.map((num, index) => (
                 <NewQuestionCard key={index} number={num} />
             ))}
