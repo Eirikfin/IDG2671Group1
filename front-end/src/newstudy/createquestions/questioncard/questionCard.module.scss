@@ -1,0 +1,35 @@
+@use '../../newstudy.module.scss';
+
+.card button, .card label{
+    display: block;
+    margin: 10px auto;
+}
+input{
+    width: 90%;
+}
+
+
+.alternativeRow {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  
+    input {
+      flex: 1;
+      margin-right: 10px;
+    }
+  
+    button {
+      margin: 0; 
+    }
+  }
+
+.slidingscale{
+    & input{
+        width: 10%;
+        text-align: center;
+        height: 40px;
+        font-size: 1.5rem;
+        margin: 10px auto;
+    }
+}

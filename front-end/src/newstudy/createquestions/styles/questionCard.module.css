@@ -1,0 +1,63 @@
+.card {
+  margin: 20px auto;
+  border: 2px solid #457b9d;
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  width: 70vw;
+  max-width: 800px;
+  opacity: 0.7;
+  transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+.cardbutton {
+  width: 20%;
+  height: 3rem;
+}
+.card label {
+  display: block;
+  font-size: 1.2rem;
+}
+.card h2 {
+  font-size: 2rem;
+}
+.card h3 {
+  font-size: 1.5rem;
+}
+.card textarea {
+  display: block;
+  margin: 20px auto;
+  max-width: 90%;
+  width: 70%;
+  height: 70px;
+}
+
+.card button, .card label {
+  display: block;
+  margin: 10px auto;
+}
+
+input {
+  width: 90%;
+}
+
+.alternativeRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.alternativeRow input {
+  flex: 1;
+  margin-right: 10px;
+}
+.alternativeRow button {
+  margin: 0;
+}
+
+.slidingscale input {
+  width: 10%;
+  text-align: center;
+  height: 40px;
+  font-size: 1.5rem;
+  margin: 10px auto;
+}/*# sourceMappingURL=questionCard.module.css.map */
