@@ -5,8 +5,7 @@ const sessionSchema = mongoose.Schema({
   researcherId: { type: mongoose.Schema.Types.ObjectId }, // needed for CRUD REQUESTS
   startTime: { type: Date }, //optional, will store time the participant started study/survey
   finishedTime: { type: Date }, //optional, will store the time the participant finished the study/survey
-  // add demographics
-  // add device-type
+  deviceType: { type: String, required: true }, //optional, will store the device type of the participant
 });
 
 const Session = mongoose.model("Session", sessionSchema);

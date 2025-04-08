@@ -16,6 +16,6 @@ router.put("/:id", sessionValidator, authenticateToken, updateSession);
 router.delete("/:id", sessionValidator, authenticateToken, deleteSession);
 
 //find Session info:
-router.get("/:id", sessionValidator, authenticateToken, getSession);
+router.get("/projects/:projectId", authenticateToken, getSession);
 
 export default router;

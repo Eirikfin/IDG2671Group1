@@ -25,7 +25,7 @@ export const getSession = async (req, res) => {
         }
         const result = {
             id: allSessions._id,
-            // deviceType: allSessions.deviceType
+            deviceType: allSessions.deviceType,
             startTime: allSessions.startTime,
             finishedTime: allSessions.finishedTime,
             projectId: allSessions.projectId,
