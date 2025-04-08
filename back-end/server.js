@@ -25,7 +25,7 @@ app.set("view engine", "ejs");
 app.set("views", "./views");
 
 //routes:
-app.use("/api/log-in", loginRoute);
+app.use("/api/login", loginRoute);
 app.use('/api/answers', answersRoute);
 app.use('/api/artifacts', artifactsRoute);
 app.use('/api/projects', projectsRoute);

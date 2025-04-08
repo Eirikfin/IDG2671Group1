@@ -25,13 +25,17 @@ export const authenticateToken =  async (req, res, next) => {
     }
     //decode the token
     const decodedToken = jwt.verify(token, secretKey);
-    //set user to the payload of decoded token
-    req.user = decodedToken;
+    
     //check if researcher exists in the database
     const researcher = await Researcher.findById(decodedToken.id);
     if (!researcher) {
       return res.status(404).json({ message: "User not found." });
     }
+
+    req.user = {
+      id: decodedToken.id,
+      role: decodedToken.role,
+    };
 
     //move on to next middleware
     next();
