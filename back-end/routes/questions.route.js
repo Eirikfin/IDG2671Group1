@@ -1,7 +1,7 @@
 import express from "express";
 import { authenticateToken } from "../middleware/webtoken.js";
 import questionValidator from "../validators/questions.validator.js";
-import { createQuestion, updateQuestion, deleteQuestion, getQuestion } from "../controllers/questions.controllers.js";
+import { createQuestion, updateQuestion, deleteQuestion, getQuestion, getAllQuestion } from "../controllers/questions.controllers.js";
 
 
 const router = express.Router();
@@ -16,6 +16,9 @@ router.put("/:id", questionValidator, authenticateToken, updateQuestion);
 router.delete("/:id", questionValidator, authenticateToken, deleteQuestion);
 
 //find Question info:
-router.get("/:id", questionValidator, authenticateToken, getQuestion);
+router.get("/:id", authenticateToken, getQuestion);
+
+//find all Questions for a project:
+router.get("/project/:id", authenticateToken, getAllQuestion);
 
 export default router;
