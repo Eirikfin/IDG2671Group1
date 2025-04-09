@@ -5,6 +5,7 @@ import DashBoard from './dashboard/dashboard';
 import CreateQuestions from './newstudy/createquestions/createquestions'
 import Results from './results/results';
 import Newstudy from './newstudy/newstudy'
+import Login from './login/Login';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
@@ -19,6 +20,7 @@ export default function App() {
           <Route path="/create_study" element={<Newstudy />} />
           <Route path="/create_study/questions" element={<CreateQuestions/>}/>
           <Route path="/results" element={<Results />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
         <Footer/>
       </Router>
