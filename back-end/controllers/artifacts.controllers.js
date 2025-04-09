@@ -10,9 +10,9 @@ export const createArtifact = async (req, res) => {
     //preparing object to be stored in database:
     const uploadedArtifact = {
       researcherId: req.user.id,
-      filename: req.file.originalname,
-      filepath: req.file.path,
-      mediaType: req.file.mimetype,
+      filename: req.file.filename,
+      filepath: req.file.filepath,
+      mediaType: req.file.mediaType,
     };
     //saving to database
     const addedArtifact = new Artifact(uploadedArtifact);

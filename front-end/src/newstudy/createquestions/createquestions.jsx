@@ -28,10 +28,10 @@ export default function CreateStudy() {
     return (
         <>
             <NewArtifactCard />
-            {questionCards.map((num, index) => (
+            {questionCards.map((index) => (
                 <div key={index}>
                     <button onClick={() => deleteQuestion(index)}>Remove</button>
-                    <NewQuestionCard number={index + 1} />
+                    <NewQuestionCard number={index} />
                 </div>
             ))}
 
