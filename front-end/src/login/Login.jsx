@@ -14,7 +14,7 @@ export default function Login() {
                     <input className={styles.login__container__form__input} type="password" name="password"></input>
                     <input className={styles.login__container__form__button} type="submit"></input>
                 </form>
-                <p>Don't have an account? <a href="/register">Register here</a></p>
+                <p>Don't have an account? <Link to="/Register">Register here</Link></p>
                 <p>Forgot your password? <a href="/forgot-password">Reset it here</a></p>
             </div>
         </div>

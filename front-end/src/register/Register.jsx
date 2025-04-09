@@ -1,4 +1,5 @@
 import styles from './Register.module.scss';
+import { Link } from "react-router-dom";
 
 export default function Register() {
     return(
@@ -15,7 +16,7 @@ export default function Register() {
                     <input className={styles.register__container__form__input} type="password" name="confirm-password"></input>
                     <input className={styles.register__container__form__button} type="submit"></input>
                 </form>
-                <p>Already have an account? <a href="/login">Login here</a></p>
+                <p>Already have an account? <Link to="/Login">Login here</Link></p>
             </div>
         </div>
     )
