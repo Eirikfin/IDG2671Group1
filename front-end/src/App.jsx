@@ -15,7 +15,7 @@ export default function App() {
         <Header />
 
         <Routes>
-          <Route path="/" element={<DashBoard />} />
+          <Route path="/dashboard" element={<DashBoard />} />
           <Route path="/create_study" element={<Newstudy />} />
           <Route path="/create_study/questions" element={<CreateQuestions/>}/>
           <Route path="/results" element={<Results />} />
