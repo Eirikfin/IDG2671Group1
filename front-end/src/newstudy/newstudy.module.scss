@@ -12,12 +12,14 @@
     transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
 
-    &button{
+    & button{
         width: 20%;
         height: 3rem;
     }
     & label{
         display: block;
+        font-weight: bold;
+        margin: 20px auto;
         font-size: 1.2rem;
     }
     & h2{
@@ -33,7 +35,22 @@
         max-width: 90%;
         width: 70%;
         height: 70px;
-        
+        border-radius: 5px;
+    }
+    & input{
+        border-radius: 5px;
+    }
+
+    & .submit{
+        min-height: 40px;
+        max-width: 50%;
+        font-size: 1.5rem;
+        font-weight: bold;
+        opacity: 0.8;
+
+        &:hover{
+            opacity: 1;
+        }
     }
 }
 

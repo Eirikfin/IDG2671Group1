@@ -10,12 +10,14 @@
   transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
 }
-.cardbutton {
+.card button {
   width: 20%;
   height: 3rem;
 }
 .card label {
   display: block;
+  font-weight: bold;
+  margin: 20px auto;
   font-size: 1.2rem;
 }
 .card h2 {
@@ -30,4 +32,18 @@
   max-width: 90%;
   width: 70%;
   height: 70px;
+  border-radius: 5px;
+}
+.card input {
+  border-radius: 5px;
+}
+.card .submit {
+  min-height: 40px;
+  max-width: 50%;
+  font-size: 1.5rem;
+  font-weight: bold;
+  opacity: 0.8;
+}
+.card .submit:hover {
+  opacity: 1;
 }/*# sourceMappingURL=newstudy.module.css.map */

@@ -12,7 +12,7 @@ return(
         <input type="text" name="title"></input>
         <label>Description:</label>
         <textarea></textarea>
-        <Link to={"questions"}><input type="submit"></input></Link>
+        <Link to={"questions"}><input className={style.submit} type="submit"></input></Link>
     </form>
     </div>
 );

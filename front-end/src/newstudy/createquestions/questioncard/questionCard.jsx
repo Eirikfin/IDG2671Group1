@@ -52,6 +52,7 @@ export default function NewQuestionCard({ number }) {
             }
         />
         <button
+            className={styles.remove_btn}
             type="button"
             onClick={() => deleteAlternative(index)}
         >
@@ -74,8 +75,6 @@ export default function NewQuestionCard({ number }) {
             <input type="number" name="max" placeholder="10"/>
           </div>
         )}
-
-        <input type="submit" value="Create" />
       </form>
     </div>
   );

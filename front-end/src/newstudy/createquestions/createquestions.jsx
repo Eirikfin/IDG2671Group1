@@ -1,7 +1,7 @@
 import { useState } from "react";
 import NewQuestionCard from "./questioncard/QuestionCard";
 import NewArtifactCard from "./artifactcard/AttachArtifactCard";
-
+import styles from "./createquestions.module.scss";
 export default function CreateStudy() {
     const [questionCards, setQuestionCards] = useState([1]);
 
@@ -30,7 +30,9 @@ export default function CreateStudy() {
             <NewArtifactCard />
             {questionCards.map((index) => (
                 <div key={index}>
-                    <button onClick={() => deleteQuestion(index)}>Remove</button>
+                    <button
+                    className={styles.remove_btn} 
+                    onClick={() => deleteQuestion(index)}>X</button>
                     <NewQuestionCard number={index} />
                 </div>
             ))}

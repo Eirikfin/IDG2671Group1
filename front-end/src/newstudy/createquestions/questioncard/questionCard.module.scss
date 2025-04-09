@@ -5,7 +5,14 @@
     margin: 10px auto;
 }
 input{
-    width: 90%;
+    width: 60%;
+    min-height: 20px;
+    font-weight: bold;
+}
+select{
+  min-height: 30px;
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
 
@@ -32,4 +39,10 @@ input{
         font-size: 1.5rem;
         margin: 10px auto;
     }
+}
+
+.remove_btn{
+  max-width: 30px;
+  max-height: 30px;
+  border-radius: 200px;
 }
