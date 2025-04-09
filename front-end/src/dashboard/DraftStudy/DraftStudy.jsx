@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export default function DraftStudy() {
     return(
         <div className={styles.study}>
-            <h2 className={styles.study_title}>Drafted study/studies</h2>
+            <h2 className={styles.study_title}>Drafted study/studies (not published)</h2>
             {[1, 2].map((num) => (
                 <div key={num} className={styles.study_card}>
                     <h3>Study {num}: Compare Pants</h3>
