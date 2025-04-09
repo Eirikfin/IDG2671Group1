@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import dbConnect from "./db.js";
 import cors from "cors";
 import path from "path";
+import cookieParser from "cookie-parser";
 import researchersRoute from "./routes/researchers.route.js";
 import answersRoute from "./routes/answers.route.js";
 import artifactsRoute from "./routes/artifacts.route.js";
@@ -21,7 +22,11 @@ const port = process.env.PORT || 4202;
 
 //Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors( {
+    origin: "http://localhost:5173",
+    credentials: true,
+}));
+app.use(cookieParser());
 
 //Server static files from react app
 const __dirname = path.resolve();
