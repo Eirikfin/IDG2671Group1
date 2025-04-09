@@ -32,6 +32,13 @@ export const logIn = async (req, res) => {
       //generated a jwt token
       const token = await createToken(payload, secretKey);
 
+      res.cookie("researcherId", foundUser._id, {
+        httpOnly: true,
+        secure: process.env.NODE_env === "production",
+        sameSite: "strict",
+        maxAge: 24 * 60 * 60 * 1000, //Cookie expires in 24hr
+      });
+
       //send success massage and jwt token to client:
       return res.status(200).json({
         message: "Log in was successful",
