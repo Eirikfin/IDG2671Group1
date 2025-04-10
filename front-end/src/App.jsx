@@ -1,15 +1,15 @@
-import './assets/global-styles/App.css'
-import Header from './components/user-interface/header/ui_header';
-import Footer from './components/user-interface/Footer/ui_footer';
-import DashBoard from './dashboard/dashboard';
-import CreateQuestions from './newstudy/createquestions/createquestions'
-import Results from './results/results';
-import Newstudy from './newstudy/newstudy'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import "./assets/global-styles/App.css";
+import Header from "./components/user-interface/header/ui_header";
+import Footer from "./components/user-interface/Footer/ui_footer";
+import DashBoard from "./dashboard/dashboard";
+import CreateQuestions from "./newstudy/createquestions/createquestions";
+import Results from "./results/results";
+import Newstudy from "./newstudy/newstudy";
+import Existingprofiles from "./researcher/existingprofiles"; //gjøre ferdig
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 export default function App() {
-  return(
+  return (
     <>
       <Router>
         <Header />
@@ -17,10 +17,14 @@ export default function App() {
         <Routes>
           <Route path="/" element={<DashBoard />} />
           <Route path="/create_study" element={<Newstudy />} />
-          <Route path="/create_study/questions" element={<CreateQuestions/>}/>
+          <Route path="/create_study/questions" element={<CreateQuestions />} />
           <Route path="/results" element={<Results />} />
+          <Route
+            path="/researcher/existingprofiles"
+            element={<Existingprofiles />}
+          />
         </Routes>
-        <Footer/>
+        <Footer />
       </Router>
     </>
   );
