@@ -1,0 +1,21 @@
+Randomalization for artifacts, making a system for showing them ABC/ BAC and so on, turn it off or on?
+Drafts on top of the homepage? Whatever you put on top is whats most important/ the first thing they see
+Demographics HIGH priority, permission, remove or add stuff if they need to
+Making the UX for buttons its important for the understanding of the page
+
+Call session data something else
+Language of the user, think beyond what makes sense to use
+Artifacts uploading, more than one at a time 
+Existing artifacts is nice to have not must have
+
+Create questions, without gluing artifacts to each questions (show that this is possible)
+Sliding scale should not always be a slide, support different types ( best to worst, radio buttons, wrong term)
+Required question has be to choosen by the researcher, has to be connected to the make study page
+
+More roles than researcher and admin, add functionality to include study-collaborators etc.
+Deleting data, show "are u sure?" Take care of this, take measures to prevent accidental deletion
+
+Autharization 
+For participants, who ever has a link can access (might be an issue) 
+If we do it this was security implecations
+When a researcher clicks to copy a link to the study, a token is created and that participant id is stored in the database
