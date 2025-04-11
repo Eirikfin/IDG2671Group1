@@ -1,6 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
 import dbConnect from "./db.js";
+import cors from "cors";
+import path from "path";
+import cookieParser from "cookie-parser";
 import researchersRoute from "./routes/researchers.route.js";
 import answersRoute from "./routes/answers.route.js";
 import artifactsRoute from "./routes/artifacts.route.js";
@@ -19,6 +22,15 @@ const port = process.env.PORT || 4202;
 
 //Middleware
 app.use(express.json());
+app.use(cors( {
+    origin: "http://localhost:5173",
+    credentials: true,
+}));
+app.use(cookieParser());
+
+//Server static files from react app
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, "../front-end/build")));
 
 //set view engine and specify the views folder
 app.set("view engine", "ejs");
@@ -32,6 +44,10 @@ app.use('/api/projects', projectsRoute);
 app.use('/api/questions', questionsRoute);
 app.use('/api/researchers', researchersRoute);
 app.use('/api/sessions', sessionsRoute);
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../front-end/build/index.html"));
+});
 
 //restrict dashboard access to researchers/product owners (not sure if I did this 100% correctly)
 app.get("/", authenticateToken, (_, res) => {

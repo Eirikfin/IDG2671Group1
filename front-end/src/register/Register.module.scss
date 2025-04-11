@@ -1,0 +1,61 @@
+@import '../assets/color-variables/colors.scss';
+
+.register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: $bg_white;
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        background-color: $second_bg;
+        width: 90%;
+        max-width: 400px;
+
+        &__title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: $text;
+        }
+
+        &__form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+
+            &__input {
+                margin-bottom: 1rem;
+                padding: 0.5rem;
+                border-radius: 5px;
+                border: 1px solid $border;
+                font-size: 1rem;
+
+                &:focus {
+                    border-color: $bg_white;
+                    outline: none;
+                }
+            }
+
+            &__button {
+                padding: 0.5rem;
+                background-color: $secondary_btn;
+                color: white;
+                border-radius: 5px;
+                border: none;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: darken($primary_btn, 10%);
+                }
+            }
+        }
+    }
+}
