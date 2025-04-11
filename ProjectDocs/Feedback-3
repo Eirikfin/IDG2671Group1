@@ -19,3 +19,8 @@ Autharization
 For participants, who ever has a link can access (might be an issue) 
 If we do it this was security implecations
 When a researcher clicks to copy a link to the study, a token is created and that participant id is stored in the database
+
+Progression box to see how far participants are into the study
+Find a good way to let researcher show artifacts side by side so participants can see them side by side for example
+Show artifacts before questions to minimasie that your judgment changes when seeing the questions
+SHOW participants how to use the different implementations of artifacts rating, gif to see how to drag and drop or text
