@@ -37,7 +37,7 @@ export default function CreateStudy() {
                 </div>
             ))}
 
-            <button onClick={addQuestion}>Add Question</button>
+            <button id="addQuestion__btn" onClick={addQuestion}>Add Question</button>
             <button onClick={addSection}>Add new section</button>
             <button onClick={previewPage}>Preview page</button>
             <button onClick={publishStudy}>Publish Study</button>
