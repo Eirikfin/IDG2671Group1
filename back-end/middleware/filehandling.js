@@ -1,50 +1,20 @@
-import multer from 'multer';
-import { v4 as uuidv4 } from 'uuid';
-import path from 'path';
+import multer from "multer";
 
-// Configurate storage
+// Configure destination and filename
+
+
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/');
+    cb(null, "./uploads/"); // make sure this folder exists
   },
   filename: (req, file, cb) => {
-    const uniqueName = `${uuidv4()}${path.extname(file.originalname)}`;
-    cb(null, uniqueName);
-  }
+
+    cb(null, Date.now() + "-" + file.originalname);
+  },
 });
 
-const upload = multer({ 
-  storage, 
-  limits: { fileSize: 100 * 1024 * 1024 } // 100MB
-});
+const upload = multer({ storage });
 
-// Middleware to enrich req.file with extra metadata
-const uploadArtifact = async (req, res, next) => {
-  try {
-    if (!req.file) {
-      return res.status(400).json({ message: 'No file uploaded' });
-    }
+export const uploadFile = upload.single("file");
 
-    const { filename, path: filepath, mimetype, originalname } = req.file;
-
-    // Determine media type
-    let mediaType;
-    if (mimetype.startsWith('image/')) mediaType = 'image';
-    else if (mimetype.startsWith('audio/')) mediaType = 'audio';
-    else if (mimetype.startsWith('video/')) mediaType = 'video';
-    else mediaType = 'text';
-
-    // Override req.file with a simplified object
-    req.file = {
-      filename: originalname, // what the user uploaded
-      filepath: filename,     // the unique saved file
-      mediaType
-    };
-
-    next();
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-export { upload, uploadArtifact };

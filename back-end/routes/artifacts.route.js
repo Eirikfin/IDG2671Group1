@@ -3,11 +3,14 @@ import { authenticateToken } from "../middleware/webtoken.js";
 import artifactValidator from "../validators/artifacts.validator.js";
 import { createArtifact, updateArtifact, deleteArtifact, getArtifact } from "../controllers/artifacts.controllers.js";
 
+import { uploadFile } from "../middleware/filehandling.js";
+
+
 
 const router = express.Router();
 
 //creating an artifact:
-router.post("/", artifactValidator, authenticateToken, createArtifact);
+router.post("/", authenticateToken, uploadFile, createArtifact);
 
 //updating an artifact:
 router.put("/:id", artifactValidator, authenticateToken, updateArtifact);

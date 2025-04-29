@@ -1,9 +1,6 @@
 import { body, validationResult } from "express-validator";
 
 const projectValidator = [
-    body("researcherId") //researcher that created the project
-        .notEmpty().withMessage("Project needs a researcherId.")
-        .isMongoId().withMessage("Project must have a valid researcerId"),
     body("title")
         .notEmpty().withMessage("Project must have a title.")
         .isString().withMessage("Title must be a string."),

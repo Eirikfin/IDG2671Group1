@@ -7,7 +7,7 @@ export const createProject = async (req, res) => {
     const createdProject = {
       researcherId: req.user.id,
       title: req.body.title,
-      questions: req.body.questions.questionId,
+      questions: [],
       status: req.body.status,
     };
 
@@ -15,6 +15,7 @@ export const createProject = async (req, res) => {
     await storeProject.save();
     //populates the questions with all question info:
     await storeProject.populate("questions");
+   
 
     return res
       .status(201)

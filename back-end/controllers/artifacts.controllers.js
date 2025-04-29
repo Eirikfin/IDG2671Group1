@@ -7,13 +7,27 @@ export const createArtifact = async (req, res) => {
     if (!req.file) {
       return res.status(400).json({ message: "No file was uploaded" });
     }
+      const {filename, path, mimetype} = req.file;
+
+        // Determine media type
+        let mediaType;
+        if (mimetype.startsWith("image")) {
+            mediaType = "image";
+        } else if (mimetype.startsWith("video")) {
+            mediaType = "video";
+        } else if (mimetype.startsWith("audio")) {
+            mediaType = "audio";
+        } else {
+            mediaType = "text"; //other types are considered text
+        }
     //preparing object to be stored in database:
     const uploadedArtifact = {
       researcherId: req.user.id,
-      filename: req.file.filename,
-      filepath: req.file.filepath,
-      mediaType: req.file.mediaType,
+      filename: filename,
+      filepath: path,
+      mediaType: mediaType
     };
+   
     //saving to database
     const addedArtifact = new Artifact(uploadedArtifact);
     await addedArtifact.save();
