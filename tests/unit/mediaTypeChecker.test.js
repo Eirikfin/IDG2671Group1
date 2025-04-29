@@ -1,6 +1,6 @@
 // /tests/unit/mediaTypeHelper.test.js
 
-import { determineMediaType } from '../../back-end/mediaTypeHelper.js';
+import { determineMediaType } from '../../back-end/logic/mediaTypeChecker.js';
 
 describe('determineMediaType', () => {
   test('returns "image" for image/png', () => {
