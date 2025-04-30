@@ -26,7 +26,6 @@ export default function Login() {
             }
             const { token, id } = await response.json();
             localStorage.setItem('token', token);
-            // localStorage.setItem('userId', id); <----- store user id? needed?
             navigate('/dashboard');
         } catch (err) {
             setError(err.message);

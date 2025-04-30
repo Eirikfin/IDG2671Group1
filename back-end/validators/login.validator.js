@@ -6,7 +6,8 @@ const loginValidator = [
         .normalizeEmail(),
     
     body("password")
-        .isLength({ min: 8 }).withMessage("Password must be at least 8 characters long")
+        .isLength({ min: 8, max: 64 }).withMessage("Password must be at least 8 characters long")
+        .notEmpty().withMessage("Please enter your login credentials")
         .matches(/[A-Z]/).withMessage("Password must contain at least one uppercase letter")
         .matches(/[a-z]/).withMessage("Password must contain at least one lowercase letter")
         .matches(/[0-9]/).withMessage("Password must contain at least one number")
