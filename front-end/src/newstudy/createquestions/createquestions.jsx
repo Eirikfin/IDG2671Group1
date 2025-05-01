@@ -1,8 +1,10 @@
 import { useState } from "react";
+import {useNavigate} from "react-router-dom";
 import NewQuestionCard from "./questioncard/QuestionCard";
 import NewArtifactCard from "./artifactcard/AttachArtifactCard";
 import styles from "./createquestions.module.scss";
 export default function CreateStudy() {
+    const navigate = useNavigate();
     const [questionCards, setQuestionCards] = useState([1]);
 
     const addQuestion = () => {
@@ -18,7 +20,7 @@ export default function CreateStudy() {
     };
 
     const publishStudy = () => {
-        return;
+        navigate('/dashboard')
     };
 
     const addSection = () => {
@@ -40,7 +42,7 @@ export default function CreateStudy() {
             <button id="addQuestion__btn" onClick={addQuestion}>Add Question</button>
             <button onClick={addSection}>Add new section</button>
             <button onClick={previewPage}>Preview page</button>
-            <button onClick={publishStudy}>Publish Study</button>
+            <button id="publish__btn" onClick={publishStudy}>Publish Study</button>
         </>
     );
 }

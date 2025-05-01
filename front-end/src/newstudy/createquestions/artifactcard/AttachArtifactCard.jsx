@@ -25,7 +25,7 @@ export default function NewArtifactCard() {
       <form>
       <div className={styles.buttons}>
         <button type="button">Existing Artifact</button>
-        <button type="button" onClick={triggerFileInput}>
+        <button type="button" id="uploadArtifact__button" onClick={triggerFileInput}>
           Upload Artifact
         </button>
         <input
