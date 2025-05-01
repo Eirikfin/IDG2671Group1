@@ -25,7 +25,7 @@ export default function NewQuestionCard({ number }) {
   //output
   return (
     <div className={styles.card}>
-      <form method="POST">
+    
         <h2>Question {number}</h2>
 
         <label>Question text:</label>
@@ -75,7 +75,7 @@ export default function NewQuestionCard({ number }) {
             <input type="number" name="max" placeholder="10"/>
           </div>
         )}
-      </form>
+    
     </div>
   );
 }

@@ -29,6 +29,7 @@ export default function CreateStudy() {
 
     return (
         <>
+           
             <NewArtifactCard />
             {questionCards.map((index) => (
                 <div key={index}>
@@ -38,11 +39,12 @@ export default function CreateStudy() {
                     <NewQuestionCard number={index} />
                 </div>
             ))}
-
+             <form>
             <button id="addQuestion__btn" onClick={addQuestion}>Add Question</button>
             <button onClick={addSection}>Add new section</button>
             <button onClick={previewPage}>Preview page</button>
             <button id="publish__btn" onClick={publishStudy}>Publish Study</button>
+            </form>
         </>
     );
 }
