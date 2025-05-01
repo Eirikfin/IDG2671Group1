@@ -31,10 +31,11 @@ export default function NewArtifactCard() {
         <input
           type="file"
           ref={fileInputRef}
+
           style={{ display: 'none' }}
           onChange={handleFileChange}
         />
-        {file && <p>Selected file: {file.name}</p>}
+        {file && <p id="artifact_name">Selected file: {file.name}</p>}
       </div>
       </form>
     </div>

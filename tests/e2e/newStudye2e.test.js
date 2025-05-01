@@ -23,6 +23,19 @@ describe("Create New Study E2E", () => {
     try {
       await page.waitForSelector('input[name="email"]');
       await page.type('input[name="email"]', "testmail@gmail.com");
+      //enter incorrect password:
+      await page.type('input[name="password"]', "wrongPassword");
+      await page.click("._login__container__form__button_1o4z7_42");
+      //wait for incorrect element to appear
+      await page.waitForSelector('#login__error');
+      //check if login failed:
+      const errMsg = await page.$eval('#login__error', el => el.textContent);
+      expect(errMsg).toBe("Login failed");
+      //clear the password field:
+      await page.click('input[name="password"]', { clickCount: 3 });
+      await page.keyboard.press('Backspace');
+      
+      //enter correct password
       await page.type('input[name="password"]', "Password12345");
       await page.click("._login__container__form__button_1o4z7_42");
       await page.waitForNavigation({ waitUntil: "networkidle2" });
@@ -122,9 +135,14 @@ describe("Create New Study E2E", () => {
       //upload the file
       await artifactInput.uploadFile(filePath);
       console.log("file was uploaded");
-
+      //wait for artifact name to appear
+      await page.waitForSelector('#artifact_name')
+      //get the text content of element
+      const artifactText = await page.$eval('#artifact_name', el => el.textContent);
+      //check if the value is what we expect it to be
+      expect(artifactText).toBe("Selected file: test.jpg");
+      
       //publish quiz
-
       page.click("#publish__btn");
       await page.waitForSelector("#nav__button--newstudy");
       expect(page.url()).toContain("/dashboard");
@@ -133,43 +151,3 @@ describe("Create New Study E2E", () => {
     }
   });
 });
-
-//log in and store token
-
-//navigate to new quiz:
-
-//post new project:
-
-//add questions in front end:
-//upload artifact:
-
-//update project with questions and artifact
-
-//retrieve project
-
-//retrieve question section¨
-
-//positive scenarios:
-//entering legit data all the way through
-
-//edge cases:
-//uploading no artifacts, uploading 20 artifacts
-//zero questions, 50 questions?
-//try uploading questions with empty questiontext, or no answeralternatives
-
-//negative cases:
-//try to upload without authorization token
-//try to change researcherid pefore upload
-//try uploading with missing requirements
-//try uploadging with different datatypes than expected
-
-//a test where user goes to answer project page:
-//answers questions then submit them to backend
-
-//test positive:
-//follow expected behaviour
-//edgecases:
-
-//negative cases:
-//submitting blank answers on required fields
-//submit not expected answers: different datatype than expected
