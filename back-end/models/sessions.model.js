@@ -8,7 +8,7 @@ const sessionSchema = mongoose.Schema({
   deviceType: { type: String, required: true }, //optional, will store the device type of the participant
   answers: [
     {
-      SectionId: {type: mongoose.Schema.Types.ObjectId, ref: QuestionSection, required: true},
+      SectionId: {type: mongoose.Schema.Types.ObjectId, ref: "QuestionSection", required: true},
       sectionAnswers: [{type: mongoose.Schema.Types.Mixed}]
   },
 

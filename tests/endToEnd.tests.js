@@ -96,7 +96,7 @@ const evalAlternative2 = await page.evaluate(input => input.value, alternative2)
 await page.click('#addQuestion__btn');
 
 inputs = await page.$$('input[name="questiontext"]');
-await inputs[2].type('On a scale from 1 to 10, how much do you like it?');
+await inputs[2].type('On a scale from 1 to 7, how much do you like it?');
 value = inputs[2];
 const evaluateInput3 = await page.evaluate(input => input.value, value);
 console.log("Value in Question 3:", evaluateInput3)
@@ -108,12 +108,29 @@ await questionTypes[2].select('SlidingScale');
 const evaluateQuestionType2 = await page.evaluate(input => input.value, questionTypes[2]);
 console.log("question 3 type:", evaluateQuestionType2); 
 
+//wait for inputs to load;
+await page.waitForSelector('input[name="min"]');
+await page.waitForSelector('input[name="max"]');
+
+//input values:
+await page.type('input[name="min"]', "1");
+await page.type('input[name="max"]', "7");
+
+const minValue = await page.$('input[name="min"]');
+const maxValue = await page.$('input[name="max"]');
+
+const evalMinValue = await page.evaluate(input => input.value, minValue);
+const evalMaxValue = await page.evaluate(input => input.value, maxValue);
+
+console.log("Minimum value:", evalMinValue)
+console.log("Maximum value:", evalMaxValue)
+
+//upload artifacts:
 
 
+//publish study:
 
-
-
-
+//check if study is in dashboard:
 
 browser.close();
 
