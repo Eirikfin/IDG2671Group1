@@ -61,7 +61,7 @@ export default function NewQuestionCard({ number }) {
     </div>
 ))}
 
-            <button type="button" onClick={addAlternatives}>
+            <button type="button" className="addAlternative" onClick={addAlternatives}>
               Add Alternative
             </button>
           </div>

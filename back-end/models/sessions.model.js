@@ -6,6 +6,15 @@ const sessionSchema = mongoose.Schema({
   startTime: { type: Date }, //optional, will store time the participant started study/survey
   finishedTime: { type: Date }, //optional, will store the time the participant finished the study/survey
   deviceType: { type: String, required: true }, //optional, will store the device type of the participant
+  answers: [
+    {
+      SectionId: {type: mongoose.Schema.Types.ObjectId, ref: QuestionSection, required: true},
+      sectionAnswers: [{type: mongoose.Schema.Types.Mixed}]
+  },
+
+
+  ]
+
 });
 
 const Session = mongoose.model("Session", sessionSchema);
