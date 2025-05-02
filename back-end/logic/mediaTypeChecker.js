@@ -1,5 +1,4 @@
 // Function to determine a mediatype on uploaded files
-
 export function determineMediaType(mimeType) {
   if (typeof mimeType !== 'string') return 'text';
 

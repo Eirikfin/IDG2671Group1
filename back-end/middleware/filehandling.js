@@ -1,6 +1,7 @@
 import multer from 'multer';
 import { v4 as uuidv4 } from 'uuid';
 import path from 'path';
+import { determineMediaType } from '../logic/mediaTypeChecker';
 
 // Configurate storage
 const storage = multer.diskStorage({
@@ -28,11 +29,11 @@ const uploadArtifact = async (req, res, next) => {
     const { filename, path: filepath, mimetype, originalname } = req.file;
 
     // Determine media type
-    let mediaType;
-    if (mimetype.startsWith('image/')) mediaType = 'image';
-    else if (mimetype.startsWith('audio/')) mediaType = 'audio';
-    else if (mimetype.startsWith('video/')) mediaType = 'video';
-    else mediaType = 'text';
+    const mediaType = determineMediaType(mimetype)
+
+    if (mediaType === 'text') {
+      return res.status(415).json({ message: 'Unsupported filetype' });
+    }
 
     // Override req.file with a simplified object
     req.file = {
