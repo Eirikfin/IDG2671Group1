@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 export default function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmedPassword, setConfirmedPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
@@ -22,6 +23,11 @@ export default function Register() {
                 const { message } = await response.json();
                 throw new Error(message || 'Login failed'); 
             }
+
+            if (confirmedPassword !== password) {
+                throw new Error(message || `Password doesn't match`)
+            }
+
         } catch (error) {
             setError(error.message);
         }
@@ -41,19 +47,26 @@ export default function Register() {
                     <input 
                     className={styles.register__container__form__input} 
                     type="text" 
-                    name="email"></input>
+                    name="email"
+                    value={email}
+                    ></input>
 
                     <label>Password:</label>
                     <input 
                     className={styles.register__container__form__input} 
                     type="password" 
-                    name="password"></input>
+                    name="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    ></input>
 
                     <label>Confirm Password:</label>
                     <input 
                     className={styles.register__container__form__input} 
                     type="password" 
-                    name="confirm-password"></input>
+                    name="confirm-password"
+                    value={confirmedPassword}
+                    ></input>
 
                     <input 
                     className={styles.register__container__form__button} 
