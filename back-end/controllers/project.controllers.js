@@ -101,7 +101,6 @@ export const getProject = async (req, res) => {
     if (!project) {
       return res.status(404).json({ message: "No project/study was found." });
     }
-
     return res.status(200).json(project);
   } catch (err) {
     return res

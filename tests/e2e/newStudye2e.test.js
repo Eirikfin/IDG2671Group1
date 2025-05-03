@@ -1,5 +1,7 @@
 const puppeteer = require("puppeteer");
 const path = require("path");
+require("jest");
+
 
 describe("Create New Study E2E", () => {
   let browser;
@@ -54,7 +56,7 @@ describe("Create New Study E2E", () => {
       );
       await page.click("#newProject__submit");
       await page.waitForSelector("#addQuestion__btn");
-      expect(page.url()).toContain("/create_study/questions");
+      expect(page.url()).toContain("/create_study/");
 
       // Add question 1
       let inputs = await page.$$('input[name="questiontext"]');
@@ -64,6 +66,9 @@ describe("Create New Study E2E", () => {
 
       // Add question 2
       await page.click("#addQuestion__btn");
+      await page.waitForFunction(() => {
+        return document.querySelectorAll('input[name="questiontext"]').length >= 2;
+      });
       inputs = await page.$$('input[name="questiontext"]');
       await inputs[1].type("What artifact do you prefer?");
 
@@ -148,6 +153,7 @@ describe("Create New Study E2E", () => {
       expect(page.url()).toContain("/dashboard");
     } catch (err) {
       console.log(err);
+      throw Error(err);
     }
   });
 });

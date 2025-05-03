@@ -25,7 +25,7 @@ try{
 
         await newSection.save();
 
-        await project.questions.push(newSection._id)
+        project.questions.push(newSection._id)
        
         await project.save();
 
@@ -45,7 +45,7 @@ export const getSection = async (req, res) => {
             return res.status(404).json({message: "Project section not found"});
         }
 
-        await section.populate('artifacts');
+    
 
         return res.status(200).json(section);
 
