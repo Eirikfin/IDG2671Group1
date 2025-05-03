@@ -1,0 +1,11 @@
+[
+  {
+    "participantId": "12345",
+    "studyId": "67890",
+    "responses": {
+      "question1": "Answer 1",
+      "question2": "Answer 2",
+      "question3": "Answer 3"
+    }
+  }
+]
