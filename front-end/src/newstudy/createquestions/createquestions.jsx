@@ -1,50 +1,126 @@
 import { useState } from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import NewQuestionCard from "./questioncard/QuestionCard";
 import NewArtifactCard from "./artifactcard/AttachArtifactCard";
+import { v4 as uuid} from "uuid"
 import styles from "./createquestions.module.scss";
+const apiUrl = import.meta.env.VITE_API_URL;
+
+
+
 export default function CreateStudy() {
+//variables
     const navigate = useNavigate();
-    const [questionCards, setQuestionCards] = useState([1]);
+  const { studyId } = useParams();
+//states
+  const [questionCards, setQuestionCards] = useState([{
+    id: uuid(), questionText: "", type: "textInput", alternatives: [], min: 0, max: 10
+  }]);
+  const [error, setError] = useState("");
 
-    const addQuestion = () => {
-        setQuestionCards(prev => [...prev, prev.length + 1]);
-    };
+  //submitting a section
+  const submitSection = async () => {
+    try {
+        const payload = {
+            projectId: studyId,
+            artifacts: [],
+            questions: questionCards.map(card => ({
+                questionType: card.type,
+                questionText: card.questionText,
+                questionAlternatives:
+                    card.type === "MultipleChoice" ? card.alternatives: [],
+                    minValue: card.type === "SlidingScale" ? card.min : undefined,
+                    maxValue: card.type === "SlidingScale" ? card.max : undefined,
+            }))
+        }
+        console.log(payload);
 
-    const deleteQuestion = (indexToRemove) => {
-        setQuestionCards(prev => prev.filter((_, index) => index !== indexToRemove));
-    };
 
-    const previewPage = () => {
-        return;
-    };
+        console.log(questionCards);
+      const response = await fetch(`${apiUrl}/api/section/${studyId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify(payload)
+      });
 
-    const publishStudy = () => {
-        navigate('/dashboard')
-    };
+      const data = await response.json();
 
-    const addSection = () => {
-        return window.location.reload();
-    };
+      if (!response.ok) {
+        setError(data.message);
+        throw Error("Failed to submit question section");
+        
+      }
 
-    return (
-        <>
-           
-            <NewArtifactCard />
-            {questionCards.map((index) => (
-                <div key={index}>
-                    <button
-                    className={styles.remove_btn} 
-                    onClick={() => deleteQuestion(index)}>X</button>
-                    <NewQuestionCard number={index} />
-                </div>
-            ))}
-             <form>
-            <button id="addQuestion__btn" onClick={addQuestion}>Add Question</button>
-            <button onClick={addSection}>Add new section</button>
-            <button onClick={previewPage}>Preview page</button>
-            <button id="publish__btn" onClick={publishStudy}>Publish Study</button>
-            </form>
-        </>
+      console.log(data);
+    } catch (err) {
+        console.log(err);
+    }
+  };
+
+  const addQuestion = () => {
+    setQuestionCards(prev => [
+      ...prev,
+      { 
+        id: uuid(),
+        questionText: "",
+        type: "textInput",
+        alternatives: [],
+        min: 0,
+        max: 10
+      }
+    ]);
+  };
+  const deleteQuestion = (idToRemove) => {
+    setQuestionCards(prev =>
+      prev.filter(card => card.id !== idToRemove)
     );
+  };
+  const previewPage = () => {
+    return;
+  };
+
+  const publishStudy = () => {
+    navigate("/dashboard");
+  };
+
+  const addSection = () => {
+    return window.location.reload();
+  };
+
+  return (
+    <>
+      <NewArtifactCard />
+      {questionCards.map((card, idx) => (
+  <div key={card.id}>
+    <button
+      className={styles.remove_btn}
+      onClick={() => deleteQuestion(card.id)}
+    >
+      X
+    </button>
+    <NewQuestionCard
+      card={card}
+      onChange={(updatedCard) => {
+        setQuestionCards(prev =>
+          prev.map(c => (c.id === updatedCard.id ? updatedCard : c))
+        );
+      }}
+    />
+  </div>
+))}
+
+      <button id="addQuestion__btn" onClick={addQuestion}>
+        Add Question
+      </button>
+      <button onClick={addSection}>Add new section</button>
+      <button onClick={previewPage}>Preview page</button>
+      <button id="publish__btn" onClick={submitSection}>
+        Publish Study
+      </button>
+      {error && <p>{error}</p>}
+    </>
+  );
 }

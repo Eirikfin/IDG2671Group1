@@ -21,6 +21,8 @@ const sectionSchema = new mongoose.Schema({
             required: true,
             //type of question asked, will decide participant answer datatype
             enum: ["TextInput", "MultipleChoice", "SlidingScale"], 
+            minValue: { type: Number },
+            maxValue: { type: Number }
         },
         questionText: { type: String, required: true},
         questionAlternatives: [{ type: String }], //Optional: if multiple choice, answer alternatives will be stored here

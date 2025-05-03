@@ -6,7 +6,7 @@ export default function NewArtifactCard() {
   const [file, setFile] = useState(null);
   const [error, setError] = useState('');
   const fileInputRef = useRef(null);
-  const [uploadedArtifact, setUploadedArtifact] = useState({});
+  const [uploadedArtifact, setUploadedArtifact] = useState([]);
 
   const handleFileChange = async (e) => {
     const selectedFile = e.target.files[0];
@@ -33,7 +33,11 @@ export default function NewArtifactCard() {
         throw new Error(data.message || 'Failed to upload artifact');
       }
       console.log(data);
-      setUploadedArtifact(data);
+      setUploadedArtifact(prev => [...prev, data]);
+
+      //reset the upload button after file upload:
+      setFile(null)
+      e.target.value = null;
 
 
     }catch(err){
@@ -65,8 +69,15 @@ export default function NewArtifactCard() {
         />
         {file && <p id="artifact_name">Selected file: {file.name}</p>}
         {error && <p>Error: {error.message}</p>}
-        {uploadedArtifact?.artifact?.filepath && <img src={`${apiUrl}/${uploadedArtifact?.artifact?.filepath}`} alt={uploadedArtifact?.artifact?.filename}/>}
-      </div>
+        {uploadedArtifact.map((artifactData, index) => (
+  <div key={index}>
+    <img
+      src={`${apiUrl}/${artifactData.artifact?.filepath}`}
+      alt={artifactData.artifact?.filename || `Artifact ${index + 1}`}
+    />
+  </div>
+))}
+         </div>
       </form>
     </div>
     </>
