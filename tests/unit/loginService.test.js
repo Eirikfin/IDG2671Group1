@@ -3,7 +3,7 @@
 import { jest } from '@jest/globals';
 import { loginUser } from "../../back-end/logic/loginService.js";
 
-// --- Mocks & setup ---
+// Mocks & setup
 global.fetch = jest.fn();
 const mockNavigate = jest.fn();
 const mockSetError = jest.fn();
@@ -24,7 +24,7 @@ beforeEach(() => {
   localStorage.clear();
 });
 
-// --- Positive test cases: successful login ---
+// Positive cases
 describe('Positive Test Cases: Successful Login', () => {
   test('should store token and navigate on 200 OK with token', async () => {
     fetch.mockResolvedValueOnce({
@@ -40,7 +40,7 @@ describe('Positive Test Cases: Successful Login', () => {
   });
 });
 
-// --- Boundary / edge cases for inputs ---
+// Boundary/edge cases
 describe('Boundary / Edge Test Cases for Inputs', () => {
   test('should early-return if email or password is empty', async () => {
     await loginUser('', '', mockNavigate, mockSetError);
@@ -63,7 +63,7 @@ describe('Boundary / Edge Test Cases for Inputs', () => {
   });
 });
 
-// --- Edge cases: Token handling ---
+// Edge cases
 describe('Edge Cases: Token Handling', () => {
   test('should treat token = null as login failure', async () => {
     fetch.mockResolvedValueOnce({
@@ -92,7 +92,7 @@ describe('Edge Cases: Token Handling', () => {
   });
 });
 
-// --- Negative test cases: Error handling ---
+//  Negative cases
 describe('Negative Test Cases: Error Handling', () => {
   test('should set server-provided error message on non-ok response', async () => {
     fetch.mockResolvedValueOnce({

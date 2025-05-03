@@ -2,6 +2,7 @@ import { determineMediaType } from '../../back-end/logic/mediaTypeChecker.js';
 
 describe('determineMediaType', () => {
 
+  //  Positive cases
   describe('Positive test cases (realistic inputs)', () => {
     test('returns "image" for image/png', () => {
       expect(determineMediaType('image/png')).toBe('image');
@@ -26,6 +27,7 @@ describe('determineMediaType', () => {
     });
   });
 
+  // Edge cases
   describe('Edge cases (missing or weak MIME types)', () => {
     test('returns "text" for unknown mimetype like application/json', () => {
       expect(determineMediaType('application/json')).toBe('text');
@@ -48,6 +50,7 @@ describe('determineMediaType', () => {
     });
   });
 
+  //  Negative cases
   describe('Negative cases (invalid or malformed input)', () => {
     test('returns "text" for completely invalid string', () => {
       expect(determineMediaType('not/a-real-type')).toBe('text');

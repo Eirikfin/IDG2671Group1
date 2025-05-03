@@ -1,27 +1,29 @@
 # LOGIC FOLDER
 
-This folder contains **pure, isolated, reusable functions** that implement core logic in the application.
+This folder contains **isolated functions** that implement core logic in the application.
 
 ## Purpose
 These files should:
-- Be free of Express-specific objects like `req` or `res`
 - Not interact with the file system, database, or external APIs directly
-- Be easily **unit testable** and predictable
+- Be easily **unit testable**
 
 *Side-note: These files should contain a comment describing the location of said files in the project. Example:*
 >// /tests/unit/mediaTypeChecker.test.js
-
-## Examples of logic placed here...
-- Determining media type from a MIME string
-- Generating filenames
-- Validating inputs
-- Performing calculations (e.g., pricing, scoring)
 
 ## Testing
 Each file here should have a corresponding test file in: *root*/tests/unit
 
 ### mediaTypeChecker.js
-
 - **Purpose:** Determines whether a file MIME type corresponds to an image, audio, video, or text.
 - **Usage:** Called by middleware to classify uploaded files.
 - **Test File:** `/tests/unit/mediaTypeChecker.test.js`
+
+### loginService.js
+- **Purpose:** Handles submission of login credentials, setting token and navigating to application upon successful login
+- **Usage:** Login function in Login.jsx
+- **Test File:** `/tests/unit/loginService.test.js`
+
+### roleAuth.js
+- **Purpose:** Checks whether a user has the right priveleges to perform an operation
+- **Usage:** Supplementary middleware to ensure hierarchy of priveleges pertaining CRUD operations
+- **Test File:** `/tests/unit/roleAuth.test.js`
