@@ -14,16 +14,24 @@ export default function CreateStudy() {
   const { studyId } = useParams();
 //states
   const [questionCards, setQuestionCards] = useState([{
-    id: uuid(), questionText: "", type: "textInput", alternatives: [], min: 0, max: 10
+    id: uuid(), questionText: "", type: "TextInput", alternatives: [], min: 0, max: 10
   }]);
   const [error, setError] = useState("");
 
   //submitting a section
   const submitSection = async () => {
     try {
+        const artifacts = JSON.parse(sessionStorage.getItem("artifacts") || "[]");
+        const artifactPayload = artifacts.map(artifact => ({
+            artifactId: artifact._id,
+            researcherId: artifact.researcherId,
+            filename: artifact.filename,
+            filepath: artifact.filepath,
+            mediaType: artifact.mediaType
+        }));
         const payload = {
             projectId: studyId,
-            artifacts: [],
+            artifacts: artifactPayload,
             questions: questionCards.map(card => ({
                 questionType: card.type,
                 questionText: card.questionText,
@@ -36,7 +44,6 @@ export default function CreateStudy() {
         console.log(payload);
 
 
-        console.log(questionCards);
       const response = await fetch(`${apiUrl}/api/section/${studyId}`, {
         method: "POST",
         headers: {
@@ -66,7 +73,7 @@ export default function CreateStudy() {
       { 
         id: uuid(),
         questionText: "",
-        type: "textInput",
+        type: "TextInput",
         alternatives: [],
         min: 0,
         max: 10

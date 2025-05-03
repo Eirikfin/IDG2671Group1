@@ -33,9 +33,10 @@ export default function NewArtifactCard() {
         throw new Error(data.message || 'Failed to upload artifact');
       }
       console.log(data);
-      setUploadedArtifact(prev => [...prev, data]);
-
-      //reset the upload button after file upload:
+      
+      const next = [...uploadedArtifact, data.artifact];
+      setUploadedArtifact(next);
+      sessionStorage.setItem("artifacts", JSON.stringify(next));
       setFile(null)
       e.target.value = null;
 
@@ -72,8 +73,8 @@ export default function NewArtifactCard() {
         {uploadedArtifact.map((artifactData, index) => (
   <div key={index}>
     <img
-      src={`${apiUrl}/${artifactData.artifact?.filepath}`}
-      alt={artifactData.artifact?.filename || `Artifact ${index + 1}`}
+      src={`${apiUrl}/${artifactData?.filepath}`}
+      alt={artifactData?.filename || `Artifact ${index + 1}`}
     />
   </div>
 ))}

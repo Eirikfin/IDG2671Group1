@@ -13,7 +13,17 @@ const sectionSchema = new mongoose.Schema({
         required: true},
 
     artifacts: [
-        { artifactId: { type: mongoose.Schema.Types.ObjectId, ref: "Artifact" } },
+        { 
+        artifactId: { type: mongoose.Schema.Types.ObjectId, ref: "Artifact" },
+        researcherId: {type: mongoose.Schema.Types.ObjectId, ref: "Researchers" },
+        filename: {type: String},
+        filepath: {type: String},
+        mediaType: {
+            type: String, 
+            enum: ["image", "audio", "video", "text"]
+        }
+
+    },
     ],
     questions: [
         {questionType: {
@@ -21,11 +31,11 @@ const sectionSchema = new mongoose.Schema({
             required: true,
             //type of question asked, will decide participant answer datatype
             enum: ["TextInput", "MultipleChoice", "SlidingScale"], 
-            minValue: { type: Number },
-            maxValue: { type: Number }
         },
         questionText: { type: String, required: true},
         questionAlternatives: [{ type: String }], //Optional: if multiple choice, answer alternatives will be stored here
+        minValue: { type: Number },
+        maxValue: { type: Number }
     }],
 
 })

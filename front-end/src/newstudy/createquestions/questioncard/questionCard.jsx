@@ -25,7 +25,7 @@ export default function NewQuestionCard({ card, onChange }) {
         value={type}
         onChange={e => update({ type: e.target.value })}
       >
-        <option value="textInput">Text input</option>
+        <option value="TextInput">Text input</option>
         <option value="MultipleChoice">Multiple Choice</option>
         <option value="SlidingScale">Sliding Scale</option>
       </select>
