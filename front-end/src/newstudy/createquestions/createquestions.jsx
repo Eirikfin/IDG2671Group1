@@ -17,6 +17,7 @@ export default function CreateStudy() {
     id: uuid(), questionText: "", type: "TextInput", alternatives: [], min: 0, max: 10
   }]);
   const [error, setError] = useState("");
+  const [sectionCount, setSectionCount] = useState(1);
 
   //submitting a section
   const submitSection = async () => {
@@ -95,10 +96,22 @@ export default function CreateStudy() {
     navigate("/dashboard");
   };
 
-  const addSection = () => {
-    submitSection()
+  const addSection = async () => {
+    await submitSection()
 
-    window.location.reload();
+    // Reset question cards to the default one-question state
+    setQuestionCards([{
+      id: uuid(),
+      questionText: "",
+      type: "TextInput",
+      alternatives: [],
+      min: 0,
+      max: 10
+    }]);
+
+    const nextSection = sectionCount + 1;
+    setSectionCount(nextSection);
+    navigate(`/create_study/${studyId}/questions/${nextSection}`)
   };
 
   return (
@@ -128,7 +141,7 @@ export default function CreateStudy() {
       </button>
       <button onClick={addSection}>Add new section</button>
       <button onClick={previewPage}>Preview page</button>
-      <button id="publish__btn" onClick={submitSection}>
+      <button id="publish__btn" onClick={publishStudy}>
         Publish Study
       </button>
       
