@@ -90,11 +90,15 @@ export default function CreateStudy() {
   };
 
   const publishStudy = () => {
+    submitSection()
+    
     navigate("/dashboard");
   };
 
   const addSection = () => {
-    return window.location.reload();
+    submitSection()
+
+    window.location.reload();
   };
 
   return (
@@ -118,7 +122,7 @@ export default function CreateStudy() {
     />
   </div>
 ))}
-
+{error && <p>{error}</p>}
       <button id="addQuestion__btn" onClick={addQuestion}>
         Add Question
       </button>
@@ -127,7 +131,7 @@ export default function CreateStudy() {
       <button id="publish__btn" onClick={submitSection}>
         Publish Study
       </button>
-      {error && <p>{error}</p>}
+      
     </>
   );
 }
