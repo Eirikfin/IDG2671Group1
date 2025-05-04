@@ -10,9 +10,9 @@ export default function Register() {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const handleRegister = async () => {
+    const handleRegister = async (e) => {
         try {
-            const response = await fetch(`${VITE_BASE_API_URL}`, {
+            const response = await fetch(`http://localhost:4202/api/researchers`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password }),
@@ -41,7 +41,7 @@ export default function Register() {
             <div className={styles.register__container}>
 
                 <h1 className={styles.register__container__title}>Register</h1>
-                <form className={styles.register__container__form} action="/register" method="POST">
+                <form className={styles.register__container__form} action="/register" onSubmit={handleRegister} method="POST">
 
                     <label>Email:</label>
                     <input 
@@ -49,6 +49,7 @@ export default function Register() {
                     type="text" 
                     name="email"
                     value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     ></input>
 
                     <label>Password:</label>
@@ -67,6 +68,8 @@ export default function Register() {
                     name="confirm-password"
                     value={confirmedPassword}
                     ></input>
+
+                    {error && <p>{error}</p>}
 
                     <input 
                     className={styles.register__container__form__button} 
