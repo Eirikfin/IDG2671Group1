@@ -1,7 +1,7 @@
 import express from "express";
 import { authenticateToken } from "../middleware/webtoken.js";
 import { createSection, getSection, updateSection, deleteSection } from "../controllers/section.controller.js";
-import { questionSectionValidator } from "../validators/section.validator.js"
+import  questionSectionValidator from "../validators/section.validator.js"
 
 const router = express.Router();
 

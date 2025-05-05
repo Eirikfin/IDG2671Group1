@@ -18,6 +18,7 @@ export default function CreateStudy() {
   }]);
   const [error, setError] = useState("");
   const [sectionCount, setSectionCount] = useState(1);
+  const [submitMsg, setSubmitMsg] = useState(false);
 
   //submitting a section
   const submitSection = async () => {
@@ -63,6 +64,7 @@ export default function CreateStudy() {
       }
 
       console.log(data);
+      setSubmitMsg(true);
     } catch (err) {
         console.log(err);
     }
@@ -114,8 +116,11 @@ export default function CreateStudy() {
     navigate(`/create_study/${studyId}/questions/${nextSection}`)
   };
 
+  //render components
   return (
     <>
+      {submitMsg && <p>Section was submitted!</p>}
+      <h1>Section {sectionCount}</h1>
       <NewArtifactCard />
       {questionCards.map((card, idx) => (
   <div key={card.id}>
