@@ -1,15 +1,17 @@
 {
   "name": "tests",
   "version": "1.0.0",
-  "main": "endToEnd.tests.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_ENV=test mocha 'tests/integration.test.js' --timeout 10000"
   },
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.7",
+    "mongodb": "^6.16.0",
     "puppeteer": "^24.7.2"
+  },
+  "devDependencies": {
+    "mocha": "^11.1.0"
   }
 }

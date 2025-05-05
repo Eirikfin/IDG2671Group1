@@ -1,26 +1,31 @@
-import {body, validationResult} from "express-validator";
+import mongoose from "mongoose";
 
-const answerValidator = [
-    body("questionId")
-        .notEmpty().withMessage("Please provide an questionId")
-        .isMongoId().withMessage("Id must be a valid mongo.object.id"), //id of question
-    body("researcherId")
-        .notEmpty().withMessage("Question needs a researcherId")
-        .isMongoId().withMessage("Please provide a valid researcherId"),
-    body("sessionId")
-        .notEmpty().withMessage("Please provide an sessionId")
-        .isMongoId().withMessage("Id must be a valid mongo.object.id"), //id of session
-    body("answer")
-        .notEmpty().withMessage("Answer cannot be empty"),
-    
-    (req, res, next) => {
-        const errors = validationResult(req);
-        //if there are validation errors, respond with errors:
-        if(!errors.isEmpty()){
-            return res.status(400).json({errors: errors});
-        }
-        next(); //move on to next middleware
-    }
-]
+export default function answerValidator(req, res, next) {
+  console.log("Request method:", req.method);
+  console.log("Request body:", req.body);
+  console.log("Request params:", req.params);
 
-export default answerValidator;
+  // Skip validation for DELETE requests
+  if (req.method === "DELETE") {
+    console.log("Skipping validation for DELETE request");
+    return next();
+  }
+
+  const { questionId, researcherId, sessionId, answer } = req.body;
+
+  // Validate the required fields for PUT and POST requests
+  if (!questionId || !mongoose.Types.ObjectId.isValid(questionId)) {
+    return res.status(400).json({ message: "Invalid or missing questionId" });
+  }
+  if (!researcherId || !mongoose.Types.ObjectId.isValid(researcherId)) {
+    return res.status(400).json({ message: "Invalid or missing researcherId" });
+  }
+  if (!sessionId || !mongoose.Types.ObjectId.isValid(sessionId)) {
+    return res.status(400).json({ message: "Invalid or missing sessionId" });
+  }
+  if (!answer || typeof answer !== "string") {
+    return res.status(400).json({ message: "Invalid or missing answer" });
+  }
+
+  next();
+}

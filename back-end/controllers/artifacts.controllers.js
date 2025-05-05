@@ -1,4 +1,11 @@
 import Artifact from "../models/artifacts.model.js";
+import express from "express";
+import { authenticateToken } from "../middleware/webtoken.js"; 
+
+const router = express.Router();
+
+
+export default router;
 
 //storing uploaded artifact in db:
 export const createArtifact = async (req, res) => {
@@ -150,8 +157,8 @@ export const getAllArtifacts = async (req, res) => {
         totalPages: Math.ceil(total / parseInt(limit)),
         artifacts,
     });
-} catch (error) {
+  } catch (error) {
     console.error("Error fetching artifacts:", error);
     res.status(500).json({ error: error.message });
-}
+  }
 };

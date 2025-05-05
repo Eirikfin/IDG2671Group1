@@ -1,24 +1,24 @@
 import express from "express";
 import { authenticateToken } from "../middleware/webtoken.js";
-import questionValidator from "../validators/questions.validator.js";
-import { createQuestion, updateQuestion, deleteQuestion, getQuestion, getAllQuestion } from "../controllers/questions.controllers.js";
-
+import {
+  getQuestions,
+  createQuestion,
+  updateQuestion,
+  deleteQuestion,
+} from "../controllers/questions.controllers.js";
 
 const router = express.Router();
 
-//creating a Question:
-router.post("/:projectId", questionValidator, authenticateToken, createQuestion);
+// Fetch all questions
+router.get("/", authenticateToken, getQuestions);
 
-//updating a Question:
-router.put("/:id", questionValidator, authenticateToken, updateQuestion);
+// Create a question
+router.post("/", authenticateToken, createQuestion);
 
-//deleting a Question:
-router.delete("/:id", questionValidator, authenticateToken, deleteQuestion);
+// Update a question
+router.put("/:id", authenticateToken, updateQuestion);
 
-//find Question info:
-router.get("/:id", authenticateToken, getQuestion);
-
-//find all Questions for a project:
-router.get("/project/:id", authenticateToken, getAllQuestion);
+// Delete a question
+router.delete("/:id", authenticateToken, deleteQuestion);
 
 export default router;

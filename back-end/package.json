@@ -1,27 +1,17 @@
 {
-  "name": "studyprojects",
-  "version": "0.0.1",
+  "name": "tests",
+  "version": "1.0.0",
   "description": "The back end APi for a study application where researcher can create studies, upload artifacts and recieve participant submitted answers",
-  "main": "server.js",
   "type": "module",
   "scripts": {
-    "build": "npm install",
-    "test": "node ./tests/endpoint.intergration.test.js",
-    "start": "node server.js"
+    "test": "NODE_ENV=test mocha tests/integration.test.js --timeout 10000"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.7",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
-    "ejs": "^3.1.10",
-    "express": "^4.21.2",
-    "express-validator": "^7.2.1",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.13.0",
-    "multer": "^1.4.5-lts.2",
-    "uuid": "^11.1.0"
+    "puppeteer": "^24.7.2"
+  },
+  "devDependencies": {
+    "mocha": "^11.2.2"
   }
 }

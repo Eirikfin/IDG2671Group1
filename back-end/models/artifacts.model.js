@@ -5,13 +5,13 @@ const artifactSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Researcher",
     required: true,
-  }, //refrences researchers.model.js
-  filename: { type: String, required: true }, //original name of file
-  filepath: { type: String, required: true, unique: true }, //unique path to file stored on server
+  },
+  filename: { type: String, required: true },
+  filepath: { type: String, required: true, unique: true },
   mediaType: {
     type: String,
     required: true,
-    enum: ["image", "audio", "video", "text"], //media type of artifact
+    enum: ["image", "audio", "video", "text"],
   },
 });
 

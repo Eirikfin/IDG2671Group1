@@ -14,12 +14,13 @@ import sessionsRoute from "./routes/sessions.route.js";
 import loginRoute from "./routes/login.route.js";
 import sectionsRoute from "./routes/sections.route.js"
 import { authenticateToken } from "./middleware/webtoken.js";
-dbConnect
+
 dotenv.config();
 dbConnect();
 
 //global variables
 const app = express();
+app.use(express.json());
 const port = process.env.PORT || 4202;
 
 //Middleware
@@ -32,7 +33,8 @@ app.use(cookieParser());
 
 //Server static files from react app
 const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, "../front-end/build")));
+// app.use(express.static(path.join(__dirname, "../front-end/build")));
+
 
 //set view engine and specify the views folder
 app.set("view engine", "ejs");
@@ -68,3 +70,5 @@ app.get("/", authenticateToken, (_, res) => {
 app.listen(port, () => {
     console.log(`Server is listening at http://localhost:${port}`);
 });
+
+export default app; // For testing 
