@@ -45,20 +45,23 @@ export default function PastStudy() {
 
         const deleteStudy = async (id) => {
             try {
+                console.log('Deleting project with id:', id);
                 const token = localStorage.getItem('token');
                 if (!token) throw new Error('No token found');
-    
+
                 const res = await fetch(`http://localhost:4202/api/projects/${id}`, {
                     method: 'DELETE',
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
                 });
-    
+
                 if (!res.ok) {
+                    const errorData = await res.json();
+                    console.error('Server response:', errorData);
                     throw new Error('Failed to delete project');
                 }
-    
+
                 // Remove the deleted project from the state
                 setProjects((prevProjects) => prevProjects.filter(project => project._id !== id));
             } catch (error) {
@@ -84,7 +87,9 @@ export default function PastStudy() {
                             <button><Link to="/results" className={styles.react_Link}>View results</Link></button>
                         </div>
 
-                        <button onClick={() => deleteStudy(project._id)}>
+                        <button
+                        onClick={() => deleteStudy(project._id)}
+                        >
                             Delete Study
                         </button>
 
