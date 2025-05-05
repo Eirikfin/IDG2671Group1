@@ -1,14 +1,16 @@
 import styles from "./questionCard.module.scss";
 
 export default function NewQuestionCard({ card, onChange }) {
+  //states:
   const { id, questionText, type, alternatives, min, max } = card;
 
+  //update values in cards:
   const update = (changes) => {
     onChange({ ...card, ...changes });
   };
 
   return (
-    <div className={styles.card}>
+    <div>
       <h2>Question</h2>
 
       <label>Question text:</label>

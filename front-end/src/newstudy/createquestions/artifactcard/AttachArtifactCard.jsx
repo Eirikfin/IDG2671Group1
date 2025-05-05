@@ -1,13 +1,16 @@
 import { useState, useRef } from 'react';
 import styles from './AttachArtifact.module.scss'; // Assuming file path is correct
+import ArtifactRender from '../../../components/ArtifactRender'
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function NewArtifactCard() {
+  //states
   const [file, setFile] = useState(null);
   const [error, setError] = useState('');
   const fileInputRef = useRef(null);
   const [uploadedArtifact, setUploadedArtifact] = useState([]);
-
+  
+  //uploads the artifact selected to back-end
   const handleFileChange = async (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
@@ -16,6 +19,7 @@ export default function NewArtifactCard() {
     }
     try{
       const formData = new FormData();
+      //add file to hidden form
       formData.append('file', selectedFile);
 
       const response = await fetch(`${apiUrl}/api/artifacts`, {
@@ -25,7 +29,7 @@ export default function NewArtifactCard() {
         },
         body: formData
       })
-
+      //response from server
       const data = await response.json();
 
       if(!response.ok){
@@ -33,7 +37,7 @@ export default function NewArtifactCard() {
         throw new Error(data.message || 'Failed to upload artifact');
       }
       console.log(data);
-      
+      //add artifact to state
       const next = [...uploadedArtifact, data.artifact];
       setUploadedArtifact(next);
       sessionStorage.setItem("artifacts", JSON.stringify(next));
@@ -45,7 +49,7 @@ export default function NewArtifactCard() {
       console.log(err)
     }
   };
-
+  //adds file to hidden form
   const triggerFileInput = async (e) => {
     e.preventDefault();
     fileInputRef.current.click();
@@ -71,11 +75,8 @@ export default function NewArtifactCard() {
         {file && <p id="artifact_name">Selected file: {file.name}</p>}
         {error && <p>Error: {error.message}</p>}
         {uploadedArtifact.map((artifactData, index) => (
-  <div key={index}>
-    <img
-      src={`${apiUrl}/${artifactData?.filepath}`}
-      alt={artifactData?.filename || `Artifact ${index + 1}`}
-    />
+  <div className={styles.artifactDisplay} key={index}>
+    <ArtifactRender apiUrl={apiUrl} artifact={artifactData}/>
   </div>
 ))}
          </div>

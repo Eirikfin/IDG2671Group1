@@ -24,6 +24,7 @@ export default function CreateStudy() {
   const submitSection = async () => {
     try {
         const artifacts = JSON.parse(sessionStorage.getItem("artifacts") || "[]");
+        //artifact info for the question section
         const artifactPayload = artifacts.map(artifact => ({
             artifactId: artifact._id,
             researcherId: artifact.researcherId,
@@ -31,6 +32,7 @@ export default function CreateStudy() {
             filepath: artifact.filepath,
             mediaType: artifact.mediaType
         }));
+        //body of a question section:
         const payload = {
             projectId: studyId,
             artifacts: artifactPayload,
@@ -45,7 +47,7 @@ export default function CreateStudy() {
         }
         console.log(payload);
 
-
+      //send request to api:
       const response = await fetch(`${apiUrl}/api/section/${studyId}`, {
         method: "POST",
         headers: {
@@ -54,7 +56,7 @@ export default function CreateStudy() {
         },
         body: JSON.stringify(payload)
       });
-
+      //store response from api as json:
       const data = await response.json();
 
       if (!response.ok) {
@@ -64,12 +66,14 @@ export default function CreateStudy() {
       }
 
       console.log(data);
+      //remove artifacts from session storage
+      sessionStorage.removeItem("artifacts");
       setSubmitMsg(true);
     } catch (err) {
         console.log(err);
     }
   };
-
+  //adds a question to the section with default values:
   const addQuestion = () => {
     setQuestionCards(prev => [
       ...prev,
@@ -83,6 +87,8 @@ export default function CreateStudy() {
       }
     ]);
   };
+
+  //removes a question from section
   const deleteQuestion = (idToRemove) => {
     setQuestionCards(prev =>
       prev.filter(card => card.id !== idToRemove)
@@ -91,7 +97,7 @@ export default function CreateStudy() {
   const previewPage = () => {
     return;
   };
-
+  //submits section to backand and reroutes to dashboard
   const publishStudy = () => {
     submitSection()
     
@@ -110,7 +116,7 @@ export default function CreateStudy() {
       min: 0,
       max: 10
     }]);
-
+    //updates sectionCount and routes to new section
     const nextSection = sectionCount + 1;
     setSectionCount(nextSection);
     navigate(`/create_study/${studyId}/questions/${nextSection}`)
@@ -121,9 +127,9 @@ export default function CreateStudy() {
     <>
       {submitMsg && <p>Section was submitted!</p>}
       <h1>Section {sectionCount}</h1>
-      <NewArtifactCard />
-      {questionCards.map((card, idx) => (
-  <div key={card.id}>
+      <NewArtifactCard key={sectionCount}/>
+      {questionCards.map((card, id) => (
+  <div className={styles.card} key={card.id}>
     <button
       className={styles.remove_btn}
       onClick={() => deleteQuestion(card.id)}
@@ -141,7 +147,7 @@ export default function CreateStudy() {
   </div>
 ))}
 {error && <p>{error}</p>}
-      <button id="addQuestion__btn" onClick={addQuestion}>
+      <button className={styles.addQuestion__btn} id="addQuestion__btn" onClick={addQuestion}>
         Add Question
       </button>
       <button onClick={addSection}>Add new section</button>

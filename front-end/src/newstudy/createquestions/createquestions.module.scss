@@ -1,10 +1,25 @@
+@use '../newstudy.module.scss';
 
 
 .remove_btn{
-    max-width: 70px;
-    max-height: 70px;
+    max-width: 40px;
+    max-height: 40px;
     border-radius: 20px;
-    position: relative;
-    right: -80%;
+    position: absolute;
+    right: 5%;
 
+}
+h1{
+    text-align: center;
+}
+.addQuestion__btn{
+    padding: 10px;
+    border-radius: 5px;
+    display: block;
+    margin-bottom: 2rem;
+    margin-left: 40px;
+}
+
+.card{
+    position: relative;
 }
