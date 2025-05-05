@@ -87,3 +87,16 @@ export const deleteAnswer = async (req, res) => {
         res.status(500).json({ message: "Server error", error: err.message });
     }
 };
+
+
+export const exportCsv = async (req, res) => {
+    try{
+        const answers = await Answer.find({ projectId: req.params.projectId })
+
+        if(!answers) {
+            return res.status(404).json({ message: "No answers for this project was found"});
+        }
+    }catch(err){
+        return res.status(500).json({message: "Server error", error: err.message})
+    }
+}

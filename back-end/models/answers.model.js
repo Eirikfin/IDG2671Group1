@@ -12,7 +12,7 @@ const answerSchema = new mongoose.Schema({
     ref: "Session",
     required: true,
   }, //refrences session.model.js
-  answer: { type: mongoose.Schema.Types.Mixed, required: true },
+  answers:[ { type: mongoose.Schema.Types.Mixed, required: true }],
 });
 
 const Answer = mongoose.model("Answer", answerSchema);
