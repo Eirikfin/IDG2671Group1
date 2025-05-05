@@ -28,6 +28,8 @@ app.use(cors( {
     origin: ["http://localhost:5173", "http://127.0.0.1:5500"],
     credentials: true,
 }));
+app.options('*', cors());
+
 app.use(cookieParser());
 
 //Server static files from react app
@@ -47,6 +49,9 @@ app.use('/api/questions', questionsRoute);
 app.use('/api/researchers', researchersRoute);
 app.use('/api/sessions', sessionsRoute);
 app.use('/api/section', sectionsRoute);
+
+//servering uploaded artifacts:
+app.use("/uploads", express.static("uploads"));
 
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../front-end/build/index.html"));

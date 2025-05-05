@@ -25,12 +25,13 @@ try{
 
         await newSection.save();
 
-        await project.questions.push(newSection._id)
+        project.questions.push(newSection._id)
        
         await project.save();
 
         return res.status(201).json(newSection);
 }catch(err){
+    console.error(err);
     return res.status(500).json({message: "Server error", error: err.message});
 }}
 
@@ -44,7 +45,7 @@ export const getSection = async (req, res) => {
             return res.status(404).json({message: "Project section not found"});
         }
 
-        await section.populate('artifacts');
+    
 
         return res.status(200).json(section);
 

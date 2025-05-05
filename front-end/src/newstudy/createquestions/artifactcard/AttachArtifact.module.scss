@@ -3,9 +3,16 @@
 
 
 .buttons{
-    display: flex;
+    
     justify-content: center;
     gap: 2rem;
     margin-bottom: 3rem;
 }
+.card{
 
+
+    .artifactDisplay *{
+    max-width: 60%;
+
+}
+}

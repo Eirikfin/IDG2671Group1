@@ -1,21 +1,59 @@
 import { useState, useRef } from 'react';
 import styles from './AttachArtifact.module.scss'; // Assuming file path is correct
+import ArtifactRender from '../../../components/ArtifactRender'
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function NewArtifactCard() {
+  //states
   const [file, setFile] = useState(null);
+  const [error, setError] = useState('');
   const fileInputRef = useRef(null);
-
-  const handleFileChange = (e) => {
+  const [uploadedArtifact, setUploadedArtifact] = useState([]);
+  
+  //uploads the artifact selected to back-end
+  const handleFileChange = async (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
     if (selectedFile) {
       console.log('Selected file:', selectedFile);
     }
-  };
+    try{
+      const formData = new FormData();
+      //add file to hidden form
+      formData.append('file', selectedFile);
 
-  const triggerFileInput = (e) => {
+      const response = await fetch(`${apiUrl}/api/artifacts`, {
+        method: "POST",
+        headers: {
+          'Authorization': `bearer ${localStorage.getItem('token')}`
+        },
+        body: formData
+      })
+      //response from server
+      const data = await response.json();
+
+      if(!response.ok){
+        setError(data.message);
+        throw new Error(data.message || 'Failed to upload artifact');
+      }
+      console.log(data);
+      //add artifact to state
+      const next = [...uploadedArtifact, data.artifact];
+      setUploadedArtifact(next);
+      sessionStorage.setItem("artifacts", JSON.stringify(next));
+      setFile(null)
+      e.target.value = null;
+
+
+    }catch(err){
+      console.log(err)
+    }
+  };
+  //adds file to hidden form
+  const triggerFileInput = async (e) => {
     e.preventDefault();
     fileInputRef.current.click();
+    
   };
 
   return (
@@ -24,7 +62,6 @@ export default function NewArtifactCard() {
       <h2>Artifacts:</h2>
       <form>
       <div className={styles.buttons}>
-        <button type="button">Existing Artifact</button>
         <button type="button" id="uploadArtifact__button" onClick={triggerFileInput}>
           Upload Artifact
         </button>
@@ -36,7 +73,13 @@ export default function NewArtifactCard() {
           onChange={handleFileChange}
         />
         {file && <p id="artifact_name">Selected file: {file.name}</p>}
-      </div>
+        {error && <p>Error: {error.message}</p>}
+        {uploadedArtifact.map((artifactData, index) => (
+  <div className={styles.artifactDisplay} key={index}>
+    <ArtifactRender apiUrl={apiUrl} artifact={artifactData}/>
+  </div>
+))}
+         </div>
       </form>
     </div>
     </>

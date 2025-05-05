@@ -1,81 +1,89 @@
 import styles from "./questionCard.module.scss";
-import { useState, useRef } from "react";
 
-export default function NewQuestionCard({ number }) {
-  //states
-  const [type, SetType] = useState(null);
-  const [alternatives, setAlternatives] = useState([""]);
-  //handlers
-  const handleTypeChange = (e) => {
-    SetType(e.target.value);
-  };
+export default function NewQuestionCard({ card, onChange }) {
+  //states:
+  const { id, questionText, type, alternatives, min, max } = card;
 
-  const handleAlternativeChange = (index, value) => {
-    const newAlternatives = [...alternatives];
-    newAlternatives[index] = value;
-    setAlternatives(newAlternatives);
+  //update values in cards:
+  const update = (changes) => {
+    onChange({ ...card, ...changes });
   };
 
-  const addAlternatives = () => {
-    setAlternatives([...alternatives, ""]);
-  };
-  const deleteAlternative = (indexToRemove) => {
-    setAlternatives(alternatives.filter((_, index) => index !== indexToRemove));
-  };
-  //output
   return (
-    <div className={styles.card}>
-      <form method="POST">
-        <h2>Question {number}</h2>
+    <div>
+      <h2>Question</h2>
 
-        <label>Question text:</label>
-        <input name="questiontext" type="text" />
+      <label>Question text:</label>
+      <input
+        name="questionText"
+        type="text"
+        value={questionText}
+        onChange={e => update({ questionText: e.target.value })}
+      />
 
-        <label>Question type:</label>
-        <select name="questionType" onChange={handleTypeChange}>
-          <option value="textInput">Text input</option>
-          <option value="MultipleChoice">Multiple Choice</option>
-          <option value="SlidingScale">Sliding Scale</option>
-        </select>
+      <label>Question type:</label>
+      <select
+        name="questionType"
+        value={type}
+        onChange={e => update({ type: e.target.value })}
+      >
+        <option value="TextInput">Text input</option>
+        <option value="MultipleChoice">Multiple Choice</option>
+        <option value="SlidingScale">Sliding Scale</option>
+      </select>
 
-        {type === "MultipleChoice" && (
-          <div className={styles.alternatives}>
-            <label>Alternatives:</label>
-            {alternatives.map((alt, index) => (
-    <div key={index} className={styles.alternativeRow}>
-        <input
-            type="text"
-            name={`alternative-${index}`}
-            value={alt}
-            onChange={(e) =>
-                handleAlternativeChange(index, e.target.value)
-            }
-        />
-        <button
-            className={styles.remove_btn}
+      {type === "MultipleChoice" && (
+        <div className={styles.alternatives}>
+          <label>Alternatives:</label>
+          {alternatives.map((alt, i) => (
+            <div key={i} className={styles.alternativeRow}>
+              <input
+                type="text"
+                value={alt}
+                onChange={e => {
+                  const newAlts = [...alternatives];
+                  newAlts[i] = e.target.value;
+                  update({ alternatives: newAlts });
+                }}
+              />
+              <button
+                type="button"
+                onClick={() => {
+                  const newAlts = alternatives.filter((_, j) => j !== i);
+                  update({ alternatives: newAlts });
+                }}
+              >
+                X
+              </button>
+            </div>
+          ))}
+          <button
             type="button"
-            onClick={() => deleteAlternative(index)}
-        >
-            X
-        </button>
-    </div>
-))}
+            onClick={() =>
+              update({ alternatives: [...alternatives, ""] })
+            }
+          >
+            Add Alternative
+          </button>
+        </div>
+      )}
 
-            <button type="button" className="addAlternative" onClick={addAlternatives}>
-              Add Alternative
-            </button>
-          </div>
-        )}
-
-        {type === "SlidingScale" && (
-          <div className={styles.slidingscale}>
-            <label>Minimum Value:</label>
-            <input type="number" name="min" placeholder="0"/>
-            <label>Maximum Value:</label>
-            <input type="number" name="max" placeholder="10"/>
-          </div>
-        )}
-      </form>
+      {type === "SlidingScale" && (
+        <div className={styles.slidingscale}>
+          <label>Minimum Value:</label>
+          <input
+            type="number"
+            value={min}
+            onChange={e => update({ min: Number(e.target.value) })}
+          />
+          <label>Maximum Value:</label>
+          <input
+            type="number"
+            value={max}
+            onChange={e => update({ max: Number(e.target.value) })}
+          />
+        </div>
+      )}
     </div>
   );
 }

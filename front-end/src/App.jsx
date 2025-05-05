@@ -19,7 +19,7 @@ export default function App() {
         <Routes>
           <Route path="/dashboard" element={<DashBoard />} />
           <Route path="/create_study" element={<Newstudy />} />
-          <Route path="/create_study/questions" element={<CreateQuestions/>}/>
+          <Route path="/create_study/:studyId/questions/:index" element={<CreateQuestions/>}/>
           <Route path="/results" element={<Results />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

@@ -1,5 +1,5 @@
 import Session from "../models/sessions.model.js";
-
+import { Parser } from "json2csv";
 // POST
 export const createSession = async (req, res) => {
     try {
@@ -105,3 +105,44 @@ export const deleteSession = async (req, res) => {
         res.status(500).json({ message: "Server error", error: err.message });
     }
 };
+
+// sends sessions as a .csv file to the client:
+export const exportCsv = async (req, res) => {
+    try{
+        const sessions = await Session.find({ projectId: req.params.projectId })
+
+        if(!sessions || sessions.length === 0) {
+            return res.status(404).json({ message: "No answers for this project was found"});
+        }
+        const flattened = sessions.map(session => {
+            const base = {
+              sessionId: session._id,
+              projectId: session.projectId,
+              startTime: session.startTime,
+              finishedTime: session.finishedTime,
+              deviceType: session.deviceType,
+              age: session.demographics?.age,
+              gender: session.demographics?.gender,
+              education: session.demographics?.education,
+            };
+      
+         
+            session.answers?.forEach(({ SectionId, sectionAnswers }) => {
+              const key = `section_${SectionId}`;
+              base[key] = JSON.stringify(sectionAnswers || []);
+            });
+      
+            return base;
+          });
+
+          const parser = new Parser();
+          const csv = parser.parse(flattened);
+
+          res.header('Content-Type', 'text/csv');
+          res.attachment(`sessions_project_${req.params.projectId}.csv`);
+          return res.send(csv);
+      
+    }catch(err){
+        return res.status(500).json({message: "Server error", error: err.message})
+    }
+}

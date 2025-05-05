@@ -7,6 +7,7 @@ export const createProject = async (req, res) => {
     const createdProject = {
       researcherId: req.user.id,
       title: req.body.title,
+      description: req.body.description,
       questions: [],
       status: req.body.status,
     };
@@ -19,7 +20,7 @@ export const createProject = async (req, res) => {
 
     return res
       .status(201)
-      .json({ message: "Project Created!", project: storeProject });
+      .json(storeProject);
   } catch (err) {
     return res
       .status(500)
@@ -100,7 +101,6 @@ export const getProject = async (req, res) => {
     if (!project) {
       return res.status(404).json({ message: "No project/study was found." });
     }
-
     return res.status(200).json(project);
   } catch (err) {
     return res

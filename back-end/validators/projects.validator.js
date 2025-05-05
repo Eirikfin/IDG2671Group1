@@ -9,6 +9,9 @@ const projectValidator = [
         .notEmpty().withMessage("Project must have a status.")
         .isString().withMessage("Project status must be a string.")
         .isIn(["notPublished", "active", "concluded"]).withMessage("Status must be one of: notPublished, active, concluded."),
+    body("description")
+        .notEmpty().withMessage("Description can not be empty")
+        .isString().withMessage("Description must be a string"),
     body("questions")
         .optional()
         .isArray().withMessage("Project questions must be in an Array"),   
