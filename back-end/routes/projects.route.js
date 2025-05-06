@@ -1,7 +1,7 @@
 import express from "express";
 import { authenticateToken } from "../middleware/webtoken.js";
 import projectValidator from "../validators/projects.validator.js";
-import { createProject, updateProject, deleteProject, getProject, getAllProjects } from "../controllers/project.controllers.js";
+import { createProject, updateProject, deleteProject, getProject, getAllProjects, publishProject } from "../controllers/project.controllers.js";
 
 
 
@@ -21,5 +21,8 @@ router.get("/:id", authenticateToken, getProject);
 
 //get all projects for a researcher:
 router.get("/researcher/:id", authenticateToken, getAllProjects);
+
+//set a project to active:
+router.patch("/:id/activate", authenticateToken, publishProject); 
 
 export default router;

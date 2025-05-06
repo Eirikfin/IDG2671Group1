@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 export default function DraftStudy() {
     const [projects, setProjects] = useState([]); // State to store projects (will be used to map over projects after api call)
     
@@ -45,6 +47,28 @@ export default function DraftStudy() {
 
         const draftProjects = projects.filter(project => project.status === "notPublished");
 
+        const activeProject = async (id) => {
+            try{
+                const token = localStorage.getItem('token')
+                const response = await fetch(`${apiUrl}/api/projects/${id}/activate`, {
+                    method: "PATCH",
+                    headers: {
+                        Authorization: `bearer ${token}`
+                    }
+                })
+
+                await response.json();
+
+                if(!response.ok){
+                    throw Error("Failed to activate project")
+                }
+
+                window.location.reload();
+            }catch(err){
+                console.log(err);
+            }
+        }
+
     return(
         <div className={styles.study}>
 
@@ -59,6 +83,7 @@ export default function DraftStudy() {
 
                         <div className={styles.study_card_buttons}>
                             <button><Link to="/create_study/questions" className={styles.react_Link}>Edit study</Link></button>
+                            <button onClick={() => activeProject(project._id)}>Publish study</button>
                         </div>
                         
                     </div>
