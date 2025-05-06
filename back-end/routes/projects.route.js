@@ -14,7 +14,7 @@ router.post("/", projectValidator, authenticateToken, createProject);
 router.put("/:id", projectValidator, authenticateToken, updateProject);
 
 //deleting a project:
-router.delete("/:id", projectValidator, authenticateToken, deleteProject);
+router.delete("/:id", authenticateToken, deleteProject);
 
 //find project info:
 router.get("/:id", authenticateToken, getProject);
