@@ -159,3 +159,21 @@ export const publishProject = async (req, res) => {
     return res.status(500).json({ message: "Server error", error: err.message });
   }
 }
+
+export const concludeProject = async (req, res) => {
+  try{
+    const project = await Project.findByIdAndUpdate(req.params.id, {
+      status: "concluded"
+    },
+    { new: true }
+  );
+
+  if(!project){
+    return res.status(404).json({message: "Project not found"});
+  }
+
+  return res.status(200).json(project);
+  }catch(err){
+    return res.status(500).json({ message: "Sever error", error: err.message });
+  }
+}
