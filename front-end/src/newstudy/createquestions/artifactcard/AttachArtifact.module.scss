@@ -12,7 +12,15 @@
 
 
     .artifactDisplay *{
-    max-width: 60%;
-
+        max-width: 60%;
+     
+      
 }
+}
+
+.remove__btn{
+    max-width: 30px !important;
+    max-height: 30px !important;
+    border-radius: 200px;
+    position: absolute;
 }

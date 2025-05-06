@@ -56,6 +56,29 @@ export default function NewArtifactCard() {
     
   };
 
+  const removeArtifact = async (artifactToRemove) => {
+    try{
+    const newArtifacts = uploadedArtifact.filter(item => item._id !== artifactToRemove._id);
+    setUploadedArtifact(newArtifacts);
+    sessionStorage.setItem("artifacts", JSON.stringify(newArtifacts));
+    const response = await fetch(`${apiUrl}/api/artifacts/${artifactToRemove._id}`, {
+      method: "DELETE",
+      headers: {
+         'Authorization': `bearer ${localStorage.getItem('token')}`
+      }
+    });
+    
+    const data = await response.json()
+    console.log(data.message)
+    if(!response.ok){
+      throw Error("Failed to delete artifact from API");
+    }
+    ;
+  }catch(err){
+    console.log(err)
+  }
+};
+  
   return (
     <>
     <div className={styles.card}>
@@ -77,6 +100,7 @@ export default function NewArtifactCard() {
         {uploadedArtifact.map((artifactData, index) => (
   <div className={styles.artifactDisplay} key={index}>
     <ArtifactRender apiUrl={apiUrl} artifact={artifactData}/>
+    <button className={styles.remove__btn} type="button" onClick={() => removeArtifact(artifactData)}>X</button>
   </div>
 ))}
          </div>

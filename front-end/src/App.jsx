@@ -8,6 +8,9 @@ import Newstudy from './newstudy/newstudy'
 import Login from './login/Login';
 import Register from './register/Register';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import UpdatePage from './UpdateStudy/UpdateStudy';
+import { UpdateFront } from './UpdateStudy/UpdateFront';
+import { UpdateSection } from './UpdateStudy/UpdateSection';
 
 
 export default function App() {
@@ -23,6 +26,11 @@ export default function App() {
           <Route path="/results" element={<Results />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+
+          <Route path="update/:projectId" element={<UpdatePage />}>
+            <Route index element={<UpdateFront/>} />
+            <Route path="section/:index" element={<UpdateSection/>}/>
+          </Route>
         </Routes>
         <Footer/>
       </Router>

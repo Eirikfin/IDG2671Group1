@@ -117,7 +117,7 @@ export const getAllProjects = async (req, res) => {
         .json({ message: "Can only get your own projects" });
     }
     // Set limit to whatever deemed necessary / most visually appealling later...
-    const { page = 1, limit = 5, sortBy = "createdAt", order = "desc", status } = req.query;
+    const { page = 1, limit = 50, sortBy = "createdAt", order = "desc", status } = req.query;
     const filter = {};
     
     if (status) {
