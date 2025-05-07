@@ -42,7 +42,7 @@ header {
 }
 
 footer {
-  position: relative;
+  position: fixed;
   width: 100%;
   bottom: 0;
   background-color: #457B9D;

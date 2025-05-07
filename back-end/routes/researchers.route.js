@@ -17,7 +17,7 @@ router.put("/:id", researcherValidator, passwordHash, authenticateToken, updateR
 router.delete("/:id", authenticateToken, requireAdmin, deleteResearcher);
 
 //find Researcher info:
-router.get("/:id", authenticateToken, requireAdmin, getResearcher);
+router.get("/:id", authenticateToken, getResearcher);
 
 //get all researchers:
 router.get("/", authenticateToken, requireAdmin, getAllResearchers);

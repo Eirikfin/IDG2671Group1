@@ -7,6 +7,7 @@ import Results from './results/results';
 import Newstudy from './newstudy/newstudy'
 import Login from './login/Login';
 import Register from './register/Register';
+import ProfilePage from './profile/ProfilePage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
@@ -23,6 +24,7 @@ export default function App() {
           <Route path="/results" element={<Results />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
         <Footer/>
       </Router>

@@ -86,6 +86,7 @@ export const getResearcher = async (req, res) => {
     const result = {
       email: foundResearcher.email,
       name: foundResearcher.name,
+      role: foundResearcher.role,
     };
     return res.status(200).json(result);
   } catch (err) {
