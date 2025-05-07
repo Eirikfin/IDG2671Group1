@@ -7,10 +7,6 @@ const questionSectionValidator = [
     .notEmpty().withMessage("projectId is required")
     .isMongoId().withMessage("projectId must be a valid MongoID"),
 
-  body("researcherId")
-    .notEmpty().withMessage("researcherId is required")
-    .isMongoId().withMessage("researcherId must be a valid MongoID"),
-
   // Validate artifacts array
   body("artifacts")
     .optional()
