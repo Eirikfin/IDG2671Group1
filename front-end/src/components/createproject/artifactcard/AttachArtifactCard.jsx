@@ -1,15 +1,22 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styles from './AttachArtifact.module.scss'; // Assuming file path is correct
 import ArtifactRender from '../../../components/ArtifactRender'
 const apiUrl = import.meta.env.VITE_API_URL;
 
-export default function NewArtifactCard() {
+export default function NewArtifactCard({artifacts}) {
   //states
   const [file, setFile] = useState(null);
   const [error, setError] = useState('');
   const fileInputRef = useRef(null);
   const [uploadedArtifact, setUploadedArtifact] = useState([]);
   
+  useEffect(() => {
+    if(artifacts){
+      setUploadedArtifact(artifacts)
+      sessionStorage.setItem('artifacts', JSON.stringify(artifacts));
+    }
+  }, [])
+
   //uploads the artifact selected to back-end
   const handleFileChange = async (e) => {
     const selectedFile = e.target.files[0];

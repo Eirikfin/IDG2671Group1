@@ -8,7 +8,7 @@ export default function NewQuestionCard({ card, onChange }) {
   const update = (changes) => {
     onChange({ ...card, ...changes });
   };
-  console.log("Rendering card with ID:", id);
+
   return (
     <div>
       <h2>Question</h2>
