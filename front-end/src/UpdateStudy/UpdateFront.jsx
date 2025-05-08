@@ -70,7 +70,7 @@ export function UpdateFront() {
          </form>
          </div>
          <button onClick={() => navigate('section/0')}>Update Sections</button>
-         <p>{JSON.stringify(data)}</p>
+  
          </>
      );
 

@@ -19,22 +19,20 @@ export function UpdateSection() {
     //states
     const [error, setError] = useState("");
     const [questionCards, setQuestionCards] = useState([])
-    
+    //set questions into the questioncards
     useEffect(() => {
       setQuestionCards(() => {
            return section?.questions
       ? section.questions.map(q => ({
           id: uuidv4(),
           questionText: q.questionText || "",
-          type: q.type || "TextInput",
-          alternatives: q.alternatives || [],
-          min: q.min ?? 0,
-          max: q.max ?? 10
+          type: q.questionType || "TextInput",
+          alternatives: q.questionAlternatives || [],
+          min: q.minValue ?? 0,
+          max: q.maxValue ?? 10
         }))
       : [];
       })
-
-
 
     }, [section])
 
@@ -115,11 +113,33 @@ export function UpdateSection() {
     
     //navigate to a new section:
     const nextSection = async () => {
-    await submitSection()
-    navigate(`/update/${projectId}/section/${sectionIndex + 1}`)
+        if(sectionIndex >= data?.questions.length - 1){
+            return
+        }
+    
+        await submitSection()
+        navigate(`/update/${projectId}/section/${sectionIndex + 1}`)
     }
+    //previous section:
+    const previousSection = async () => {
+        if(sectionIndex <= 0){
+            return
+        }
+        await submitSection()
+        navigate(`/update/${projectId}/section/${sectionIndex - 1}`)
+    }
+    //update section then go to dashboard:
+    const updateProject = async () => {
+        await submitSection();
+        navigate('/dashboard');
+    }
+    //add new section
+    const addSection = async () => {
+        await submitSection();
+        navigate(`/create_study/${projectId}/questions/${sectionIndex + 1}`)
+    }
+    
     //if section are empty
-
       if (!data || !data.questions) {
         return <p>Loading project data...</p>;
       }
@@ -160,9 +180,9 @@ export function UpdateSection() {
      <button className={styles.addQuestion__btn} id="addQuestion__btn" onClick={addQuestion}>
              Add Question
            </button>
-     <button>Update Project</button>
-     <button>Add new Section</button>
-     <button>Previous Section</button>
+     <button onClick={updateProject}>Update Project</button>
+     <button onClick={addSection}>Add new Section</button>
+     <button onClick={previousSection}>Previous Section</button>
      <button onClick={nextSection}>Next section</button>
      
     </>
