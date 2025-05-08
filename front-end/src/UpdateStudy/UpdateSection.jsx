@@ -139,7 +139,7 @@ export function UpdateSection() {
     <>
      {questionCards.length === 0 && <p>No questions in this section yet.</p>}
     <h2>Update Section {sectionIndex + 1}</h2>
-    <p>Section {}</p>
+    <p>Section {sectionIndex + 1} out of {data?.questions.length}</p>
     <NewArtifactCard artifacts={section.artifacts} key={sectionIndex +1}/>
 
     {questionCards.length === 0 && <p>No questions in this section yet.</p>}
