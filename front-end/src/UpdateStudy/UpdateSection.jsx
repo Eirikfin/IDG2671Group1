@@ -3,7 +3,7 @@ import { ProjectContext } from "../context/projectContext";
 import { useParams, useNavigate } from "react-router-dom";
 import styles from '../newstudy/createquestions/createquestions.module.scss'
 import NewArtifactCard from "../components/createproject/artifactcard/AttachArtifactCard";
-import NewQuestionCard from "../components/createproject/questioncard/questionCard";
+import NewQuestionCard from "../components/createproject/questioncard/QuestionCard";
 import { v4 as uuidv4 } from "uuid";
 
 const apiUrl = import.meta.env.VITE_API_URL;
