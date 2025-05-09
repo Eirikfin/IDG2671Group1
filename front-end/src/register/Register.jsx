@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 export default function Register() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -13,7 +15,7 @@ export default function Register() {
 
     const handleRegister = async (e) => {
         try {
-            const response = await fetch(`http://localhost:4202/api/researchers`, {
+            const response = await fetch(`${apiUrl}/api/researchers`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name, email, password }),

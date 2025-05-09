@@ -8,6 +8,8 @@ export default function Login() {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
+    console.log("api url is:", apiUrl);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');

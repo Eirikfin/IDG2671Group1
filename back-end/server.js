@@ -25,7 +25,7 @@ const port = process.env.PORT || 4202;
 //Middleware
 app.use(express.json());
 app.use(cors( {
-    origin: ["http://localhost:5173", "http://127.0.0.1:5500"],
+    origin: ["http://localhost:5173", "http://127.0.0.1:5500", "http://localhost:3000", "http://localhost:80"],
     credentials: true,
 }));
 app.options('*', cors());
@@ -54,7 +54,7 @@ app.use('/api/section', sectionsRoute);
 app.use("/uploads", express.static("uploads"));
 
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../front-end/build/index.html"));
+    res.send("API is live!")
 });
 
 //restrict dashboard access to researchers/product owners (not sure if I did this 100% correctly)
@@ -70,6 +70,6 @@ app.get("/", authenticateToken, (_, res) => {
 });
 
 // start server:
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
     console.log(`Server is listening at http://localhost:${port}`);
 });

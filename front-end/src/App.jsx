@@ -20,6 +20,7 @@ export default function App() {
         <Header />
 
         <Routes>
+          <Route path="/" element={<Login />}/>
           <Route path="/dashboard" element={<DashBoard />} />
           <Route path="/create_study" element={<Newstudy />} />
           <Route path="/create_study/:studyId/questions/:index" element={<CreateQuestions/>}/>

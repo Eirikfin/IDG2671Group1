@@ -2,26 +2,31 @@ version: '3.8'
 
 services:
   client:
-    build: ./front-end
+    build:
+      context: ./front-end
+      args:
+        VITE_API_URL: http://localhost:4202
     ports:
-      - "3000:3000"
+      - "3000:80"
     volumes:
-      - ./client:/app
       - /app/node_modules
     environment:
       - CHOKIDAR_USEPOLLING=true
+      - VITE_API_URL=http://localhost:4202
     depends_on:
       - server
 
   server:
     build: ./back-end
     ports:
-      - "5000:5000"
+      - "4202:4202"
     volumes:
-      - ./server:/app
       - /app/node_modules
     environment:
       - MONGO_URI=mongodb://mongo:27017/mern_db
+      - SECRET_KEY=hamburgerdressing
+      - PORT=4202
+
     depends_on:
       - mongo
 
