@@ -16,7 +16,7 @@ router.post("/", authenticateToken, uploadFile, createArtifact);
 router.put("/:id", artifactValidator, authenticateToken, updateArtifact);
 
 //deleting an artifact:
-router.delete("/:id", artifactValidator, authenticateToken, deleteArtifact);
+router.delete("/:id", authenticateToken, deleteArtifact);
 
 //find artifact info:
 router.get("/:id", artifactValidator, authenticateToken, getArtifact);

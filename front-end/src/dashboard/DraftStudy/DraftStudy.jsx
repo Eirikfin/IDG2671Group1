@@ -82,7 +82,7 @@ export default function DraftStudy() {
                         <p>{project.description}</p>
 
                         <div className={styles.study_card_buttons}>
-                            <button><Link to="/create_study/questions" className={styles.react_Link}>Edit study</Link></button>
+                            <button><Link to={`/update/${project._id}`} className={styles.react_Link}>Edit study</Link></button>
                             <button onClick={() => activeProject(project._id)}>Publish study</button>
                         </div>
                         
