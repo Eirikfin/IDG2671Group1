@@ -24,7 +24,7 @@ export default function App() {
           <Route path="/dashboard" element={<DashBoard />} />
           <Route path="/create_study" element={<Newstudy />} />
           <Route path="/create_study/:studyId/questions/:index" element={<CreateQuestions/>}/>
-          <Route path="/results" element={<Results />} />
+          <Route path="/:studyId/results" element={<Results />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 
