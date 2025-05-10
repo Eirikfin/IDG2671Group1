@@ -23,14 +23,9 @@ export const getSession = async (req, res) => {
         if (allSessions.length === 0) {
         return res.status(404).json({ message: "No Sessions were found" });
         }
-        const result = {
-            id: allSessions._id,
-            deviceType: allSessions.deviceType,
-            startTime: allSessions.startTime,
-            finishedTime: allSessions.finishedTime,
-            projectId: allSessions.projectId,
-        };
-        res.status(200).json(result);
+      
+
+        return res.status(200).json(allSessions);
     } catch (err) {
         return res
         .status(500)
