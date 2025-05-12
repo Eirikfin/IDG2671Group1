@@ -10,6 +10,7 @@ export default function CreateStudy() {
     //states
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [collectDemographics, setCollectDemographics] = useState(false);
     const [error, setError] = useState("");
 
     const handleFormSubmit = async (e) => {
@@ -17,9 +18,10 @@ export default function CreateStudy() {
         const inputs = {
             title: title,
             description: description,
+            demographics: collectDemographics,
             status: "notPublished"
         };
-        
+        console.log(inputs)
         try{
             const response = await fetch(`${apiUrl}/api/projects`, {
                 method: "POST",
@@ -51,9 +53,13 @@ return(
     <form onSubmit={handleFormSubmit}>
         <label>Study Title:</label>
         <input onChange={(e) => setTitle(e.target.value)} type="text" name="title"></input>
+        <label>Collect demographics?
+        <input onChange={(e) => setCollectDemographics(e.target.checked)} type="checkbox"/>
+        </label>
         <label>Description:</label>
         <textarea onChange={(e) => setDescription(e.target.value)} name="description"></textarea>
         <input className={style.submit} id="newProject__submit" type="submit"/>
+        
         {error && <p>{error}</p>}
     </form>
     </div>

@@ -7,6 +7,7 @@ export const createProject = async (req, res) => {
     const createdProject = {
       researcherId: req.user.id,
       title: req.body.title,
+      demographics: req.body.demographics,
       description: req.body.description, // Ensure description is included
       questions: [],
       status: req.body.status,

@@ -12,12 +12,14 @@ export function UpdateFront() {
 
      const [error, setError] = useState("");
      const [title, setTitle] = useState("");
+     const [collectDemographics, setCollectDemographics] = useState(false);
      const [description, setDescription] = useState("");
      const [updateMsg, setUpdateMsg] = useState("");
      
     useEffect(() => {
         setTitle(data.title);
-        setDescription(data.description)
+        setDescription(data.description);
+        setCollectDemographics(data.demographics);
     }, [projectId])
 
      const updateFront = async (e) => {
@@ -26,6 +28,7 @@ export function UpdateFront() {
         try{
             const payload = {
                 title: title,
+                demographics: collectDemographics,
                 description: description,
                 status: "notPublished"
             }
@@ -62,6 +65,9 @@ export function UpdateFront() {
          <form onSubmit={updateFront}>
              <label>Study Title:</label>
              <input onChange={(e) => setTitle(e.target.value)} type="text" name="title" value={title} />
+             <label>Collect demographics?
+                <input onChange={(e) => setCollectDemographics(e.target.checked)} checked={collectDemographics} type="checkbox"/>
+            </label>
              <label>Description:</label>
              <textarea onChange={(e) => setDescription(e.target.value)} name="description" value={description}></textarea>
              <input className={style.submit} id="newProject__submit" type="submit"/>

@@ -4,7 +4,9 @@ const projectValidator = [
     body("title")
         .notEmpty().withMessage("Project must have a title.")
         .isString().withMessage("Title must be a string."),
-
+    body("demographics")
+        .isBoolean().withMessage("Demographics must be true or false")
+        .notEmpty().withMessage("Demographics must be set to true or false"),
     body("description")
         .notEmpty().withMessage("Projects must have a description.")
         .isString().withMessage("Project must be a string."),
