@@ -63,7 +63,7 @@ export default function CurrentStudy() {
         if(!response.ok){
             throw Error("Failed to conclude project")
         }
-
+        window.location.reload()
         }catch(err){
             console.log(err)
         }   
@@ -84,7 +84,7 @@ export default function CurrentStudy() {
                         <div className={styles.study_card_buttons}>
                             <button>Copy link</button>
                             <button><Link to={`/${project._id}/results`} className={styles.react_Link}>View results</Link></button>
-                            <button>Edit study</button>
+                            <button><Link to={`/update/${project._id}`} className={styles.react_Link}>Edit study</Link></button>
                             <button onClick={() => concludeStudy(project._id)}>Conclude study</button>
                         </div>
 

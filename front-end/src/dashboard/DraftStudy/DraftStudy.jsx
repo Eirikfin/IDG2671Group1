@@ -62,7 +62,7 @@ export default function DraftStudy() {
                 if(!response.ok){
                     throw Error("Failed to activate project")
                 }
-
+                window.location.reload()
             }catch(err){
                 console.log(err);
             }
