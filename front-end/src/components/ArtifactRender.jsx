@@ -17,6 +17,5 @@ export default function ArtifactRender({artifact}) {
         return <video controls src={`${apiUrl}/${artifact?.filepath}`}></video>
     }
 
-    
         return <p>{`${apiUrl}/${artifact?.filepath}`}</p>
 }
