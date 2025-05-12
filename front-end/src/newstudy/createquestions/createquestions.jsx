@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import NewQuestionCard from "./questioncard/QuestionCard";
+import NewQuestionCard from "./questioncard/questionCard";
 import NewArtifactCard from "./artifactcard/AttachArtifactCard";
 import { v4 as uuid} from "uuid"
 import styles from "./createquestions.module.scss";
