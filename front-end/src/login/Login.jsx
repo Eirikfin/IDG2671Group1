@@ -1,5 +1,6 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "../context/authContext";
 import styles from './Login.module.scss';
 const apiUrl = import.meta.env.VITE_API_URL; 
 export default function Login() {
@@ -7,8 +8,11 @@ export default function Login() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const location = useLocation();
+    const {login } = useAuth();
 
-    console.log("api url is:", apiUrl);
+    //redirect after login:
+    const from = location.state?.from?.pathname || "/dashboard"; 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -26,10 +30,13 @@ export default function Login() {
                 const { message } = await response.json();
                 throw new Error(message || 'Login failed');  
             }
-            const { token, id } = await response.json();
-            localStorage.setItem('token', token);
+            const userData = await response.json();
+            
+            login(userData);
+
+            localStorage.setItem('token', userData.token);
             // localStorage.setItem('userId', id); <----- store user id? needed?
-            navigate('/dashboard');
+            navigate(from, { replace: true }); 
         } catch (err) {
             setError(err.message);
         }

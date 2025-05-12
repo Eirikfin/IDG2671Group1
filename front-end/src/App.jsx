@@ -1,43 +1,86 @@
-import './assets/global-styles/App.css'
-import Header from './components/user-interface/header/ui_header';
-import Footer from './components/user-interface/Footer/ui_footer';
-import DashBoard from './dashboard/dashboard';
-import CreateQuestions from './newstudy/createquestions/createquestions'
-import Results from './results/results';
-import Newstudy from './newstudy/newstudy'
-import Login from './login/Login';
-import Register from './register/Register';
+import "./assets/global-styles/App.css";
+import Header from "./components/user-interface/header/ui_header";
+import Footer from "./components/user-interface/Footer/ui_footer";
+import DashBoard from "./dashboard/dashboard";
+import CreateQuestions from "./newstudy/createquestions/createquestions";
+import Results from "./results/results";
+import Newstudy from "./newstudy/newstudy";
+import Login from "./login/Login";
+import Register from "./register/Register";
 import ProfilePage from './profile/ProfilePage';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import UpdatePage from './UpdateStudy/UpdateStudy';
-import { UpdateFront } from './UpdateStudy/UpdateFront';
-import { UpdateSection } from './UpdateStudy/UpdateSection';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import UpdatePage from "./UpdateStudy/UpdateStudy";
+import { UpdateFront } from "./UpdateStudy/UpdateFront";
+import { UpdateSection } from "./UpdateStudy/UpdateSection";
+import { AuthProvider } from "./context/authContext";
+import RequireAuth from "./components/protectedRoute/protectedRoute"
 
 
 export default function App() {
-  return(
-    <>
+  return (
+    <AuthProvider>
       <Router>
         <Header />
 
         <Routes>
-          <Route path="/" element={<Login />}/>
-          <Route path="/dashboard" element={<DashBoard />} />
-          <Route path="/create_study" element={<Newstudy />} />
-          <Route path="/create_study/:studyId/questions/:index" element={<CreateQuestions/>}/>
-          <Route path="/:studyId/results" element={<Results />} />
+          {/* Public routes */}
+          <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<ProfilePage />} />
 
-          <Route path="update/:projectId" element={<UpdatePage />}>
-            <Route index element={<UpdateFront/>} />
-            <Route path="section/:index" element={<UpdateSection/>}/>
+          {/* Protected routes */}
+          <Route
+            path="/dashboard"
+            element={
+              <RequireAuth>
+                <DashBoard />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/create_study"
+            element={
+              <RequireAuth>
+                <Newstudy />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/create_study/:studyId/questions/:index"
+            element={
+              <RequireAuth>
+                <CreateQuestions />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/:studyId/results"
+            element={
+              <RequireAuth>
+                <Results />
+              </RequireAuth>
+            }
+          />
+
+          {/* Nested protected route */}
+          <Route
+            path="/update/:projectId"
+            element={
+              <RequireAuth>
+                <UpdatePage />
+              </RequireAuth>
+            }
+          >
+            <Route index element={<UpdateFront />} />
+            <Route path="section/:index" element={<UpdateSection />} />
           </Route>
           <Route path="/profile" element={<ProfilePage />} />
         </Routes>
-        <Footer/>
+
+        <Footer />
       </Router>
-    </>
+    </AuthProvider>
   );
 }
+
