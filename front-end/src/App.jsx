@@ -7,6 +7,7 @@ import Results from "./results/results";
 import Newstudy from "./newstudy/newstudy";
 import Login from "./login/Login";
 import Register from "./register/Register";
+import ProfilePage from './profile/ProfilePage';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UpdatePage from "./UpdateStudy/UpdateStudy";
 import { UpdateFront } from "./UpdateStudy/UpdateFront";
@@ -26,6 +27,7 @@ export default function App() {
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<ProfilePage />} />
 
           {/* Protected routes */}
           <Route
@@ -73,6 +75,7 @@ export default function App() {
             <Route index element={<UpdateFront />} />
             <Route path="section/:index" element={<UpdateSection />} />
           </Route>
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
 
         <Footer />

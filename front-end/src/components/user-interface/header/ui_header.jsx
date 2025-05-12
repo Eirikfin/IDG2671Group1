@@ -39,7 +39,7 @@ export default function Header() {
                         ref={menuRef}
                         className={`${styles.menu} ${isMenuOpen ? styles.open : ""}`}
                     >
-                        <li><Link to ="/">Profile</Link></li>
+                        <li><Link to ="/profile">Profile</Link></li>
                         <li><Link to="/">Manage database</Link></li>
                         <li><Link to="/results">Results</Link></li>
                     </ul>
