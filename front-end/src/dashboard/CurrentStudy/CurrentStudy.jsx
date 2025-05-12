@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 
-
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function CurrentStudy() {
@@ -72,25 +71,34 @@ export default function CurrentStudy() {
     return (
         <div className={styles.study}>
 
-            <h2 className={styles.study_title}>Current study/studies</h2>
+            <h2>Current study/studies</h2>
 
             {activeProjects.length > 0 ? (
                 activeProjects.map((project) => (
-                    <div key={project._id} className={styles.study_card}>
+                    <div key={project._id} className={`card`}>
 
-                        <h3>{project.title}</h3>
-                        <p>{project.description}</p>
+                        <h3 className={styles.study__title}>{project.title}</h3>
+                        <p className={styles.study__description}>{project.description}</p>
 
-                        <div className={styles.study_card_buttons}>
+                        <div className={`card__buttons`}>
                             <button>Copy link</button>
-                            <button><Link to={`/${project._id}/results`} className={styles.react_Link}>View results</Link></button>
+
+                            <button><Link to={`/${project._id}/results`} className={`react__link`}>View results</Link></button>
+
                             <button>Edit study</button>
-                            <button onClick={() => concludeStudy(project._id)}>Conclude study</button>
+
+                            <button 
+                            onClick={() => concludeStudy(project._id)}
+                            className={styles.study__conclude}
+                            >
+                                Conclude study
+                            </button>
                         </div>
 
                     </div>
                 ))
             ) : (
+                // If there are no active projects, show a message
                 <p>No current studies available.</p>
             )}
             

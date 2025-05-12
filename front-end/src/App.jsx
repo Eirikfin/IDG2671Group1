@@ -1,4 +1,4 @@
-import "./assets/global-styles/App.css";
+import "./assets/global-styles/App.scss";
 import Header from "./components/user-interface/header/ui_header";
 import Footer from "./components/user-interface/Footer/ui_footer";
 import DashBoard from "./dashboard/dashboard";
@@ -85,4 +85,3 @@ export default function App() {
     </AuthProvider>
   );
 }
-

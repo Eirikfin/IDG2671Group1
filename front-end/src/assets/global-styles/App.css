@@ -1,4 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+:root {
+  --text-color: #1e1e1e;
+  --bg-color: #F1FAEE;
+  --bg-color--secondary: #FFFFFF;
+  --border-color: #457b9d;
+  --header-color: #1D3557;
+  --primary-btn-color: #457B9D;
+  --secondary-btn-color: #A8DADC;
+  --delete-btn-color: #E63956;
+}
+
+* {
+  color: var(--text-color);
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -10,18 +25,50 @@ h1 {
   padding: 1rem;
 }
 
-a, .react_link {
+a {
   font-weight: bold;
   font-size: 12pt;
   text-decoration: none;
 }
-a:visited, .react_link:visited {
+a:visited {
   font-weight: bold;
+  color: var(--text-color);
+}
+
+/* 
+.react__link {
+    border: 1px solid red;
+} 
+*/
+p {
   color: #1e1e1e;
 }
 
-p {
-  color: #1e1e1e;
+.card {
+  border: 2px solid #457b9d;
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  width: 70vw;
+  opacity: 0.7;
+  transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: scale(1.008);
+  opacity: 1;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+.card__buttons {
+  display: flex;
+  max-width: 40%;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-left: 0;
+  padding-left: 0;
+}
+.card__buttons > button {
+  padding: 0.4rem;
+  width: 100%;
 }
 
 button {
@@ -38,13 +85,10 @@ button:hover {
 
 header {
   background-color: #457B9D;
-  border: 1px inset solid hsla(0, 0%, 0%, 0);
 }
 
 footer {
-  position: fixed;
   width: 100%;
   bottom: 0;
   background-color: #457B9D;
-  border: 1px solid hsla(0, 0%, 0%, 0);
 }/*# sourceMappingURL=App.css.map */

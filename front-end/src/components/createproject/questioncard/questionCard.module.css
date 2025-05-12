@@ -48,19 +48,40 @@
   opacity: 1;
 }
 
-.buttons {
-  justify-content: center;
-  gap: 2rem;
-  margin-bottom: 3rem;
+.card button, .card label {
+  display: block;
+  margin: 10px auto;
 }
 
-.card .artifactDisplay * {
-  max-width: 60%;
+input {
+  width: 60%;
+  min-height: 20px;
+  font-weight: bold;
 }
 
-.remove__btn {
-  max-width: 30px !important;
-  max-height: 30px !important;
-  border-radius: 200px;
-  position: absolute;
-}/*# sourceMappingURL=AttachArtifact.module.css.map */
+select {
+  min-height: 30px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.alternativeRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.alternativeRow input {
+  flex: 1;
+  margin-right: 10px;
+}
+.alternativeRow button {
+  margin: 0;
+}
+
+.slidingscale input {
+  width: 10%;
+  text-align: center;
+  height: 40px;
+  font-size: 1.5rem;
+  margin: 10px auto;
+}/*# sourceMappingURL=questionCard.module.css.map */

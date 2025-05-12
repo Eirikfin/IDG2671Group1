@@ -1,8 +1,41 @@
-.study {
-  padding: 1rem;
-  padding-top: 0;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+:root {
+  --text-color: #1e1e1e;
+  --bg-color: #F1FAEE;
+  --bg-color--secondary: #FFFFFF;
+  --border-color: #457b9d;
+  --header-color: #1D3557;
+  --primary-btn-color: #457B9D;
+  --secondary-btn-color: #A8DADC;
+  --delete-btn-color: #E63956;
 }
-.study_card {
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #F1FAEE;
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  padding: 1rem;
+}
+
+a, .react_link {
+  font-weight: bold;
+  font-size: 12pt;
+  text-decoration: none;
+}
+a:visited, .react_link:visited {
+  font-weight: bold;
+  color: #1e1e1e;
+}
+
+p {
+  color: #1e1e1e;
+}
+
+.card {
   border: 2px solid #457b9d;
   border-radius: 5px;
   padding: 1rem;
@@ -11,12 +44,12 @@
   opacity: 0.7;
   transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
 }
-.study_card:hover {
+.card:hover {
   transform: scale(1.008);
   opacity: 1;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 }
-.study_card_buttons {
+.card__buttons {
   display: flex;
   max-width: 40%;
   justify-content: space-between;
@@ -24,10 +57,49 @@
   margin-left: 0;
   padding-left: 0;
 }
-.study_card_buttons > button {
+.card__buttons > button {
   padding: 0.4rem;
   width: 100%;
 }
-.study_card_buttons > button > .react_Link {
-  color: inherit;
+
+.react__link {
+  color: var(--text-color);
+}
+
+button {
+  background-color: #A8DADC;
+  font-size: 12pt;
+  border: 0;
+  font-weight: bold;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease-in-out;
+}
+button:hover {
+  box-shadow: inset 0px 0px 13px -4px rgba(0, 0, 0, 0.75);
+}
+
+header {
+  background-color: #457B9D;
+}
+
+footer {
+  width: 100%;
+  bottom: 0;
+  background-color: #457B9D;
+}
+
+.study {
+  padding: 1rem;
+  padding-top: 0;
+}
+.study__title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+}
+.study__description {
+  padding: 0;
+}
+.study__conclude {
+  background-color: rgb(255, 255, 129);
 }/*# sourceMappingURL=CurrentStudy.module.css.map */

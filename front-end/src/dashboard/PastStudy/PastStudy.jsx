@@ -74,24 +74,25 @@ export default function PastStudy() {
     return (
         <div className={styles.study}>
 
-            <h2 className={styles.study_title}>Past study/studies</h2>
+            <h2>Past study/studies</h2>
 
             {concludedProjects.length > 0 ? (
                 concludedProjects.map((project) => (
-                    <div key={project._id} className={styles.study_card}>
+                    <div key={project._id} className={`card`}>
 
-                        <h3>{project.title}</h3>
-                        <p>{project.description}</p>
+                        <h3 className={styles.study__title}>{project.title}</h3>
+                        <p className={styles.study__description}>{project.description}</p>
 
-                        <div className={styles.study_card_buttons}>
-                            <button><Link to="/results" className={styles.react_Link}>View results</Link></button>
+                        <div className={`card__buttons`}>
+                            <button><Link to="/results" className={`react__link`}>View results</Link></button>
+
+                            <button
+                            onClick={() => deleteStudy(project._id)}
+                            className={styles.study__delete}
+                            >
+                                Delete Study
+                            </button>
                         </div>
-
-                        <button
-                        onClick={() => deleteStudy(project._id)}
-                        >
-                            Delete Study
-                        </button>
 
                     </div>
                 ))
