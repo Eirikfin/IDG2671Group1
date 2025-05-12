@@ -6,6 +6,7 @@ import CreateQuestions from "./newstudy/createquestions/createquestions";
 import Results from "./results/results";
 import Newstudy from "./newstudy/newstudy";
 import Login from "./login/Login";
+import Logout from "./logout/Logout";
 import Register from "./register/Register";
 import ProfilePage from './profile/ProfilePage';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -26,6 +27,7 @@ export default function App() {
           {/* Public routes */}
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<ProfilePage />} />
 
