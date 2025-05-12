@@ -122,6 +122,30 @@ export default function CreateStudy() {
     navigate(`/create_study/${studyId}/questions/${nextSection}`)
   };
 
+  const PublishProject = async () => {
+    
+     try{
+        await submitSection();
+        const token = localStorage.getItem('token')
+        
+        const response = await fetch(`${apiUrl}/api/projects/${studyId}/activate`, {
+            method: "PATCH",
+            headers: {
+                Authorization: `bearer ${token}`
+            }
+        })
+
+        await response.json();
+
+        if(!response.ok){
+            throw Error("Failed to activate project project")
+        }
+        navigate('/dashboard');
+        }catch(err){
+            console.log(err)
+        }   
+  }
+
   //render components
   return (
     <>
@@ -153,8 +177,9 @@ export default function CreateStudy() {
       <button onClick={addSection}>Add new section</button>
       <button onClick={previewPage}>Preview page</button>
       <button id="publish__btn" onClick={publishStudy}>
-        Publish Study
+        Save Draft
       </button>
+      <button onClick={PublishProject}>Publish Study</button>
       
     </>
   );
