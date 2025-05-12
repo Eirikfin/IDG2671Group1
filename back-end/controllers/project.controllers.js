@@ -118,7 +118,7 @@ export const getAllProjects = async (req, res) => {
     }
     // Set limit to whatever deemed necessary / most visually appealling later...
     const { page = 1, limit = 50, sortBy = "createdAt", order = "desc", status } = req.query;
-    const filter = {};
+    const filter = {researcherId: req.params.id};
     
     if (status) {
         filter.status = status;

@@ -64,7 +64,6 @@ export default function CurrentStudy() {
             throw Error("Failed to conclude project")
         }
 
-        window.location.reload();
         }catch(err){
             console.log(err)
         }   
