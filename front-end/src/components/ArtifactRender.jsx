@@ -5,7 +5,7 @@ export default function ArtifactRender({artifact}) {
 
     if(artifact.mediaType === "image") {
         return <img 
-        src={`${apiUrl}/${artifact?.filepath}`} 
+        src={`${apiUrl}/api/${artifact?.filepath}`} 
         alt={artifact?.filename || `Artifact`}/>
     }
 
@@ -16,6 +16,5 @@ export default function ArtifactRender({artifact}) {
     if(artifact.mediaType === "video") {
         return <video controls src={`${apiUrl}/${artifact?.filepath}`}></video>
     }
-
         return <p>{`${apiUrl}/${artifact?.filepath}`}</p>
 }

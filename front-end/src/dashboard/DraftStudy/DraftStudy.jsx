@@ -17,7 +17,7 @@ export default function DraftStudy() {
                     const decodedToken = jwtDecode(token);
                     const researcherId = decodedToken.id;
     
-                    const resProjects = await fetch(`http://localhost:4202/api/projects/researcher/${researcherId}`, {
+                    const resProjects = await fetch(`${apiUrl}/api/projects/researcher/${researcherId}`, {
                         headers: {
                             Authorization: `Bearer ${token}`
                         }
