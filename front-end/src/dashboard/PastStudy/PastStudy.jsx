@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 export default function PastStudy() {
   const [projects, setProjects] = useState([]); // State to store projects (will be used to map over projects after api call)
 
@@ -16,7 +18,7 @@ export default function PastStudy() {
         const researcherId = decodedToken.id;
 
         const resProjects = await fetch(
-          `http://localhost:4202/api/projects/researcher/${researcherId}`,
+          `${apiUrl}/api/projects/researcher/${researcherId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
