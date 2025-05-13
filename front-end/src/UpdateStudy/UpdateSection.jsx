@@ -6,6 +6,7 @@ import NewArtifactCard from "../components/createproject/artifactcard/AttachArti
 import NewQuestionCard from "../components/createproject/questioncard/QuestionCard";
 import { v4 as uuidv4 } from "uuid";
 
+
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export function UpdateSection() {

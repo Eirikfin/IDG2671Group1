@@ -1,38 +1,37 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
+import { ProjectContext } from "../context/projectContext";
 import styles from "./ParticipantSurvey.module.scss";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function ParticipantSurvey() {
-  const { studyId } = useParams(); // gets the study ID from url
-  const [questions, setQuestions] = useState([]);
-  const [artifacts, setArtifacts] = useState([]);
+  const { studyId } = useParams(); // gets the study ID from the URL
+  const { project, setProject } = useContext(ProjectContext); // access project data from context
   const [responses, setResponses] = useState({});
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
-    const fetchStudyData = async () => {
+    const fetchProjectData = async () => {
       try {
-        const response = await fetch(`${apiUrl}/api/section/${studyId}`);
+        const response = await fetch(`${apiUrl}/api/project/${studyId}`);
         const data = await response.json();
 
         if (!response.ok) {
-          throw new Error(data.message || "Failed to fetch study data");
+          throw new Error(data.message || "Failed to fetch project data");
         }
 
-        setQuestions(data.questions || []);
-        setArtifacts(data.artifacts || []);
+        setProject(data); // save project data in context
       } catch (err) {
         setError(err.message);
       }
     };
 
-    fetchStudyData();
-  }, [studyId]);
+    fetchProjectData();
+  }, [studyId, setProject]);
 
-  // Handle input changes for responses
+  // handle response changes
   const handleResponseChange = (questionId, value) => {
     setResponses((prev) => ({
       ...prev,
@@ -40,43 +39,36 @@ export default function ParticipantSurvey() {
     }));
   };
 
-  // Submit answers to the back-end
-  const submitAnswers = async () => {
+  // save answers to localStorage
+  const submitAnswers = () => {
     try {
       const payload = {
         studyId,
         responses,
       };
 
-      const response = await fetch(`${apiUrl}/api/sessions`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      // Save to localStorage
+      localStorage.setItem(`survey_${studyId}_responses`, JSON.stringify(payload));
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || "Failed to submit answers");
-      }
-
-      setSuccessMessage("Your answers have been submitted successfully!");
-      setResponses({}); // clear after submission
+      setSuccessMessage("Your answers have been saved locally!");
+      setResponses({}); // Clear responses after saving
     } catch (err) {
-      setError(err.message);
+      setError("Failed to save answers locally.");
     }
   };
 
+  if (!project) {
+    return <p>Loading project data...</p>;
+  }
+
   return (
     <div className={styles.container}>
-      <h1>Participant Survey</h1>
+      <h1>{project.title}</h1>
       {error && <p className={styles.error}>{error}</p>}
       {successMessage && <p className={styles.success}>{successMessage}</p>}
 
       <div className={styles.artifacts}>
-        {artifacts.map((artifact) => (
+        {project.artifacts.map((artifact) => (
           <div key={artifact.id} className={styles.artifact}>
             {artifact.mediaType === "image" && <img src={artifact.filepath} alt={artifact.filename} />}
             {artifact.mediaType === "video" && <video controls src={artifact.filepath}></video>}
@@ -86,7 +78,7 @@ export default function ParticipantSurvey() {
       </div>
 
       <div className={styles.questions}>
-        {questions.map((question) => (
+        {project.questions.map((question) => (
           <div key={question.id} className={styles.question}>
             <label>{question.questionText}</label>
             {question.type === "TextInput" && (
@@ -123,7 +115,7 @@ export default function ParticipantSurvey() {
       </div>
 
       <button className={styles.submitButton} onClick={submitAnswers}>
-        Submit Answers
+        Save Answers Locally
       </button>
     </div>
   );
