@@ -25,7 +25,7 @@ services:
     environment:
       - MONGO_URI=mongodb://mongo:27017/mern_db
       - SECRET_KEY=hamburgerdressing
-      - PORT=4202
+      - PORT=8201
 
     depends_on:
       - mongo
