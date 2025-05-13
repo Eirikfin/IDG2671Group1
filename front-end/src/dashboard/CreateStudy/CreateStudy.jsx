@@ -1,5 +1,6 @@
 import styles from './CreateStudy.module.scss';
 import { Link } from 'react-router-dom';
+import Header from '../../components/user-interface/header/ui_header';
 
 export default function Dashboard_newStudy() {
     return(

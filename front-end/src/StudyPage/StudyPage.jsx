@@ -3,6 +3,7 @@ import ConsentPage from './ConsentPage/ConsentPage';
 {/* import ParticipantPage from './ParticipantPage/ParticipantPage'; */}
 import DemographicsPage from './DemographicsPage/DemographicsPage';
 import SubmitEmailPage from './SubmitEmailPage/SubmitEmailPage';
+import styles from './StudyPage.module.css';
 
 export default function StudyPage() {
     const [currentStep, setCurrentStep] = useState("consentform")
@@ -12,7 +13,7 @@ export default function StudyPage() {
     };
 
     return (
-        <div>
+        <div className={styles.container}>
             {currentStep === "consentform" && (
                 <ConsentPage onNext={() => handleNextStep("demographics")} />
             )}
