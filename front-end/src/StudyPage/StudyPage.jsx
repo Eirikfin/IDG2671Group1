@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import ConsentPage from './ConsentPage/ConsentPage';
-import ParticipantPage from './ParticipantPage/ParticipantPage';
+{/* import ParticipantPage from './ParticipantPage/ParticipantPage'; */}
 import DemographicsPage from './DemographicsPage/DemographicsPage';
 import SubmitEmailPage from './SubmitEmailPage/SubmitEmailPage';
 
@@ -14,11 +14,11 @@ export default function StudyPage() {
     return (
         <div>
             {currentStep === "consentform" && (
-                <ConsentPage onNext={() => handleNextStep("questions")} />
+                <ConsentPage onNext={() => handleNextStep("demographics")} />
             )}
-            {currentStep === "questions" && (
+            {/*{currentStep === "questions" && (
                 <ParticipantPage onNext={() => handleNextStep("demographics")} />
-            )}
+            )} */ }
             {currentStep === "demographics" && (
                 <DemographicsPage onNext={() => handleNextStep("submitemail")} />
             )}

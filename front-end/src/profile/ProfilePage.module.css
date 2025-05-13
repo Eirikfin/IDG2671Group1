@@ -1,3 +1,11 @@
-.profilePage {
+.container {
   display: flex;
+  justify-content: center;
+}
+
+.profilePage__ info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }/*# sourceMappingURL=ProfilePage.module.css.map */

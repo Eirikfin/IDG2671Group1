@@ -1,5 +1,16 @@
 @import "../assets/color-variables/colors.scss"; 
 
-.profilePage {
+.container {
     display: flex;
+    justify-content: center;
+}
+
+.profilePage {
+
+    &__ info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }

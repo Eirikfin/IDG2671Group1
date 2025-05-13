@@ -10,6 +10,10 @@
   --delete-btn-color: #E63956;
 }
 
+* {
+  color: var(--text-color);
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -21,16 +25,21 @@ h1 {
   padding: 1rem;
 }
 
-a, .react_link {
+a {
   font-weight: bold;
   font-size: 12pt;
   text-decoration: none;
 }
-a:visited, .react_link:visited {
+a:visited {
   font-weight: bold;
-  color: #1e1e1e;
+  color: var(--text-color);
 }
 
+/* 
+.react__link {
+    border: 1px solid red;
+} 
+*/
 p {
   color: #1e1e1e;
 }
@@ -62,10 +71,6 @@ p {
   width: 100%;
 }
 
-.react__link {
-  color: var(--text-color);
-}
-
 button {
   background-color: #A8DADC;
   font-size: 12pt;
@@ -83,7 +88,6 @@ header {
 }
 
 footer {
-  position: fixed;
   width: 100%;
   bottom: 0;
   background-color: #457B9D;

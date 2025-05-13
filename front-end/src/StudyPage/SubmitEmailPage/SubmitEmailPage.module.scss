@@ -1,0 +1,35 @@
+@use '../../assets/global-styles/App.scss';
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.submitEmailPage {
+    display: flex;
+    flex-direction: column;
+
+    &__text {
+        max-width: 70ch;
+    }
+
+    &__header {
+        text-align: center;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+
+        &__section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+    }
+}

@@ -93,18 +93,32 @@ footer {
   background-color: #457B9D;
 }
 
-.study {
-  padding: 1rem;
-  padding-top: 0;
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.study__title {
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin: 0;
+
+.submitEmailPage {
+  display: flex;
+  flex-direction: column;
 }
-.study__description {
-  padding: 0;
+.submitEmailPage__text {
+  max-width: 70ch;
 }
-.study__delete {
-  background-color: var(--delete-btn-color);
-}/*# sourceMappingURL=PastStudy.module.css.map */
+.submitEmailPage__header {
+  text-align: center;
+}
+.submitEmailPage__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.submitEmailPage__form__section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}/*# sourceMappingURL=SubmitEmailPage.module.css.map */

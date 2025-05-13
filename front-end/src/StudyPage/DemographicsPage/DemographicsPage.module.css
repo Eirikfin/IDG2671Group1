@@ -93,18 +93,35 @@ footer {
   background-color: #457B9D;
 }
 
-.study {
-  padding: 1rem;
-  padding-top: 0;
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.study__title {
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin: 0;
+
+.demographicsForm {
+  display: flex;
+  flex-direction: column;
 }
-.study__description {
-  padding: 0;
+.demographicsForm__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.study__delete {
-  background-color: var(--delete-btn-color);
-}/*# sourceMappingURL=PastStudy.module.css.map */
+.demographicsForm__form__section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.demographicsForm__form__section > select {
+  width: 30%;
+}
+.demographicsForm__form__section > input {
+  width: 28%;
+}
+.demographicsForm__form > button {
+  margin: 1rem;
+  align-self: center;
+}/*# sourceMappingURL=DemographicsPage.module.css.map */

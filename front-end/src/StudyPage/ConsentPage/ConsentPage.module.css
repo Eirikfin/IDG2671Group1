@@ -93,18 +93,50 @@ footer {
   background-color: #457B9D;
 }
 
-.study {
-  padding: 1rem;
-  padding-top: 0;
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.study__title {
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin: 0;
+
+.consentPage {
+  display: flex;
+  flex-direction: column;
 }
-.study__description {
-  padding: 0;
+.consentPage__title {
+  font-size: 2rem;
+  margin-bottom: 0;
 }
-.study__delete {
-  background-color: var(--delete-btn-color);
-}/*# sourceMappingURL=PastStudy.module.css.map */
+.consentPage__descriptions {
+  margin: 1rem 0;
+  max-width: 70ch;
+}
+.consentPage__descriptions:nth-of-type(1) {
+  text-align: center;
+  margin-top: 0;
+}
+.consentPage__header {
+  font-size: 1.5rem;
+  margin-bottom: 0;
+}
+.consentPage__checkbox {
+  cursor: pointer;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  transform: scale(1.5);
+}
+.consentPage__list__item {
+  max-width: 60ch;
+}
+.consentPage > label {
+  text-align: center;
+}
+.consentPage > button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.consentPage > button:disabled:hover {
+  box-shadow: none;
+}/*# sourceMappingURL=ConsentPage.module.css.map */
