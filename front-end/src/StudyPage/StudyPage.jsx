@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ConsentPage from './ConsentPage/ConsentPage';
+import ParticipantPage from './ParticipantPage/ParticipantPage';
 import DemographicsPage from './DemographicsPage/DemographicsPage';
 import SubmitEmailPage from './SubmitEmailPage/SubmitEmailPage';
 
@@ -16,7 +17,7 @@ export default function StudyPage() {
                 <ConsentPage onNext={() => handleNextStep("questions")} />
             )}
             {currentStep === "questions" && (
-                <ParticipantsPage onNext={() => handleNextStep("demographics")} />
+                <ParticipantPage onNext={() => handleNextStep("demographics")} />
             )}
             {currentStep === "demographics" && (
                 <DemographicsPage onNext={() => handleNextStep("submitemail")} />

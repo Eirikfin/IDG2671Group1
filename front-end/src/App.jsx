@@ -9,6 +9,7 @@ import Login from "./login/Login";
 import Logout from "./logout/Logout";
 import Register from "./register/Register";
 import ProfilePage from './profile/ProfilePage';
+import StudyPage from './StudyPage/StudyPage';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UpdatePage from "./UpdateStudy/UpdateStudy";
 import { UpdateFront } from "./UpdateStudy/UpdateFront";
@@ -30,6 +31,7 @@ export default function App() {
           <Route path="/logout" element={<Logout />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/study" element={<StudyPage />} />
 
           {/* Protected routes */}
           <Route

@@ -14,9 +14,9 @@ export default function ConsentPage({ onNext }) {
             
             <h3>What data we collect and why</h3>
             <ul>
-                <li><bold>Demographic data:</bold> Age, Gender, Education level and Nationality</li>
-                <li><bold>Device information:</bold> Type of device you are using</li>
-                <li><bold>Interaction data:</bold> Your evaluations of artifacts </li>
+                <li><strong>Demographic data:</strong> Age, Gender, Education level and Nationality</li>
+                <li><strong>Device information:</strong> Type of device you are using</li>
+                <li><strong>Interaction data:</strong> Your evaluations of artifacts </li>
             </ul>
             <p>
                 This data is being collected to help researchers better understand how individuals from different backgrounds and using different devices perceive and evaluate various forms of media. Your responses may be used in current and future studies aimed at advancing knowledge in fields such as psychology, media studies, and human-computer interaction.
@@ -45,6 +45,8 @@ export default function ConsentPage({ onNext }) {
             />
             <label>I agree to the terms and conditions</label>
             <br />
+
+            {/* CREATE SESSION ON SUBMIT */}
             <button onClick={onNext} disabled={!consent}>
                 Next
             </button>
