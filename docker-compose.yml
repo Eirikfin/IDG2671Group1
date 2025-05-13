@@ -5,9 +5,9 @@ services:
     build:
       context: ./front-end
       args:
-        VITE_API_URL: http://localhost:4202
+        VITE_API_URL: https://group1.sustainability.it.ntnu.no
     ports:
-      - "3000:80"
+      - "8181:8181"
     volumes:
       - /app/node_modules
     environment:
@@ -19,7 +19,7 @@ services:
   server:
     build: ./back-end
     ports:
-      - "4202:4202"
+      - "8201:8201"
     volumes:
       - /app/node_modules
     environment:
