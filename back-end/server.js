@@ -51,7 +51,7 @@ app.use('/api/sessions', sessionsRoute);
 app.use('/api/section', sectionsRoute);
 
 //servering uploaded artifacts:
-app.use("/uploads", express.static("uploads"));
+app.use("/api/uploads", express.static("uploads"));
 
 app.get("*", (req, res) => {
     res.send("API is live!")
