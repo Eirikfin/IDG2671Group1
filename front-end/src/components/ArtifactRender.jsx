@@ -5,7 +5,7 @@ export default function ArtifactRender({artifact}) {
 
     if(artifact.mediaType === "image") {
         return <img 
-        src={`${apiUrl}/api/${artifact?.filepath}`} 
+        src={`${apiUrl}/${artifact?.filepath}`} 
         alt={artifact?.filename || `Artifact`}/>
     }
 
