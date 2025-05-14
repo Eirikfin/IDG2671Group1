@@ -45,6 +45,17 @@ export default function CurrentStudy() {
         fetchProjects();
     }, []);
 
+    const copyLinkToClipboard = (projectId) => {
+    const link = `${window.location.origin}/study/${projectId}`;
+    navigator.clipboard.writeText(link)
+      .then(() => {
+        alert('Link copied to clipboard!');
+      })
+      .catch((err) => {
+        console.error('Failed to copy link:', err);
+      });
+  };
+
     const activeProjects = projects.filter(project => project.status === "active");
 
     const concludeStudy = async (id) => {
@@ -81,7 +92,7 @@ export default function CurrentStudy() {
                         <p className={styles.study__description}>{project.description}</p>
 
                         <div className={`card__buttons`}>
-                            <button>Copy link</button>
+                            <button onClick={() => copyLinkToClipboard(project._id)}>Copy link</button>
 
                             <button><Link to={`/${project._id}/results`} className={`react__link`}>View results</Link></button>
 

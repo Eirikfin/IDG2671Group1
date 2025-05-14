@@ -15,12 +15,14 @@ import { UpdateFront } from "./UpdateStudy/UpdateFront";
 import { UpdateSection } from "./UpdateStudy/UpdateSection";
 import { AuthProvider } from "./context/authContext";
 import RequireAuth from "./components/protectedRoute/protectedRoute"
+import { ProjectContext } from "./context/projectContext";
+import { useState } from "react";
 
 function AppContent() {
   const location = useLocation();
 
   // Check if the current route is "/study"
-  const isStudyPage = location.pathname === "/study";
+  const isStudyPage = location.pathname.startsWith("/study");
 
   return (
     <>
@@ -34,7 +36,7 @@ function AppContent() {
         <Route path="/logout" element={<Logout />} />
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/study" element={<StudyPage />} />
+        <Route path="/study/:projectId" element={<StudyPage />} />
 
         {/* Protected routes */}
         <Route
@@ -89,10 +91,14 @@ function AppContent() {
 }
 
 export default function App() {
+  const [project, setProject] = useState(null);
+  
   return (
     <AuthProvider>
       <Router>
-        <AppContent />
+        <ProjectContext.Provider value={{ project, setProject }}>
+          <AppContent />
+        </ProjectContext.Provider>
       </Router>
     </AuthProvider>
   );
