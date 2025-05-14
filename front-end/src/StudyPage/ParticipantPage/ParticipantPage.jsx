@@ -5,8 +5,8 @@ import { ProjectContext } from "../../context/projectContext";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function ParticipantPage() {
-  const { projectId } = useParams(); // gets the study ID from the URL
-  const { project, setProject } = useContext(ProjectContext); // access project data from context
+  const { projectId } = useParams(); // Get the project ID from the URL
+  const { project, setProject } = useContext(ProjectContext); // Access project data from context
   const [questions, setQuestions] = useState([]); // State for questions
   const [responses, setResponses] = useState({});
   const [error, setError] = useState("");
@@ -14,50 +14,38 @@ export default function ParticipantPage() {
 
   useEffect(() => {
     const fetchProjectAndQuestions = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        if (!token) {
-          throw new Error("No token found. Please log in.");
-        }
-
+        try {
         // Fetch project data
-        const projectResponse = await fetch(`${apiUrl}/api/projects/${projectId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
+        const projectResponse = await fetch(`${apiUrl}/api/projects/${projectId}`);
         const projectData = await projectResponse.json();
 
         if (!projectResponse.ok) {
-          throw new Error(projectData.message || "Failed to fetch project data");
+            throw new Error(projectData.message || "Failed to fetch project data");
         }
 
         setProject(projectData); // Save project data in context
 
-        // Fetch questions data
-        const questionsResponse = await fetch(`${apiUrl}/api/section/${projectId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        // Fetch questionSections data
+        const questionSectionsResponse = await fetch(`${apiUrl}/api/section?projectId=${projectId}`);
+        const questionSectionsData = await questionSectionsResponse.json();
 
-        const questionsData = await questionsResponse.json();
-
-        if (!questionsResponse.ok) {
-          throw new Error(questionsData.message || "Failed to fetch questions");
+        if (!questionSectionsResponse.ok) {
+            throw new Error(questionSectionsData.message || "Failed to fetch question sections");
         }
 
-        setQuestions(questionsData); // Save questions data in state
-      } catch (err) {
+        // Extract questions from questionSections and set them in state
+        const extractedQuestions = questionSectionsData.flatMap((section) => section.questions);
+        console.log("Extracted Questions:", extractedQuestions); // Debugging
+        setQuestions(extractedQuestions);
+        } catch (err) {
         setError(err.message);
-      }
+        }
     };
 
     fetchProjectAndQuestions();
-  }, [projectId, setProject]);
+    }, [projectId, setProject]);
 
-  // handle response changes
+  // Handle response changes
   const handleResponseChange = (questionId, value) => {
     setResponses((prev) => ({
       ...prev,
@@ -65,7 +53,7 @@ export default function ParticipantPage() {
     }));
   };
 
-  // save answers to localStorage
+  // Save answers to localStorage
   const submitAnswers = () => {
     try {
       const payload = {
@@ -98,53 +86,56 @@ export default function ParticipantPage() {
       {successMessage && <p>{successMessage}</p>}
 
       <div>
-        {/* Display project artifacts */}
-        {project.artifacts?.map((artifact) => (
-          <div key={artifact.id}>
-            {artifact.mediaType === "image" && <img src={artifact.filepath} alt={artifact.filename} />}
-            {artifact.mediaType === "video" && <video controls src={artifact.filepath}></video>}
-            {artifact.mediaType === "audio" && <audio controls src={artifact.filepath}></audio>}
-          </div>
-        ))}
-      </div>
+    {/* Display project artifacts */}
+    {project.artifacts?.map((artifact, index) => (
+        <div key={artifact.id || index}>
+        {artifact.mediaType === "image" && <img src={artifact.filepath} alt={artifact.filename} />}
+        {artifact.mediaType === "video" && <video controls src={artifact.filepath}></video>}
+        {artifact.mediaType === "audio" && <audio controls src={artifact.filepath}></audio>}
+        </div>
+    ))}
+    </div>
 
-      <div>
-        {/* Display questions */}
-        {questions.map((question) => (
-          <div key={question.id}>
-            <label>{question.questionText}</label>
-            {question.type === "TextInput" && (
-              <input
-                type="text"
-                value={responses[question.id] || ""}
-                onChange={(e) => handleResponseChange(question.id, e.target.value)}
-              />
-            )}
-            {question.type === "MultipleChoice" && (
-              <select
-                value={responses[question.id] || ""}
-                onChange={(e) => handleResponseChange(question.id, e.target.value)}
-              >
-                <option value="">Select an option</option>
-                {question.questionAlternatives.map((alt, index) => (
-                  <option key={index} value={alt}>
-                    {alt}
-                  </option>
-                ))}
-              </select>
-            )}
-            {question.type === "SlidingScale" && (
-              <input
-                type="range"
-                min={question.minValue}
-                max={question.maxValue}
-                value={responses[question.id] || question.minValue}
-                onChange={(e) => handleResponseChange(question.id, e.target.value)}
-              />
-            )}
-          </div>
-        ))}
-      </div>
+    <div>
+    {/* Display questions */}
+    {questions.map((question) => {
+    console.log("Rendering question:", question);
+    return (
+        <div key={question._id}>
+        <label>{question.questionText}</label>
+        {question.type === "TextInput" && (
+            <input
+            type="text"
+            value={responses[question._id] || ""}
+            onChange={(e) => handleResponseChange(question._id, e.target.value)}
+            />
+        )}
+        {question.type === "MultipleChoice" && (
+        <select
+            value={responses[question._id] || ""}
+            onChange={(e) => handleResponseChange(question._id, e.target.value)}
+        >
+            <option value="">Select an option</option>
+            {question.questionAlternatives?.map((alt, altIndex) => (
+            <option key={`${question._id}-${altIndex}`} value={alt}>
+                {alt}
+            </option>
+            ))}
+        </select>
+        )}
+        {question.type === "SlidingScale" && (
+            <input
+            type="range"
+            min={question.minValue}
+            max={question.maxValue}
+            value={responses[question._id] || question.minValue}
+            onChange={(e) => handleResponseChange(question._id, e.target.value)}
+            />
+        )}
+        </div>
+    );
+    })}
+    </div>
 
       <button onClick={submitAnswers}>Submit answers</button>
     </div>
