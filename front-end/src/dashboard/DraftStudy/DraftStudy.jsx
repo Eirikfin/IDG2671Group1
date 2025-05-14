@@ -1,101 +1,55 @@
 import styles from './DraftStudy.module.css';
-import { Link } from 'react-router-dom';
-import { useState, useEffect } from "react";
-import { jwtDecode } from "jwt-decode";
+import { Link } from "react-router-dom";
 
-const apiUrl = import.meta.env.VITE_API_URL;
+export default function DraftStudy({ projects, setProjects }) {
+    const draftProjects = projects.filter(project => project.status === "notPublished");
 
-export default function DraftStudy() {
-    const [projects, setProjects] = useState([]); // State to store projects (will be used to map over projects after api call)
-    
-        useEffect(() => {
-            const fetchProjects = async () => {
-                try {
-                    const token = localStorage.getItem('token');
-                    if (!token) throw new Error('No token found');
-    
-                    const decodedToken = jwtDecode(token);
-                    const researcherId = decodedToken.id;
-    
-                    const resProjects = await fetch(`http://localhost:4202/api/projects/researcher/${researcherId}`, {
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        }
-                    });
-    
-                    if (!resProjects.ok) {
-                        throw new Error('Failed to fetch projects');
-                    }
-    
-                    const projectsData = await resProjects.json();
-                    console.log('API Response:', projectsData); // Debugging log
-    
-                    if (Array.isArray(projectsData.projects)) {
-                        setProjects(projectsData.projects); // Access the projects array from the response object
-                    } else {
-                        console.error('Unexpected API response format:', projectsData);
-                        setProjects([]); // Fallback to an empty array
-                    }
-                } catch (error) {
-                    console.error('Error fetching projects:', error);
-                    setProjects([]); // Fallback to an empty array
+    const publishStudy = async (id) => {
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) throw new Error('No token found');
+
+            const response = await fetch(`http://localhost:4202/api/projects/${id}/activate`, {
+                method: 'PATCH',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json'
                 }
-            };
-    
-            fetchProjects();
-        }, []);
+            });
 
-        const draftProjects = projects.filter(project => project.status === "notPublished");
-
-        const activeProject = async (id) => {
-            try{
-                const token = localStorage.getItem('token')
-                const response = await fetch(`${apiUrl}/api/projects/${id}/activate`, {
-                    method: "PATCH",
-                    headers: {
-                        Authorization: `bearer ${token}`
-                    }
-                })
-
-                await response.json();
-
-                if(!response.ok){
-                    throw Error("Failed to activate project")
-                }
-
-            }catch(err){
-                console.log(err);
+            if (!response.ok) {
+                throw new Error('Failed to publish study');
             }
+
+            setProjects(prevProjects =>
+                prevProjects.map(project =>
+                    project._id === id ? { ...project, status: "active" } : project
+                )
+            );
+        } catch (error) {
+            console.error('Error publishing study:', error);
         }
+    };
 
-    return(
+    return (
         <div className={styles.study}>
-
             <h2>Drafted study/studies (not published)</h2>
-
             {draftProjects.length > 0 ? (
-                draftProjects.map((project) => (
+                draftProjects.map(project => (
                     <div key={project._id} className={`card`}>
-
                         <h3 className={styles.study__title}>{project.title}</h3>
                         <p className={styles.study__description}>{project.description}</p>
-
                         <div className={`card__buttons`}>
                             <button><Link to={`/update/${project._id}`} className={`react_Link`}>Edit study</Link></button>
-                            <button 
-                            onClick={() => activeProject(project._id)}
-                            className={styles.study__publish}
-                            >
+                            <button className={styles.study__publish} onClick={() => publishStudy(project._id)}>
                                 Publish study
                             </button>
                         </div>
-                        
                     </div>
                 ))
             ) : (
                 <p>No drafted studies available.</p>
             )}
-
         </div>
-    )
+    );
 }
