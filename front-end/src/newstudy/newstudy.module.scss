@@ -1,5 +1,13 @@
 @import '../assets/color-variables/colors.scss';
 
+.container {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .card{
     margin: 20px auto; 
     border: 2px solid $border;
@@ -54,3 +62,9 @@
     }
 }
 
+.updateButton {
+    width: fit-content;
+    align-self: center;
+    padding: 1rem;
+    margin: 1rem;
+}

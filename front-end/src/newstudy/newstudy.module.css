@@ -1,3 +1,12 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .card {
   margin: 20px auto;
   border: 2px solid #457b9d;
@@ -46,4 +55,12 @@
 }
 .card .submit:hover {
   opacity: 1;
+}
+
+.updateButton {
+  width: -moz-fit-content;
+  width: fit-content;
+  align-self: center;
+  padding: 1rem;
+  margin: 1rem;
 }/*# sourceMappingURL=newstudy.module.css.map */

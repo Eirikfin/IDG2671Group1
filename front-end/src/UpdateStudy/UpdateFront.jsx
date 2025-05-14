@@ -57,20 +57,21 @@ export function UpdateFront() {
 
      return(
         <>
-         <div className={style.card} id="newproject__container">
-         <h2>Update Front Page</h2>
-         <form onSubmit={updateFront}>
-             <label>Study Title:</label>
-             <input onChange={(e) => setTitle(e.target.value)} type="text" name="title" value={title} />
-             <label>Description:</label>
-             <textarea onChange={(e) => setDescription(e.target.value)} name="description" value={description}></textarea>
-             <input className={style.submit} id="newProject__submit" type="submit"/>
-             {error && <p>{error}</p>}
-             {updateMsg && <p>{updateMsg}</p>}
-         </form>
-         </div>
-         <button onClick={() => navigate('section/0')}>Update Sections</button>
-  
+        <div className={style.container}>
+            <div className={style.card} id="newproject__container">
+            <h2>Update Front Page</h2>
+                <form onSubmit={updateFront}>
+                    <label>Study Title:</label>
+                    <input onChange={(e) => setTitle(e.target.value)} type="text" name="title" value={title} />
+                    <label>Description:</label>
+                    <textarea onChange={(e) => setDescription(e.target.value)} name="description" value={description}></textarea>
+                    <input className={style.submit} id="newProject__submit" type="submit"/>
+                    {error && <p>{error}</p>}
+                    {updateMsg && <p>{updateMsg}</p>}
+                </form>
+            </div>
+            <button onClick={() => navigate('section/0')} className={style.updateButton}>Update Sections</button>
+        </div>
          </>
      );
 

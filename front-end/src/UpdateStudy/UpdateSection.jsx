@@ -146,10 +146,16 @@ export function UpdateSection() {
       if (!section) {
         return (
         <>
-        <p>No sectiondata...</p>;
-        <button className={styles.addQuestion__btn} id="addQuestion__btn" onClick={addQuestion}>
-        Add Question
-      </button>
+        <div className={styles.container}>
+          <p className={styles.errormsg}>No sectiondata...</p>
+          <button 
+          className={styles.addQuestion__btn} 
+          id="addQuestion__btn" 
+          onClick={addQuestion}
+          >
+            Add Question
+          </button>
+      </div>
       </>
       )
       }
@@ -157,6 +163,7 @@ export function UpdateSection() {
     return (
     
     <>
+    <div className={styles.container}>
      {questionCards.length === 0 && <p>No questions in this section yet.</p>}
     <h2>Update Section {sectionIndex + 1}</h2>
     <p>Section {sectionIndex + 1} out of {data?.questions.length}</p>
@@ -184,7 +191,7 @@ export function UpdateSection() {
      <button onClick={addSection}>Add new Section</button>
      <button onClick={previousSection}>Previous Section</button>
      <button onClick={nextSection}>Next section</button>
-     
+     </div>
     </>
 
 )
