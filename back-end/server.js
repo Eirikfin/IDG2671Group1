@@ -54,11 +54,11 @@ app.use('/api/section', sectionsRoute);
 app.use("/uploads", express.static("uploads"));
 
 app.get("*", (req, res) => {
-    res.send("API is live!")
+    res.sendFile(path.join(__dirname, "../front-end/build/index.html"));
 });
 
 //restrict dashboard access to researchers/product owners (not sure if I did this 100% correctly)
-app.get("/", authenticateToken, (_, res) => {
+app.get("/", authenticateToken, (req, res) => {
     //define which roles are required to access dashboard
     const allowedRoles = ["researcher", "admin"];
 

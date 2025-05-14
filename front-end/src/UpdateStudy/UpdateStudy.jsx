@@ -36,7 +36,6 @@ export default function UpdatePage() {
                 }
 
                 setProject(data);
-                console.log(data)
             }catch(err){
                 console.log(err)
             }finally{

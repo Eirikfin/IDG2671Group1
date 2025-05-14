@@ -76,12 +76,35 @@ const handleFileDownload = async () => {
         console.log(err);
     }
 }
+const averageAge = () => {
+    if (!data || data.length === 0) return 0;
+  
+    const ages = data
+      .map((session) => session.demographics?.age)
+      .filter((age) => typeof age === "number");
+  
+    if (ages.length === 0) return 0;
+  
+    const total = ages.reduce((sum, age) => sum + age, 0);
+    return (total / ages.length).toFixed(1); // average with 1 decimal
+  };
 
+  const maleParticipants = () => {
+    const males = data.filter((session) => session.demographics?.gender === "Male");
+    return males.length;
+}
+const femaleParticipants = () => {
+    const females = data.filter((session) => session.demographics?.gender === "Female");
+    return females.length;
+}
     return(
         <>
         <h1>Study results</h1>
         {error && <p>{error}</p>}
         {data && <h3>Number of participant that has answered: {data.length}</h3>}
+        {data && <p>The average age of participants were: {averageAge()}</p>}
+        {data && <p>Number of participants that were male: {maleParticipants()}</p>}
+        {data && <p>Number of participants that were female: {femaleParticipants()}</p>}
         <h3>Download .CSV of answers:</h3>
         <button onClick={handleFileDownload}>Download</button>
         

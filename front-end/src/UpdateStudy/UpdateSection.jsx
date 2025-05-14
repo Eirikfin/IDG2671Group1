@@ -83,7 +83,6 @@ export function UpdateSection() {
               maxValue: card.type === "SlidingScale" ? card.max : undefined,
           }))
         }
-        console.log("update payload is:", payload)
         //send request with payload to api:
         const response = await fetch(`${apiUrl}/api/section/${section._id}`, {
           method: "PUT",
