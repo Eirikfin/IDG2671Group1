@@ -1,6 +1,8 @@
 import styles from './ProfilePage.module.css';
 import { useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
+const apiUrl = import.meta.env.VITE_API_URL;
+
 
 export default function ProfilePage() {
     const [researcher, setResearcher] = useState(null);
@@ -14,7 +16,7 @@ export default function ProfilePage() {
                 const decodedToken = jwtDecode(token);
                 const researcherId = decodedToken.id;
 
-                const res = await fetch(`http://localhost:4202/api/researchers/${researcherId}`, {
+                const res = await fetch(`http://${apiUrl}/api/researchers/${researcherId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

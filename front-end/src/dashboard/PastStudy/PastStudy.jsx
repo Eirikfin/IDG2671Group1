@@ -13,7 +13,7 @@ export default function PastStudy({ projects, setProjects }) {
             const token = localStorage.getItem('token');
             if (!token) throw new Error('No token found');
 
-            const response = await fetch(`http://localhost:4202/api/projects/${id}`, {
+            const response = await fetch(`http://${apiUrl}/api/projects/${id}`, {
                 method: 'DELETE',
                 headers: {
                     Authorization: `Bearer ${token}`,

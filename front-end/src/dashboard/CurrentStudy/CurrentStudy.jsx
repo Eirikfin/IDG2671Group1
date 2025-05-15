@@ -1,6 +1,8 @@
 import styles from "./CurrentStudy.module.scss";
 import { Link } from "react-router-dom";
 
+const apiUrl = import.meta.env.VITE_API_URL
+
 export default function CurrentStudy({ projects, setProjects }) {
     console.log("Projects prop in CurrentStudy:", projects); // Debugging log
 
@@ -19,7 +21,7 @@ export default function CurrentStudy({ projects, setProjects }) {
             const token = localStorage.getItem('token');
             if (!token) throw new Error('No token found');
 
-            const response = await fetch(`http://localhost:4202/api/projects/${id}/conclude`, {
+            const response = await fetch(`http://${apiUrl}/api/projects/${id}/conclude`, {
                 method: 'PATCH',
                 headers: {
                     Authorization: `Bearer ${token}`,
