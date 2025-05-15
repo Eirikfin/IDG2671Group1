@@ -1,4 +1,4 @@
-@import '../../../assets/color-variables/colors.scss';
+@use '../../../assets/global-styles/App.scss';
 
 .header {
 
@@ -6,7 +6,7 @@
         padding: 1rem;
         padding-left: 0.5rem;
         margin: 0;
-        color: #efedf7;
+        color: white;
     }
 
     nav {
@@ -20,10 +20,7 @@
         font-size: 16pt;
         padding-left: 1rem;
         padding-right: 1rem;
-    }
-
-    .menuButton {
-        margin-left: 1rem;
+        color: white;
     }
 
     .menu {
@@ -41,12 +38,10 @@
         left: 0;
         width: 200px;
         z-index: 100;
-        border-radius: 20px;
 
         li {
             padding: 10px;
             border-bottom: 1px solid #ddd;
-            border-radius: 10px;
 
             &:last-child {
                 border-bottom: none;

@@ -65,7 +65,7 @@ return(
                 <label>Description:</label>
                 <textarea onChange={(e) => setDescription(e.target.value)} name="description"></textarea>
             </div>
-            <input className={styles.newStudy__form__submit} id="newProject__submit" type="submit"/>
+            <input className={`${styles.newStudy__form__submit} button`} id="newProject__submit" type="submit"/>
             
             {error && <p>{error}</p>}
         </form>

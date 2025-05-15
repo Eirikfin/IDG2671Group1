@@ -24,7 +24,7 @@
 body {
     padding: 0;
     margin: 0;
-    background-color: $bg_white;
+    background-color: var(--bg-color);
     font-family: 'Roboto', sans-serif;
 }
 
@@ -50,11 +50,11 @@ a {
 */
 
 p {
-    color: $text;
+    color: var(--text-color);
 }
 
 .card {
-    border: 2px solid $border;
+    border: 2px solid var(--border-color);
     border-radius: 5px;
     padding: 1rem;
     margin-bottom: 1rem;
@@ -84,7 +84,7 @@ p {
 }
 
 button {
-    background-color: $secondary_btn;
+    background-color: var(--secondary-btn-color);
     font-size: 16pt;
     border: 0;
     font-weight: bold;
@@ -99,11 +99,5 @@ button {
 }
 
 header {
-    background-color: $primary_btn;
-}
-
-footer {
-    width: 100%;
-    bottom: 0;
-    background-color: $primary_btn;
+    background-color: var(--header-color);
 }

@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 :root {
   --text-color: #1e1e1e;
-  --bg-color: #F1FAEE;
-  --bg-color--secondary: #FFFFFF;
-  --border-color: #457b9d;
-  --header-color: #1D3557;
+  --bg-color: #fafafa;
+  --bg-color--secondary: #dceeff;
+  --border-color: #8FA6CB;
+  --header-color: #93827F;
   --primary-btn-color: #457B9D;
-  --secondary-btn-color: #A8DADC;
+  --secondary-btn-color: #395B50;
   --delete-btn-color: #E63956;
 }
 
@@ -17,7 +17,7 @@
 body {
   padding: 0;
   margin: 0;
-  background-color: #ffffff;
+  background-color: var(--bg-color);
   font-family: "Roboto", sans-serif;
 }
 
@@ -27,10 +27,9 @@ h1 {
 
 a {
   font-weight: bold;
-  font-size: 13pt;
+  font-size: 12pt;
   text-decoration: none;
 }
-
 a:visited {
   font-weight: bold;
   color: var(--text-color);
@@ -41,44 +40,12 @@ a:visited {
     border: 1px solid red;
 } 
 */
-/* 
-.react__link {
-    border: 1px solid red;
-} 
-*/
 p {
-  color: #1e1e1e;
+  color: var(--text-color);
 }
 
 .card {
-  border: 2px solid #457b9d;
-  border-radius: 5px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  width: 70vw;
-  opacity: 0.7;
-  transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
-}
-.card:hover {
-  transform: scale(1.008);
-  opacity: 1;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-}
-.card__buttons {
-  display: flex;
-  max-width: 40%;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-left: 0;
-  padding-left: 0;
-}
-.card__buttons > button {
-  padding: 0.4rem;
-  width: 100%;
-}
-
-.card {
-  border: 2px solid #457b9d;
+  border: 2px solid var(--border-color);
   border-radius: 5px;
   padding: 1rem;
   margin-bottom: 1rem;
@@ -105,25 +72,17 @@ p {
 }
 
 button {
-  background-color: #2e5b40;
-  font-size: 12pt;
+  background-color: var(--secondary-btn-color);
+  font-size: 16pt;
   border: 0;
   font-weight: bold;
   cursor: pointer;
   transition: box-shadow 0.2s ease-in-out;
-  border-radius: 10px;
-  color: #ffffff;
 }
 button:hover {
   box-shadow: inset 0px 0px 13px -4px rgba(0, 0, 0, 0.75);
 }
 
 header {
-  background-color: #457B9D;
-}
-
-footer {
-  width: 100%;
-  bottom: 0;
-  background-color: #457B9D;
+  background-color: var(--header-color);
 }/*# sourceMappingURL=App.css.map */
