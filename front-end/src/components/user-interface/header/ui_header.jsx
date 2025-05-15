@@ -40,8 +40,7 @@ export default function Header() {
                         className={`${styles.menu} ${isMenuOpen ? styles.open : ""}`}
                     >
                         <li><Link to ="/profile">Profile</Link></li>
-                        <li><Link to="/">Manage database</Link></li>
-                        <li><Link to="/results">Results</Link></li>
+                        <li><Link to="/logout">Logout</Link></li>
                     </ul>
                 </div>
                 <div>

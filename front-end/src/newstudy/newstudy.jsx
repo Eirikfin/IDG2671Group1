@@ -1,5 +1,5 @@
 import { useState } from "react";
-import style from './newstudy.module.scss';
+import styles from './newstudy.module.scss';
 import { Link, useNavigate} from 'react-router-dom';
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -48,20 +48,28 @@ export default function CreateStudy() {
         }
     }
 return(
-    <div className={style.card} id="newproject__container">
-    <h1>Create a new study</h1>
-    <form onSubmit={handleFormSubmit}>
-        <label>Study Title:</label>
-        <input onChange={(e) => setTitle(e.target.value)} type="text" name="title"></input>
-        <label>Collect demographics?
-        <input onChange={(e) => setCollectDemographics(e.target.checked)} type="checkbox"/>
-        </label>
-        <label>Description:</label>
-        <textarea onChange={(e) => setDescription(e.target.value)} name="description"></textarea>
-        <input className={style.submit} id="newProject__submit" type="submit"/>
-        
-        {error && <p>{error}</p>}
-    </form>
+    <div className={styles.container}>
+        <div className={styles.newStudy} id="newproject__container">
+        <h1>Create a new study</h1>
+        <form className={styles.newStudy__form} onSubmit={handleFormSubmit}>
+            <div className={styles.newStudy__form__section}>
+                <label>Study Title:</label>
+                <input onChange={(e) => setTitle(e.target.value)} type="text" name="title"></input>
+            </div>
+            <div className={styles.newStudy__form__section}>
+                <label>Collect demographics?
+                <input onChange={(e) => setCollectDemographics(e.target.checked)} type="checkbox"/>
+                </label>
+            </div>
+            <div className={styles.newStudy__form__section}>
+                <label>Description:</label>
+                <textarea onChange={(e) => setDescription(e.target.value)} name="description"></textarea>
+            </div>
+            <input className={styles.newStudy__form__submit} id="newProject__submit" type="submit"/>
+            
+            {error && <p>{error}</p>}
+        </form>
+        </div>
     </div>
 );
 }

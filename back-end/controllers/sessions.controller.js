@@ -52,12 +52,7 @@ export const getSessionById = async (req, res) => {
 // Patch
 export const updateSession = async (req, res) => {
     try {
-        if (req.user.role !== "admin" && req.user.id !== req.params.id) {
-            return res
-              .status(403)
-              .json({ message: "You can only update Sessions from your own Projects." });
-          }
-      
+    
           const updatedSession = await Session.findByIdAndUpdate(
             req.params.id,
             req.body,
@@ -139,5 +134,21 @@ export const exportCsv = async (req, res) => {
       
     }catch(err){
         return res.status(500).json({message: "Server error", error: err.message})
+    }
+}
+
+export const submitEmail = async (req, res) => {
+    try{
+    const { email } = req.body
+    const session = await Session.findByIdAndUpdate(req.params.id, req.body, { new: true });
+
+    if(!session){
+        return res.status(404).json({message: "SessionId was not found"});
+    }
+
+    return res.status(200).json({message: "email submitted", session: session});
+
+    }catch(err){
+        return res.status(500).json({ message: "Server Error", error: err.message});
     }
 }

@@ -1,0 +1,59 @@
+@use '../../assets/global-styles/App.scss';
+
+
+.page {
+    display: flex;
+    align-items: center;
+
+    &__questions {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        &__question {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+
+            &>h3 {
+                text-align: center;
+                padding: 0;
+                margin: 0;
+            }
+        }
+    }
+
+    &__navigation {
+        display: flex;
+        justify-self: center;
+        margin: 1rem;
+        gap: 1rem;
+
+        &__buttons {
+            padding: 0.4rem;
+
+            &:disabled {
+                cursor: not-allowed;
+                opacity: 0.5;
+
+                &:hover {
+                    box-shadow: none;
+                }
+            }
+        }
+    }
+
+    &__submit {
+        padding: 1rem;
+        justify-self: center;
+
+        &>button {
+            padding: 0.4rem;
+        }
+    }
+
+    &__artifact *{
+        max-width: 40%;
+
+    }
+}

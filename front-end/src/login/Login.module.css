@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #F1FAEE;
+  background-color: #f4eae3;
 }
 .login__container {
   display: flex;
@@ -14,7 +14,7 @@
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   width: 90%;
   max-width: 400px;
 }
@@ -36,7 +36,7 @@
   font-size: 1rem;
 }
 .login__container__form__input:focus {
-  border-color: #F1FAEE;
+  border-color: #f4eae3;
   outline: none;
 }
 .login__container__form__button {

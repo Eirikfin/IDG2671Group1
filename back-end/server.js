@@ -50,7 +50,7 @@ app.use('/api/researchers', researchersRoute);
 app.use('/api/sessions', sessionsRoute);
 app.use('/api/section', sectionsRoute);
 
-//servering uploaded artifacts:
+//serving uploaded artifacts:
 app.use("/uploads", express.static("uploads"));
 
 app.get("*", (req, res) => {

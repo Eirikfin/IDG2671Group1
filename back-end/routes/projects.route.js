@@ -17,7 +17,7 @@ router.put("/:id", projectValidator, authenticateToken, updateProject);
 router.delete("/:id", authenticateToken, deleteProject);
 
 //find project info:
-router.get("/:id", authenticateToken, getProject);
+router.get("/:id", getProject);
 
 //get all projects for a researcher:
 router.get("/researcher/:id", authenticateToken, getAllProjects);

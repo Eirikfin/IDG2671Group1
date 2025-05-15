@@ -1,0 +1,40 @@
+@use '../../assets/global-styles/App.scss';
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.demographicsForm {
+    display: flex;
+    flex-direction: column;
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        &__section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+
+            &>select {
+                width: 30%;
+            }
+
+            &>input {
+                width: 28%;
+            }
+        }
+
+        &>button {
+            margin: 1rem;
+            align-self: center;
+            padding: 1rem;
+        }
+    }
+}

@@ -1,11 +1,11 @@
-@import '../../assets/color-variables/colors.scss';
+@import '../../assets/global-styles/App.scss';
 
 .container {
     padding: 1rem;
     padding-top: 0;
 
     &_card {
-        border: 2px solid $border;
+        border: 2px solid var(--border-color);
         border-radius: 5px;
         padding: 1rem;
         margin-bottom: 1rem;
