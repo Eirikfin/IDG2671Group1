@@ -5,7 +5,7 @@ import styles from './ConsentPage.module.css';
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function ConsentPage( {project, onNext }) {
-    const { studyId } = useParams();
+    const { projectId } = useParams();
     
     console.log(project);
     const [consent, setConsent] = useState(false);
@@ -17,17 +17,28 @@ export default function ConsentPage( {project, onNext }) {
     const startSession = async () => {
         try{
             const payload = {
-                projectId: studyId,
+                projectId: projectId,
                 researcherId: project.researcherId
             }
-
-            const response = await fetch(`${apiUrl}/api/session`, {
+            console.log("payload:", payload)
+            const response = await fetch(`${apiUrl}/api/sessions`, {
                 method: "POST",
                 headers: {
                     'Content-Type': "application/json" 
                 },
                 body: JSON.stringify(payload)
-            })
+            });
+
+            const data = await response.json();
+
+            if(!response.ok) {
+                throw Error("Faied to start session", data.message);
+            }
+
+            console.log(data.Session);
+            localStorage.setItem("session", JSON.stringify(data.Session));
+
+            onNext();
         }catch(err){
             console.log(err)
         }
@@ -76,7 +87,7 @@ export default function ConsentPage( {project, onNext }) {
 
                 {/* CREATE SESSION ON SUBMIT */}
                 <button 
-                    onClick={onNext} 
+                    onClick={startSession} 
                     disabled={!consent}
                     
                     >

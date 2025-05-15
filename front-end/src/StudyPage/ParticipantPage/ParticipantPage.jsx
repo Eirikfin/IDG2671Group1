@@ -1,49 +1,25 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { ProjectContext } from "../../context/projectContext";
+import ArtifactRender from "../../components/ArtifactRender";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function ParticipantPage({project, onNext}) {
   const { projectId } = useParams(); // Get the project ID from the URL
-  const [questions, setQuestions] = useState([]); // State for questions
+   // Access project data from context
+  const [questions, setQuestions] = useState(project.questions); // State for questions
   const [responses, setResponses] = useState({});
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [sectionIndex, setSectionIndex] = useState(0);
 
-  useEffect(() => {
-    const fetchProjectAndQuestions = async () => {
-        try {
-        // Fetch project data
-        const projectResponse = await fetch(`${apiUrl}/api/projects/${projectId}`);
-        const projectData = await projectResponse.json();
+console.log("Section 1", questions[0]);
+console.log("Section 2", questions[1]);
 
-        if (!projectResponse.ok) {
-            throw new Error(projectData.message || "Failed to fetch project data");
-        }
 
-        setProject(projectData); // Save project data in context
-
-        // Fetch questionSections data
-        const questionSectionsResponse = await fetch(`${apiUrl}/api/section?projectId=${projectId}`);
-        const questionSectionsData = await questionSectionsResponse.json();
-
-        if (!questionSectionsResponse.ok) {
-            throw new Error(questionSectionsData.message || "Failed to fetch question sections");
-        }
-
-        // Extract questions from questionSections and set them in state
-        const extractedQuestions = questionSectionsData.flatMap((section) => section.questions);
-        console.log("Extracted Questions:", extractedQuestions); // Debugging
-        setQuestions(extractedQuestions);
-        } catch (err) {
-        setError(err.message);
-        }
-    };
-
-    fetchProjectAndQuestions();
-    }, [projectId, setProject]);
-
+  let questionSection = questions[sectionIndex];
+  
   // Handle response changes
   const handleResponseChange = (questionId, value) => {
     setResponses((prev) => ({
@@ -86,30 +62,27 @@ export default function ParticipantPage({project, onNext}) {
 
       <div>
     {/* Display project artifacts */}
-    {project.artifacts?.map((artifact, index) => (
-        <div key={artifact.id || index}>
-        {artifact.mediaType === "image" && <img src={artifact.filepath} alt={artifact.filename} />}
-        {artifact.mediaType === "video" && <video controls src={artifact.filepath}></video>}
-        {artifact.mediaType === "audio" && <audio controls src={artifact.filepath}></audio>}
-        </div>
+    {questionSection.artifacts?.map((artifact, index) => (
+        <ArtifactRender artifact={artifact} key={index}/>
     ))}
     </div>
 
     <div>
     {/* Display questions */}
-    {questions.map((question) => {
+    {questionSection.questions.map((question) => {
     console.log("Rendering question:", question);
     return (
         <div key={question._id}>
+        <h3>{question.questionText}</h3>
         <label>{question.questionText}</label>
-        {question.type === "TextInput" && (
+        {question.questionType === "TextInput" && (
             <input
             type="text"
             value={responses[question._id] || ""}
             onChange={(e) => handleResponseChange(question._id, e.target.value)}
             />
         )}
-        {question.type === "MultipleChoice" && (
+        {question.questionType === "MultipleChoice" && (
         <select
             value={responses[question._id] || ""}
             onChange={(e) => handleResponseChange(question._id, e.target.value)}
@@ -122,7 +95,7 @@ export default function ParticipantPage({project, onNext}) {
             ))}
         </select>
         )}
-        {question.type === "SlidingScale" && (
+        {question.questionType === "SlidingScale" && (
             <input
             type="range"
             min={question.minValue}
