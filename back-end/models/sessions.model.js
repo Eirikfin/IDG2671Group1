@@ -5,6 +5,7 @@ const sessionSchema = mongoose.Schema({
   startTime: { type: Date }, //optional, will store time the participant started study/survey
   finishedTime: { type: Date }, //optional, will store the time the participant finished the study/survey
   deviceType: { type: String}, //optional, will store the device type of the participant
+  email: {type: String}, //optional for if user wants to submit their email
   demographics: {
     age: {type: Number},
     gender: {

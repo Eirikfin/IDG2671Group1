@@ -1,10 +1,8 @@
-import { useState, useEffect, useContext } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { ProjectContext } from "../../context/projectContext";
 import ArtifactRender from '../../components/ArtifactRender';
 import styles from './ParticipantPage.module.css';
-
-const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function ParticipantPage({project, onNext}) {
   
@@ -16,14 +14,10 @@ export default function ParticipantPage({project, onNext}) {
   const [currentSection, setCurrentSection] = useState(0); // State for current section
   
   
-  const [responses, setResponses] = useState({});
+  const [responses, setResponses] = useState([]);
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  
-
-console.log("Section 1", questions[0]);
-console.log("Section 2", questions[1]);
-
+  console.log("sections", questions);
   
   // Handle response changes
   const handleResponseChange = (questionId, value) => {
@@ -37,44 +31,52 @@ console.log("Section 2", questions[1]);
   const submitAnswers = () => {
     try {
       const payload = {
-        projectId,
-        responses,
+        sectionId: questions[currentSection]._id,
+        sectionAnswers: responses,
       };
 
+       // Get existing responses or initialize an empty array
+    const stored = localStorage.getItem(`survey_${projectId}_responses`);
+    let previousResponses = stored ? JSON.parse(stored) : [];
+    
+        // Remove existing response for this sectionId, if any
+    previousResponses = previousResponses.filter(
+      (entry) => entry.sectionId !== payload.sectionId
+    );
+
+
+    previousResponses.push(payload)
       // Save to localStorage
-      localStorage.setItem(`survey_${projectId}_responses`, JSON.stringify(payload));
+      localStorage.setItem(`survey_${projectId}_responses`, JSON.stringify(previousResponses));
 
       setSuccessMessage("Your answers have been saved locally!");
       setResponses({}); // Clear responses after saving
-      onNext();
+      
     } catch (err) {
       setError("Failed to save answers locally.");
+      console.error("localstorage error", err);
     }
   };
 
-  const nextSection = () => {
+  const nextSection =  () => {
+    if(currentSection >= sections.length - 1 ){
+      submitAnswers();
+      onNext();
+    }
     if (currentSection < sections.length - 1) {
+      submitAnswers();
       setCurrentSection(currentSection + 1);
-    }
+  
   };
+}
 
-  const previousSection = () => {
+  const previousSection = async () => {
     if (currentSection > 0) {
+      submitAnswers();
       setCurrentSection((prev) => prev - 1);
     }
   }
 
-  const areAllQuestionsAnswered = () => {
-    return sections.every((section) =>
-      section.questions.every((question) => responses[question._id])
-    );
-  };
-
-  const areQuestionsAnswered = () => {
-    // Check if all questions in the current section are answered
-    const currentSectionQuestions = sections[currentSection]?.questions || [];
-    return currentSectionQuestions.every((question) => responses[question._id]);
-  };
 
   // Handle loading and error states
   if (!project) {
@@ -154,17 +156,12 @@ console.log("Section 2", questions[1]);
               Previous questions
             </button>
 
-              <button className={styles.page__navigation__buttons} onClick={nextSection} disabled={!areQuestionsAnswered() || currentSection === sections.length - 1}>
+              <button className={styles.page__navigation__buttons} onClick={nextSection}>
+               {/* conditionally change name when on last section */}           
                 Next questions
               </button>
           </div>
-
-          {areAllQuestionsAnswered() && (
-            <div className={styles.page__submit}>
-              <button onClick={submitAnswers}>Submit answers</button>
-            </div>
-          )}
         </div>
     </div>
   );
-}
+  }

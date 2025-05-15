@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './SubmitEmailPage.module.css';
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function SubmitEmailPage() {
     const [email, setEmail] = useState("");
@@ -9,8 +10,31 @@ export default function SubmitEmailPage() {
         setEmail(e.target.value);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
+        try{
+            const payload = {
+                email: email
+            }
+            const session = JSON.parse(localStorage.getItem('session'))
+            const response = await fetch(`${apiUrl}/api/sessions/${session._id}/email`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "Application/json"
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const data = await response.json();
+            
+            if(!response.ok) {
+                throw Error("failed to submit email", data.message);
+            }
+            console.log(data);
+        }catch(err){
+            console.log(err);
+        }
         // INSERT VALIDATION AND API CALL LOGIC HERE
         setSubmitted(true);
     }
