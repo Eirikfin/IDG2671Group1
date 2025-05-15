@@ -57,6 +57,22 @@ export const getSection = async (req, res) => {
 
 }
 
+export const getSectionsByProjectId = async (req, res) => {
+  const { projectId } = req.query; // Extract projectId from query parameters
+
+  try {
+    const sections = await QuestionSection.find({ projectId }); // Query the database for sections with the given projectId
+
+    if (!sections || sections.length === 0) {
+      return res.status(404).json({ message: "No sections found for this project" });
+    }
+
+    res.status(200).json(sections); // Return the sections as JSON
+  } catch (err) {
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
+};
+
 export const updateSection = async (req, res) => {
  try{
     const newSection = await QuestionSection.findByIdAndUpdate(req.params.id, req.body, {new: true});

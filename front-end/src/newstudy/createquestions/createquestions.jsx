@@ -148,6 +148,7 @@ export default function CreateStudy() {
 
   //render components
   return (
+    <div className={styles.container}>
     <>
       {submitMsg && <p>Section was submitted!</p>}
       <h1>Section {sectionCount}</h1>
@@ -171,16 +172,39 @@ export default function CreateStudy() {
   </div>
 ))}
 {error && <p>{error}</p>}
-      <button className={styles.addQuestion__btn} id="addQuestion__btn" onClick={addQuestion}>
-        Add Question
-      </button>
-      <button onClick={addSection}>Add new section</button>
-      <button onClick={previewPage}>Preview page</button>
-      <button id="publish__btn" onClick={publishStudy}>
-        Save Draft
-      </button>
-      <button onClick={PublishProject}>Publish Study</button>
+      <div className={styles.buttonscontainer}>
+        <button 
+        className={styles.addQuestion__btn} 
+        id="addQuestion__btn" 
+        onClick={addQuestion}
+        >
+          Add Question
+        </button>
+
+        <button 
+        onClick={addSection}
+        className={styles.addQuestion__btn}
+        >
+          Add new section
+        </button>
+
+        <button 
+        onClick={previewPage}
+        className={styles.addQuestion__btn}
+        >
+          Preview page
+        </button>
+
+        <button 
+        id="publish__btn" 
+        onClick={publishStudy}
+        className={styles.addQuestion__btn}
+        >
+          Publish Study
+        </button>
+      </div>
       
     </>
+    </div>
   );
 }

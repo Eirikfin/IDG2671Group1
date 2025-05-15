@@ -39,12 +39,14 @@ export default function ProfilePage() {
     }
 
     return (
-        <div className={styles.profilePage}>
-            <h1 className={styles.profilePage__title}>Profile</h1>
-            <div className={styles.profilePage__info}>
-                <p><strong>Name:</strong> {researcher.name}</p>
-                <p><strong>Email:</strong> {researcher.email}</p>
-                <p><strong>Role:</strong> {researcher.role}</p>
+        <div className={styles.container}>
+            <div className={styles.profilePage}>
+                <h1 className={styles.profilePage__title}>Profile</h1>
+                <div className={styles.profilePage__info}>
+                    <p><strong>Name:</strong> {researcher.name}</p>
+                    <p><strong>Email:</strong> {researcher.email}</p>
+                    <p><strong>Role:</strong> {researcher.role}</p>
+                </div>
             </div>
         </div>
     );

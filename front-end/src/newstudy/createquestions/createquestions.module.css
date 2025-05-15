@@ -1,3 +1,12 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .card {
   margin: 20px auto;
   border: 2px solid #457b9d;
@@ -48,6 +57,23 @@
   opacity: 1;
 }
 
+.updateButton {
+  width: -moz-fit-content;
+  width: fit-content;
+  align-self: center;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .remove_btn {
   max-width: 40px;
   max-height: 40px;
@@ -64,10 +90,26 @@ h1 {
   padding: 10px;
   border-radius: 5px;
   display: block;
-  margin-bottom: 2rem;
-  margin-left: 40px;
+  margin: 1rem;
+}
+
+.buttonscontainer {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  display: flex;
+  width: -moz-fit-content;
+  width: fit-content;
+  align-self: center;
+}
+.buttonscontainer > :last-of-type {
+  background-color: greenyellow;
 }
 
 .card {
   position: relative;
+}
+
+.errormsg {
+  text-align: center;
 }/*# sourceMappingURL=createquestions.module.css.map */

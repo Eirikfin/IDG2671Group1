@@ -44,7 +44,6 @@ export default function Login() {
 
     return (
         <div className={styles.login}>
-            <h1>Research Application</h1>
             <div className={styles.login__container}>
                 <h1 className={styles.__container__title}>Login</h1>
                 <form className={styles.login__container__form} onSubmit={handleSubmit}>
