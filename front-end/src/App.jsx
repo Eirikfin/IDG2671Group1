@@ -10,9 +10,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UpdatePage from "./UpdateStudy/UpdateStudy";
 import { UpdateFront } from "./UpdateStudy/UpdateFront";
 import { UpdateSection } from "./UpdateStudy/UpdateSection";
-
-import ParticipantSurvey from "./ParticipantPage/ParticipantSurvey";
+import ParticipantStudy from "./ParticipantPage/ParticipantStudy";
 import CreateStudy from "./newstudy/newstudy";
+import ParticipantLayout from "./ParticipantPage/ParticipantLayout";
 
 export default function App() {
   return (
@@ -31,7 +31,9 @@ export default function App() {
           <Route path="/:studyId/results" element={<Results />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/survey/:studyId" element={<ParticipantSurvey />} />
+          <Route path="/survey" element={<ParticipantLayout />}>
+            <Route path=":studyId" element={<ParticipantStudy />} />
+          </Route>
           <Route path="update/:projectId" element={<UpdatePage />}>
             <Route index element={<UpdateFront />} />
             <Route path="section/:index" element={<UpdateSection />} />

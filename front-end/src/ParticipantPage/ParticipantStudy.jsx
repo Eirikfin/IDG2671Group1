@@ -1,37 +1,19 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { ProjectContext } from "../context/projectContext";
-import styles from "./ParticipantSurvey.module.scss";
+import styles from "./ParticipantStudy.module.scss";
+import ArtifactRender from "../components/ArtifactRender";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function ParticipantSurvey() {
   const { studyId } = useParams(); // gets the study ID from the URL
-  const { project, setProject } = useContext(ProjectContext); // access project data from context
+  const { project } = useContext(ProjectContext); // Access project data from context
   const [responses, setResponses] = useState({});
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
-  useEffect(() => {
-    const fetchProjectData = async () => {
-      try {
-        const response = await fetch(`${apiUrl}/api/project/${studyId}`);
-        const data = await response.json();
-
-        if (!response.ok) {
-          throw new Error(data.message || "Failed to fetch project data");
-        }
-
-        setProject(data); // save project data in context
-      } catch (err) {
-        setError(err.message);
-      }
-    };
-
-    fetchProjectData();
-  }, [studyId, setProject]);
-
-  // handle response changes
+  // Handle input changes for responses
   const handleResponseChange = (questionId, value) => {
     setResponses((prev) => ({
       ...prev,
@@ -39,7 +21,7 @@ export default function ParticipantSurvey() {
     }));
   };
 
-  // save answers to localStorage
+  // Save answers to localStorage
   const submitAnswers = () => {
     try {
       const payload = {
@@ -61,18 +43,33 @@ export default function ParticipantSurvey() {
     return <p>Loading project data...</p>;
   }
 
+  // Calculate progress
+  const totalQuestions = project.questions.length;
+  const answeredQuestions = Object.keys(responses).length;
+  const progress = Math.round((answeredQuestions / totalQuestions) * 100);
+
+
   return (
     <div className={styles.container}>
       <h1>{project.title}</h1>
       {error && <p className={styles.error}>{error}</p>}
       {successMessage && <p className={styles.success}>{successMessage}</p>}
 
+      {/* Progress bar */}
+      <div className={styles.progressBarContainer}>
+        <div
+          className={styles.progressBar}
+          style={{ width: `${progress}%` }}
+        ></div>
+      </div>
+      <p>{progress}% completed</p>
+
+
       <div className={styles.artifacts}>
         {project.artifacts.map((artifact) => (
           <div key={artifact.id} className={styles.artifact}>
-            {artifact.mediaType === "image" && <img src={artifact.filepath} alt={artifact.filename} />}
-            {artifact.mediaType === "video" && <video controls src={artifact.filepath}></video>}
-            {artifact.mediaType === "audio" && <audio controls src={artifact.filepath}></audio>}
+            
+            <ArtifactRender artifact={artifact} />
           </div>
         ))}
       </div>
