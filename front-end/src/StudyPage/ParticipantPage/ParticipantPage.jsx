@@ -4,9 +4,8 @@ import { ProjectContext } from "../../context/projectContext";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-export default function ParticipantPage() {
+export default function ParticipantPage({project, onNext}) {
   const { projectId } = useParams(); // Get the project ID from the URL
-  const { project, setProject } = useContext(ProjectContext); // Access project data from context
   const [questions, setQuestions] = useState([]); // State for questions
   const [responses, setResponses] = useState({});
   const [error, setError] = useState("");

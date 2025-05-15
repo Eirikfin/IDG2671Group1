@@ -17,6 +17,7 @@ import { AuthProvider } from "./context/authContext";
 import RequireAuth from "./components/protectedRoute/protectedRoute"
 import { ProjectContext } from "./context/projectContext";
 import { useState } from "react";
+import ConsentPage from "./StudyPage/ConsentPage/ConsentPage";
 
 function AppContent() {
   const location = useLocation();
@@ -36,8 +37,13 @@ function AppContent() {
         <Route path="/logout" element={<Logout />} />
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/study/:projectId" element={<StudyPage />} />
-
+    
+        <Route path="/study/:projectId" element={<StudyPage />}>
+     
+        
+        </Route>
+        
+      
         {/* Protected routes */}
         <Route
           path="/dashboard"

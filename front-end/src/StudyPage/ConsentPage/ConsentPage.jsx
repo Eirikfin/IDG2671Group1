@@ -1,12 +1,37 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom'
 import styles from './ConsentPage.module.css';
 
-export default function ConsentPage({ onNext }) {
+const apiUrl = import.meta.env.VITE_API_URL;
+
+export default function ConsentPage( {project, onNext }) {
+    const { studyId } = useParams();
+    
+    console.log(project);
     const [consent, setConsent] = useState(false);
 
     const handleConsentChange = (e) => {
         setConsent(e.target.checked);
     };
+
+    const startSession = async () => {
+        try{
+            const payload = {
+                projectId: studyId,
+                researcherId: project.researcherId
+            }
+
+            const response = await fetch(`${apiUrl}/api/session`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': "application/json" 
+                },
+                body: JSON.stringify(payload)
+            })
+        }catch(err){
+            console.log(err)
+        }
+    }
 
     return (
         <div className={styles.container}>

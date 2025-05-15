@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './DemographicsPage.module.css';
 
-export default function DemographicsPage({ onNext }) {
+export default function DemographicsPage({project, onNext }) {
     const [formData, setFormData] = useState({
         age: "",
         gender: "",
