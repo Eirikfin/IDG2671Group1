@@ -1,4 +1,5 @@
 .study {
+<<<<<<< HEAD
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -9,3 +10,16 @@
   font-size: 20pt;
   padding: 1rem;
 }/*# sourceMappingURL=CreateStudy.module.css.map */
+=======
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    padding-top: 0;
+  }
+  .study_button {
+    font-size: 20pt;
+    padding: 1rem;
+    border-radius: 40px;
+  }/*# sourceMappingURL=CreateStudy.module.css.map */
+>>>>>>> 8521ef43855e153b1a5288d418630bba6137c5d5

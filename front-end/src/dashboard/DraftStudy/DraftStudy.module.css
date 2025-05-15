@@ -60,7 +60,7 @@ p {
 }
 .card__buttons {
   display: flex;
-  max-width: 40%;
+  max-width: fit-content;
   justify-content: space-between;
   gap: 1rem;
   margin-left: 0;

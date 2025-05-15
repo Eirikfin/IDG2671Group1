@@ -17,7 +17,7 @@
 body {
   padding: 0;
   margin: 0;
-  background-color: #F1FAEE;
+  background-color: #ffffff;
   font-family: "Roboto", sans-serif;
 }
 
@@ -26,15 +26,22 @@ h1 {
 }
 
 a {
+a {
   font-weight: bold;
-  font-size: 12pt;
+  font-size: 13pt;
   text-decoration: none;
 }
+a:visited {
 a:visited {
   font-weight: bold;
   color: var(--text-color);
 }
 
+/* 
+.react__link {
+    border: 1px solid red;
+} 
+*/
 /* 
 .react__link {
     border: 1px solid red;
@@ -71,13 +78,42 @@ p {
   width: 100%;
 }
 
+.card {
+  border: 2px solid #457b9d;
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  width: 70vw;
+  opacity: 0.7;
+  transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: scale(1.008);
+  opacity: 1;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+.card__buttons {
+  display: flex;
+  max-width: 40%;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-left: 0;
+  padding-left: 0;
+}
+.card__buttons > button {
+  padding: 0.4rem;
+  width: 100%;
+}
+
 button {
-  background-color: #A8DADC;
+  background-color: #2e5b40;
   font-size: 12pt;
   border: 0;
   font-weight: bold;
   cursor: pointer;
   transition: box-shadow 0.2s ease-in-out;
+  border-radius: 10px;
+  color: #ffffff;
 }
 button:hover {
   box-shadow: inset 0px 0px 13px -4px rgba(0, 0, 0, 0.75);

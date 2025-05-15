@@ -44,34 +44,36 @@ export default function Login() {
 
     return (
         <div className={styles.login}>
-            <div className={styles.login__container}>
-                <h1 className={styles.__container__title}>Login</h1>
-                <form className={styles.login__container__form} onSubmit={handleSubmit}>
-                    <label>Email:</label>
-                    <input
-                        className={styles.login__container__form__input}
-                        type="text"
-                        name="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <label>Password:</label>
-                    <input
-                        className={styles.login__container__form__input}
-                        type="password"
-                        name="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <input
-                        className={styles.login__container__form__button}
-                        type="submit"
-                        value="Login"
-                    />
-                </form>
-                {error && <p id="login__error" className={styles.error}>{error}</p>}
-                <p>Don't have an account? <Link to="/register">Register here</Link></p>
-            </div>
-        </div>
+  <div className={styles.login__container}>
+    <h1 className={styles.login__container__title}>Login</h1>
+    <form className={styles.login__container__form} onSubmit={handleSubmit}>
+      <label>Email:</label>
+      <input
+        className={styles.login__container__form__input}
+        type="text"
+        name="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <label>Password:</label>
+      <input
+        className={styles.login__container__form__input}
+        type="password"
+        name="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <input
+        className={styles.login__container__form__button}
+        type="submit"
+        value="Login"
+      />
+    </form>
+    {error && <p id="login__error" className={styles.error}>{error}</p>}
+    <div className={styles.login__container__footer}>
+      <p>Don't have an account? <Link to="/register">Register here</Link></p>
+    </div>
+  </div>
+</div>
     );
 }
