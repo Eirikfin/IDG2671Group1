@@ -1,0 +1,43 @@
+@use '../../assets/global-styles/App.scss';
+
+.page {
+    display: flex;
+    align-items: center;
+
+    &__questions {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        &__question {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+
+            &>label {
+                text-align: center;
+            }
+        }
+    }
+
+    &__navigation {
+        display: flex;
+        justify-self: center;
+        margin: 1rem;
+        gap: 1rem;
+
+        &>button:disabled {
+            cursor: not-allowed;
+        }
+    }
+
+    &__submit {
+        padding: 1rem;
+        justify-self: center;
+
+        &>button {
+            padding: 0.4rem;
+        }
+    }
+}
+

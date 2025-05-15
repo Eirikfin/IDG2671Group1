@@ -42,7 +42,7 @@ export default function PastStudy({ projects, setProjects }) {
                         <h3 className={styles.study__title}>{project.title}</h3>
                         <p className={styles.study__description}>{project.description}</p>
                         <div className={`card__buttons`}>
-                            <button><Link to="/results" className={`react__link`}>View results</Link></button>
+                            <button><Link to={`/${project._id}/results`} className={`react__link`}>View results</Link></button>
                             <button onClick={() => deleteStudy(project._id)} className={styles.study__delete}>Delete Study</button>
                         </div>
                     </div>
