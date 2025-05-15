@@ -93,6 +93,10 @@ footer {
   background-color: #457B9D;
 }
 
+* {
+  border: 1px solid red;
+}
+
 .page {
   display: flex;
   align-items: center;
@@ -107,8 +111,10 @@ footer {
   flex-direction: column;
   gap: 0.3rem;
 }
-.page__questions__question > label {
+.page__questions__question > h3 {
   text-align: center;
+  padding: 0;
+  margin: 0;
 }
 .page__navigation {
   display: flex;
@@ -132,4 +138,7 @@ footer {
 }
 .page__submit > button {
   padding: 0.4rem;
+}
+.page__artifact * {
+  max-width: 40%;
 }/*# sourceMappingURL=ParticipantPage.module.css.map */

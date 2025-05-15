@@ -18,6 +18,7 @@ import RequireAuth from "./components/protectedRoute/protectedRoute"
 import { ProjectContext } from "./context/projectContext";
 import { useState } from "react";
 import ConsentPage from "./StudyPage/ConsentPage/ConsentPage";
+import { useAuth } from "./context/authContext";
 
 function AppContent() {
   const location = useLocation();
@@ -29,14 +30,13 @@ function AppContent() {
     <>
       {/* Conditionally render Header */}
       {!isStudyPage && <Header />}
-
+      <useAuth>
       <Routes>
         {/* Public routes */}
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<ProfilePage />} />
     
         <Route path="/study/:projectId" element={<StudyPage />}>
      
@@ -61,6 +61,13 @@ function AppContent() {
             </RequireAuth>
           }
         />
+
+        <Route path="/profile" element={
+            <RequireAuth>
+              <ProfilePage />
+            </RequireAuth>
+          } 
+          />
         <Route
           path="/create_study/:studyId/questions/:index"
           element={
@@ -92,6 +99,7 @@ function AppContent() {
         </Route>
         <Route path="/profile" element={<ProfilePage />} />
       </Routes>
+      </useAuth>
     </>
   );
 }

@@ -13,5 +13,7 @@ export default function Logout() {
 
         // Redirect to the login page
         navigate('/login');
+
+        window.location.reload();
     }, [navigate]);
 }

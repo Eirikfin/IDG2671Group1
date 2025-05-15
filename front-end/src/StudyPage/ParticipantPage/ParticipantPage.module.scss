@@ -1,5 +1,9 @@
 @use '../../assets/global-styles/App.scss';
 
+* {
+    border: 1px solid red;
+}
+
 .page {
     display: flex;
     align-items: center;
@@ -14,8 +18,10 @@
             flex-direction: column;
             gap: 0.3rem;
 
-            &>label {
+            &>h3 {
                 text-align: center;
+                padding: 0;
+                margin: 0;
             }
         }
     }
@@ -48,8 +54,9 @@
             padding: 0.4rem;
         }
     }
-}
 
-.artifactCard * {
-    max-width: 70%;
+    &__artifact *{
+        max-width: 40%;
+
+    }
 }

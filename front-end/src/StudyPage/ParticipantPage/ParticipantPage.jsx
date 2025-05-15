@@ -95,9 +95,9 @@ console.log("Section 2", questions[1]);
         <div>
       {/* Display project artifacts */}
       {questions[currentSection].artifacts?.map((artifact, index) => (
-          <div className={styles.artifactCard}>
-            <ArtifactRender artifact={artifact} key={index} />
-          </div>
+      <div className={styles.page__artifact}>
+        <ArtifactRender artifact={artifact} key={index} />
+      </div>
       ))}
       </div>
 

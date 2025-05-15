@@ -71,7 +71,6 @@ export default function Login() {
                 </form>
                 {error && <p id="login__error" className={styles.error}>{error}</p>}
                 <p>Don't have an account? <Link to="/register">Register here</Link></p>
-                <p>Forgot your password? <a href="/forgot-password">Reset it here</a></p>
             </div>
         </div>
     );
