@@ -51,8 +51,8 @@ export default function CurrentStudy({ projects, setProjects }) {
                         <p className={styles.study__description}>{project.description}</p>
                         <div className={`card__buttons`}>
                             <button onClick={() => copyLinkToClipboard(project._id)}>Copy Link</button>
-                            <button><Link to={`/edit/${project._id}`} className={`react__link`}>Edit Study</Link></button>
-                            <button><Link to={`/results/${project._id}`} className={`react__link`}>View Results</Link></button>
+                            <button><Link to={`/update/${project._id}`} className={`react__link`}>Edit Study</Link></button>
+                            <button><Link to={`/${project._id}/results`} className={`react__link`}>View Results</Link></button>
                             <button onClick={() => concludeStudy(project._id)} className={styles.study__conclude}>Conclude Study</button>
                         </div>
                     </div>
