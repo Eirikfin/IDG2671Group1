@@ -93,10 +93,6 @@ footer {
   background-color: #457B9D;
 }
 
-* {
-  border: 1px solid red;
-}
-
 .page {
   display: flex;
   align-items: center;
