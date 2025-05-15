@@ -1,7 +1,5 @@
 import styles from "./PastStudy.module.scss";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { jwtDecode } from "jwt-decode";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -13,7 +11,7 @@ export default function PastStudy({ projects, setProjects }) {
             const token = localStorage.getItem('token');
             if (!token) throw new Error('No token found');
 
-            const response = await fetch(`http://localhost:4202/api/projects/${id}`, {
+            const response = await fetch(`${apiUrl}/api/projects/${id}`, {
                 method: 'DELETE',
                 headers: {
                     Authorization: `Bearer ${token}`,

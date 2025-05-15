@@ -1,6 +1,8 @@
 import styles from './DraftStudy.module.css';
 import { Link } from "react-router-dom";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 export default function DraftStudy({ projects, setProjects }) {
     const draftProjects = projects.filter(project => project.status === "notPublished");
 
@@ -9,7 +11,7 @@ export default function DraftStudy({ projects, setProjects }) {
             const token = localStorage.getItem('token');
             if (!token) throw new Error('No token found');
 
-            const response = await fetch(`http://localhost:4202/api/projects/${id}/activate`, {
+            const response = await fetch(`${apiUrl}/api/projects/${id}/activate`, {
                 method: 'PATCH',
                 headers: {
                     Authorization: `Bearer ${token}`,

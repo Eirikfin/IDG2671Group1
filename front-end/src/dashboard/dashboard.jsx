@@ -5,6 +5,8 @@ import CurrentStudy from "./CurrentStudy/CurrentStudy";
 import PastStudy from "./PastStudy/PastStudy";
 import DraftStudy from "./DraftStudy/DraftStudy";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 export default function DashBoard() {
     const [projects, setProjects] = useState([]);
 
@@ -17,7 +19,7 @@ export default function DashBoard() {
                 const decodedToken = jwtDecode(token);
                 const researcherId = decodedToken.id;
 
-                const resProjects = await fetch(`http://localhost:4202/api/projects/researcher/${researcherId}`, {
+                const resProjects = await fetch(`${apiUrl}/api/projects/researcher/${researcherId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
