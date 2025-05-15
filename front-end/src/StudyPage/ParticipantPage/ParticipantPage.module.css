@@ -116,8 +116,15 @@ footer {
   margin: 1rem;
   gap: 1rem;
 }
-.page__navigation > button:disabled {
+.page__navigation__buttons {
+  padding: 0.4rem;
+}
+.page__navigation__buttons:disabled {
   cursor: not-allowed;
+  opacity: 0.5;
+}
+.page__navigation__buttons:disabled:hover {
+  box-shadow: none;
 }
 .page__submit {
   padding: 1rem;

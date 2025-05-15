@@ -46,7 +46,6 @@ console.log("Section 2", questions[1]);
 
       setSuccessMessage("Your answers have been saved locally!");
       setResponses({}); // Clear responses after saving
-
       onNext();
     } catch (err) {
       setError("Failed to save answers locally.");
@@ -65,9 +64,18 @@ console.log("Section 2", questions[1]);
     }
   }
 
+  const areAllQuestionsAnswered = () => {
+    return sections.every((section) =>
+      section.questions.every((question) => responses[question._id])
+    );
+  };
+
   const areQuestionsAnswered = () => {
-    return
-  }
+    // Check if all questions in the current section are answered
+    const currentSectionQuestions = sections[currentSection]?.questions || [];
+    return currentSectionQuestions.every((question) => responses[question._id]);
+  };
+
   // Handle loading and error states
   if (!project) {
     return <p>Loading project data...</p>;
@@ -142,15 +150,16 @@ console.log("Section 2", questions[1]);
           </div>
 
           <div className={styles.page__navigation}>
-            <button onClick={previousSection} disabled={currentSection => sections.length - 1}>
+            <button className={styles.page__navigation__buttons} onClick={previousSection} disabled={currentSection === 0}>
               Previous questions
             </button>
-            <button onClick={nextSection} disabled={currentSection === sections.length - 1}>
-              Next questions
-            </button>
+
+              <button className={styles.page__navigation__buttons} onClick={nextSection} disabled={!areQuestionsAnswered() || currentSection === sections.length - 1}>
+                Next questions
+              </button>
           </div>
 
-          {areQuestionsAnswered() && (
+          {areAllQuestionsAnswered() && (
             <div className={styles.page__submit}>
               <button onClick={submitAnswers}>Submit answers</button>
             </div>
