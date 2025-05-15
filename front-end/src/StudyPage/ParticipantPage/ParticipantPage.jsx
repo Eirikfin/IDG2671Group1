@@ -6,7 +6,7 @@ import styles from './ParticipantPage.module.css';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-export default function ParticipantPage() {
+export default function ParticipantPage({ onNext }) {
   const { projectId } = useParams(); // Get the project ID from the URL
   const { project, setProject } = useContext(ProjectContext); // Access project data from context
   const [sections, setSections] = useState([]); // State for sections
@@ -66,6 +66,7 @@ export default function ParticipantPage() {
 
       setSuccessMessage("Your answers have been saved locally!");
       setResponses({}); // Clear responses after saving
+      onNext();
     } catch (err) {
       setError("Failed to save answers locally.");
     }
@@ -78,15 +79,21 @@ export default function ParticipantPage() {
   };
 
   const previousSection = () => {
-    if (currentSectionIndex > 0) {
-      setCurrentSectionIndex((prev) => prev - 1);
+    if (currentSection > 0) {
+      setCurrentSection((prev) => prev - 1);
     }
   }
 
-  const areQuestionsAnswered = () => {
+  const areAllQuestionsAnswered = () => {
     return sections.every((section) =>
       section.questions.every((question) => responses[question._id])
     );
+  };
+
+  const areQuestionsAnswered = () => {
+    // Check if all questions in the current section are answered
+    const currentSectionQuestions = sections[currentSection]?.questions || [];
+    return currentSectionQuestions.every((question) => responses[question._id]);
   };
 
   // Handle loading and error states
@@ -155,15 +162,16 @@ export default function ParticipantPage() {
           </div>
 
           <div className={styles.page__navigation}>
-            <button onClick={previousSection} disabled={currentSectionIndex => sections.length - 1}>
+            <button className={styles.page__navigation__buttons} onClick={previousSection} disabled={currentSection === 0}>
               Previous questions
             </button>
-            <button onClick={nextSection} disabled={currentSectionIndex === sections.length - 1}>
-              Next questions
-            </button>
+
+              <button className={styles.page__navigation__buttons} onClick={nextSection} disabled={!areQuestionsAnswered() || currentSection === sections.length - 1}>
+                Next questions
+              </button>
           </div>
 
-          {areQuestionsAnswered() && (
+          {areAllQuestionsAnswered() && (
             <div className={styles.page__submit}>
               <button onClick={submitAnswers}>Submit answers</button>
             </div>
