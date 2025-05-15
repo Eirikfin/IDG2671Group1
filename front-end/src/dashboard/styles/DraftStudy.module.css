@@ -1,8 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+:root {
+  --text-color: #1e1e1e;
+  --bg-color: #F1FAEE;
+  --bg-color--secondary: #FFFFFF;
+  --border-color: #457b9d;
+  --header-color: #1D3557;
+  --primary-btn-color: #457B9D;
+  --secondary-btn-color: #A8DADC;
+  --delete-btn-color: #E63956;
+}
+
+* {
+  color: var(--text-color);
+}
+
 body {
   padding: 0;
   margin: 0;
-  background-color: #ffffff;
+  background-color: #F1FAEE;
   font-family: "Roboto", sans-serif;
 }
 
@@ -12,12 +27,12 @@ h1 {
 
 a {
   font-weight: bold;
-  font-size: 13pt;
+  font-size: 12pt;
   text-decoration: none;
 }
 a:visited {
   font-weight: bold;
-  color: #ffffff;
+  color: #ffffff;;
 }
 
 /* 
@@ -57,25 +72,37 @@ p {
 }
 
 button {
-  background-color: #2e5b40;
   font-size: 12pt;
   border: 0;
   font-weight: bold;
   cursor: pointer;
   transition: box-shadow 0.2s ease-in-out;
-  border-radius: 10px;
-  color: #ffffff;
 }
 button:hover {
+  -webkit-box-shadow: inset 0px 0px 13px -4px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: inset 0px 0px 13px -4px rgba(0, 0, 0, 0.75);
   box-shadow: inset 0px 0px 13px -4px rgba(0, 0, 0, 0.75);
 }
 
 header {
-  background-color: #93827F;
+  background-color: #457B9D;
 }
 
 footer {
   width: 100%;
   bottom: 0;
   background-color: #457B9D;
-}/*# sourceMappingURL=App.css.map */
+}
+
+.study {
+  padding: 1rem;
+  padding-top: 0;
+}
+.study__title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+}
+.study__description {
+  padding: 0;
+}/*# sourceMappingURL=DraftStudy.module.css.map */

@@ -1,40 +1,16 @@
-@import '../../assets/color-variables/colors.scss';
+@import '../../assets/global-styles/App.scss';
 
 .study {
     padding: 1rem;
     padding-top: 0;
 
-    &_card {
-        border: 2px solid $border;
-        border-radius: 5px;
-        padding: 1rem;
-        margin-bottom: 1rem;
-        width: 70vw;
-        opacity: 0.7;
-        transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+    &__title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin: 0;
+    }
 
-        &:hover {
-            transform: scale(1.008);
-            opacity: 1;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-        }
-
-        &_buttons {
-            display: flex;
-            max-width: 40%;
-            justify-content: space-between;
-            gap: 1rem;
-            margin-left: 0;
-            padding-left: 0;
-
-            &>button {
-                padding: 0.4rem;
-                width: 100%;
-
-                &>.react_Link {
-                    color: inherit;
-                }
-            }
-        }
+    &__description {
+        padding: 0;
     }
 }

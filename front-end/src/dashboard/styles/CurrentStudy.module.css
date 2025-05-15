@@ -1,0 +1,33 @@
+.study {
+    padding: 1rem;
+    padding-top: 0;
+  }
+  .study_card {
+    border: 2px solid #457b9d;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    width: 70vw;
+    opacity: 0.7;
+    transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+  }
+  .study_card:hover {
+    transform: scale(1.008);
+    opacity: 1;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  }
+  .study_card_buttons {
+    display: flex;
+    max-width: 40%;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-left: 0;
+    padding-left: 0;
+  }
+  .study_card_buttons > button {
+    padding: 0.4rem;
+    width: 100%;
+  }
+  .study_card_buttons > button > .react_Link {
+    color: inherit;
+  }/*# sourceMappingURL=CurrentStudy.module.css.map */

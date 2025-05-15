@@ -2,37 +2,53 @@
 @use '../color-variables/colors.scss' as *;
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 // Imports END //
-
-// Global styles //
-body {
-    padding: 0;
-    margin: 0;
-    background-color: $bg_white;
-    font-family: 'Roboto', sans-serif;
-}
-
-h1 {
-    padding: 1rem;
-}
-
-a, .react_link {
-    font-weight: bold;
-    font-size: 12pt;
-    text-decoration: none;
-
-    &:visited {
-        font-weight: bold;
-        color: $text;
-    }
-}
+/* 
+.react__link {
+    border: 1px solid red;
+} 
+*/
 
 p {
     color: $text;
 }
 
+span {
+    color: $second_text;
+}
+
+.card {
+    border: 2px solid $border;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    width: 70vw;
+    opacity: 0.7;
+    transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+        transform: scale(1.008);
+        opacity: 1;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    }
+
+    &__buttons {
+        display: flex;
+        max-width: 40%;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-left: 0;
+        padding-left: 0;
+
+        &>button {
+            padding: 0.4rem;
+            width: 100%;
+        }
+    }
+}
+
 button {
     background-color: $secondary_btn;
-    font-size: 12pt;
+    font-size: 16pt;
     border: 0;
     font-weight: bold;
     cursor: pointer;
@@ -46,14 +62,11 @@ button {
 }
 
 header {
-    background-color: $primary_btn;
-    border: 1px inset solid hsla(0, 0, 0, 0);
+    background-color: $header_color;
 }
 
 footer {
-    position: relative;
     width: 100%;
     bottom: 0;
     background-color: $primary_btn;
-    border: 1px solid hsla(0, 0, 0, 0);
 }
