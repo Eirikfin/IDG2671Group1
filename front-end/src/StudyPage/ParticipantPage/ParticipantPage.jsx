@@ -1,60 +1,29 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { ProjectContext } from "../../context/projectContext";
-<<<<<<< HEAD
-import ArtifactRender from "../../components/ArtifactRender";
-=======
 import ArtifactRender from '../../components/ArtifactRender';
 import styles from './ParticipantPage.module.css';
->>>>>>> a1159fc1ea45bb50b0e9295cd9cf3d2b321054c2
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function ParticipantPage({project, onNext}) {
+  
   const { projectId } = useParams(); // Get the project ID from the URL
-<<<<<<< HEAD
+
    // Access project data from context
   const [questions, setQuestions] = useState(project.questions); // State for questions
-=======
-  const { project, setProject } = useContext(ProjectContext); // Access project data from context
-  const [sections, setSections] = useState([]); // State for sections
+  const [sections, setSections] = useState(project.questions); // State for sections
   const [currentSection, setCurrentSection] = useState(0); // State for current section
->>>>>>> a1159fc1ea45bb50b0e9295cd9cf3d2b321054c2
+  
+  
   const [responses, setResponses] = useState({});
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  const [sectionIndex, setSectionIndex] = useState(0);
+  
 
 console.log("Section 1", questions[0]);
 console.log("Section 2", questions[1]);
 
-<<<<<<< HEAD
-=======
-        if (!projectResponse.ok) {
-            throw new Error(projectData.message || "Failed to fetch project data");
-        }
-
-        setProject(projectData); // Save project data in context
-
-        // Fetch questionSections data
-        const questionSectionsResponse = await fetch(`${apiUrl}/api/section?projectId=${projectId}`);
-        const questionSectionsData = await questionSectionsResponse.json();
-
-        if (!questionSectionsResponse.ok) {
-            throw new Error(questionSectionsData.message || "Failed to fetch question sections");
-        }
-
-        setSections(questionSectionsData);
-        } catch (err) {
-        setError(err.message);
-        }
-    };
-
-    fetchProjectAndQuestions();
-    }, [projectId, setProject]);
->>>>>>> a1159fc1ea45bb50b0e9295cd9cf3d2b321054c2
-
-  let questionSection = questions[sectionIndex];
   
   // Handle response changes
   const handleResponseChange = (questionId, value) => {
@@ -77,6 +46,8 @@ console.log("Section 2", questions[1]);
 
       setSuccessMessage("Your answers have been saved locally!");
       setResponses({}); // Clear responses after saving
+
+      onNext();
     } catch (err) {
       setError("Failed to save answers locally.");
     }
@@ -89,17 +60,14 @@ console.log("Section 2", questions[1]);
   };
 
   const previousSection = () => {
-    if (currentSectionIndex > 0) {
-      setCurrentSectionIndex((prev) => prev - 1);
+    if (currentSection > 0) {
+      setCurrentSection((prev) => prev - 1);
     }
   }
 
   const areQuestionsAnswered = () => {
-    return sections.every((section) =>
-      section.questions.every((question) => responses[question._id])
-    );
-  };
-
+    return
+  }
   // Handle loading and error states
   if (!project) {
     return <p>Loading project data...</p>;
@@ -109,84 +77,38 @@ console.log("Section 2", questions[1]);
     return <p>Error: {error}</p>;
   }
 
-  const currentSectionIndex = sections[currentSection];
 
   return (
     <div className={styles.page}>
       <div>
-<<<<<<< HEAD
-    {/* Display project artifacts */}
-    {questionSection.artifacts?.map((artifact, index) => (
-        <ArtifactRender artifact={artifact} key={index}/>
-    ))}
-    </div>
-
-    <div>
-    {/* Display questions */}
-    {questionSection.questions.map((question) => {
-    console.log("Rendering question:", question);
-    return (
-        <div key={question._id}>
-        <h3>{question.questionText}</h3>
-        <label>{question.questionText}</label>
-        {question.questionType === "TextInput" && (
-            <input
-            type="text"
-            value={responses[question._id] || ""}
-            onChange={(e) => handleResponseChange(question._id, e.target.value)}
-            />
-        )}
-        {question.questionType === "MultipleChoice" && (
-        <select
-            value={responses[question._id] || ""}
-            onChange={(e) => handleResponseChange(question._id, e.target.value)}
-        >
-            <option value="">Select an option</option>
-            {question.questionAlternatives?.map((alt, altIndex) => (
-            <option key={`${question._id}-${altIndex}`} value={alt}>
-                {alt}
-            </option>
-            ))}
-        </select>
-        )}
-        {question.questionType === "SlidingScale" && (
-            <input
-            type="range"
-            min={question.minValue}
-            max={question.maxValue}
-            value={responses[question._id] || question.minValue}
-            onChange={(e) => handleResponseChange(question._id, e.target.value)}
-            />
-        )}
-        </div>
-    );
-    })}
-    </div>
-=======
         <h1>{project.title}</h1>
         {successMessage && <p>{successMessage}</p>}
 
         <div>
       {/* Display project artifacts */}
-      {project.artifacts?.map((artifact, index) => (
-          <ArtifactRender artifact={artifact} key={index} />
+      {questions[currentSection].artifacts?.map((artifact, index) => (
+          <div className={styles.artifactCard}>
+            <ArtifactRender artifact={artifact} key={index} />
+          </div>
       ))}
       </div>
->>>>>>> a1159fc1ea45bb50b0e9295cd9cf3d2b321054c2
 
       <div className={styles.page__questions}>
         {/* Display section */}
-        {currentSectionIndex?.questions.map((question) => {
+        {questions[currentSection].questions.map((question) => {
         console.log("Rendering question:", question);
         return (
             <div className={styles.page__questions__question} key={question._id}>
-            <label>{question.questionText}</label>
-            {question.type === "TextInput" && (
+            <h3>{question.questionText}</h3>
+            {question.questionType === "TextInput" && (
+                <>
                 <input
                 type="text"
                 value={responses[question._id] || ""}
                 onChange={(e) => handleResponseChange(question._id, e.target.value)}
                 />
+                <p>{responses[question._id]}</p> {/* fix this */}
+                </>
             )}
             {question.questionType === "MultipleChoice" && (
             <select
@@ -201,14 +123,18 @@ console.log("Section 2", questions[1]);
                 ))}
             </select>
             )}
-            {question.type === "SlidingScale" && (
+            {question.questionType === "SlidingScale" && (
+                <>
                 <input
                 type="range"
                 min={question.minValue}
                 max={question.maxValue}
+           
                 value={responses[question._id] || question.minValue}
                 onChange={(e) => handleResponseChange(question._id, e.target.value)}
                 />
+                 <p>{responses[question._id] || question.minValue}</p>
+                 </>
             )}
             </div>
         );
@@ -216,10 +142,10 @@ console.log("Section 2", questions[1]);
           </div>
 
           <div className={styles.page__navigation}>
-            <button onClick={previousSection} disabled={currentSectionIndex => sections.length - 1}>
+            <button onClick={previousSection} disabled={currentSection => sections.length - 1}>
               Previous questions
             </button>
-            <button onClick={nextSection} disabled={currentSectionIndex === sections.length - 1}>
+            <button onClick={nextSection} disabled={currentSection === sections.length - 1}>
               Next questions
             </button>
           </div>
