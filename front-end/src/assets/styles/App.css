@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 :root {
   --text-color: #1e1e1e;
-  --bg-color: #F1FAEE;
-  --bg-color--secondary: #FFFFFF;
-  --border-color: #457b9d;
-  --header-color: #1D3557;
+  --bg-color: #fafafa;
+  --bg-color--secondary: #dceeff;
+  --border-color: #8FA6CB;
+  --header-color: #93827F;
   --primary-btn-color: #457B9D;
-  --secondary-btn-color: #A8DADC;
+  --secondary-btn-color: #395B50;
   --delete-btn-color: #E63956;
 }
 
@@ -17,7 +17,7 @@
 body {
   padding: 0;
   margin: 0;
-  background-color: #F1FAEE;
+  background-color: #fafafa;
   font-family: "Roboto", sans-serif;
 }
 
@@ -45,7 +45,7 @@ p {
 }
 
 .card {
-  border: 2px solid #457b9d;
+  border: 2px solid #8FA6CB;
   border-radius: 5px;
   padding: 1rem;
   margin-bottom: 1rem;
@@ -72,8 +72,8 @@ p {
 }
 
 button {
-  background-color: #A8DADC;
-  font-size: 12pt;
+  background-color: #395B50;
+  font-size: 16pt;
   border: 0;
   font-weight: bold;
   cursor: pointer;
