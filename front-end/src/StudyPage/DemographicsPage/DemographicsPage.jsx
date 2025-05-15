@@ -1,8 +1,13 @@
 import { useState } from 'react';
 import styles from './DemographicsPage.module.css';
+import { useParams } from 'react-router-dom';
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function DemographicsPage({project, onNext }) {
-    const [formData, setFormData] = useState({
+  const { projectId } = useParams();  
+  
+  
+  const [formData, setFormData] = useState({
         age: "",
         gender: "",
         education: "",
@@ -15,11 +20,48 @@ export default function DemographicsPage({project, onNext }) {
             [name]: value,
         }));
     };
+    
+    const answer = JSON.parse(localStorage.getItem(`survey_${projectId}_responses`));
+    console.log("Submitted answers:", answer);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // INSERT VALIDATION AND API CALL LOGIC HERE
-        onNext();
+
+        try{
+          const answerPayload = JSON.parse(localStorage.getItem(`survey_${projectId}_responses`));
+          const payload = {
+            projectId: projectId,
+            researcherId: project.researcherId,
+            deviceType: navigator.userAgent,
+            demographics: {
+              age: formData.age,
+              gender: formData.gender,
+              education: formData.education
+            },
+            answers: answerPayload
+          }
+          const session = JSON.parse(localStorage.getItem('session'));
+          const response = await fetch(`${apiUrl}/api/sessions/${session._id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "Application/json"
+            },
+            body: JSON.stringify(payload)
+          });
+
+          const data = await response.json();
+
+          if(!response.ok){
+            throw Error("Failed to send sessionData", data.message);
+          }
+
+          console.log(data)
+           // INSERT VALIDATION AND API CALL LOGIC HERE
+          onNext();
+        }catch(err){
+          console.log(err);
+        }
+       
     }
 
     return (
@@ -79,7 +121,6 @@ export default function DemographicsPage({project, onNext }) {
 
           <button 
             type="submit"
-            onClick={onNext}
             >Submit</button>
         </form>
       </div>
