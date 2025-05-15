@@ -94,10 +94,9 @@ export default function DemographicsPage({project, onNext }) {
               required
             >
               <option value="">Select</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="nonbinary">Non-binary</option>
-              <option value="preferNotToSay">Prefer not to say</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Non-binary</option>
             </select>
           </div>
 
