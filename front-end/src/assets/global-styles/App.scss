@@ -28,6 +28,13 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 h1 {
     padding: 1rem;
 }
@@ -43,11 +50,9 @@ a {
     }
 }
 
-/* 
 .react__link {
-    border: 1px solid red;
-} 
-*/
+    color: white !important;
+}
 
 p {
     color: var(--text-color);
@@ -85,9 +90,10 @@ p {
 
 button {
     background-color: var(--secondary-btn-color);
-    font-size: 16pt;
+    font-size: 1rem;
     border: 0;
     font-weight: bold;
+    color: white;
     cursor: pointer;
     transition: box-shadow 0.2s ease-in-out;
 

@@ -6,6 +6,7 @@
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
+    height: fit-content;
 }
 
 .remove_btn{
@@ -33,10 +34,6 @@ h1{
     display: flex;
     width: fit-content;
     align-self: center;
-
-    &>:last-of-type {
-        background-color: greenyellow;
-    }
 }
 
 .card{

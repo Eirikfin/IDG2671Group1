@@ -42,7 +42,7 @@ export default function DraftStudy({ projects, setProjects }) {
                         <h3 className={styles.study__title}>{project.title}</h3>
                         <p className={styles.study__description}>{project.description}</p>
                         <div className={`card__buttons`}>
-                            <button><Link to={`/update/${project._id}`} className={`react_Link`}>Edit study</Link></button>
+                            <button className={styles.editBtn}><Link to={`/update/${project._id}`} className={`react__link`}>Edit study</Link></button>
                             <button className={styles.study__publish} onClick={() => publishStudy(project._id)}>
                                 Publish study
                             </button>

@@ -1,26 +1,36 @@
-@use '../../newstudy.module.scss';
+@use '../../../assets/global-styles/App.scss';
 
-
-
-.buttons{
-    
+.container {
+    display: flex;
+    height: fit-content;
+    flex-direction: column;
     justify-content: center;
-    gap: 2rem;
-    margin-bottom: 3rem;
-}
-.card{
-
-
-    .artifactDisplay *{
-        max-width: 60%;
-     
-      
-}
+    align-items: center;
 }
 
-.remove__btn{
-    max-width: 30px !important;
-    max-height: 30px !important;
-    border-radius: 200px;
-    position: absolute;
+.createSections {
+    display: flex;
+    flex-direction: column;
+
+    &__artifacts {
+        display: flex;
+        gap: 1rem;
+    }
+
+    &__header {
+        text-align: center;
+    }
+
+    &__artifactDisplay {
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
+    &__upload {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
 }

@@ -10,33 +10,37 @@ export default function NewQuestionCard({ card, onChange }) {
   };
 
   return (
-    <div>
-      <h2>Question</h2>
+    <div className={styles.questionCard}>
+      <h2 className={styles.questionCard__header}>Question</h2>
 
-      <label>Question text:</label>
-      <input
-        name="questionText"
-        type="text"
-        value={questionText}
-        onChange={e => update({ questionText: e.target.value })}
-      />
+      <div className={styles.questionCard__section}>
+        <label>Question text:</label>
+        <input
+          name="questionText"
+          type="text"
+          value={questionText}
+          onChange={e => update({ questionText: e.target.value })}
+        />
+      </div>
 
-      <label>Question type:</label>
-      <select
-        name="questionType"
-        value={type}
-        onChange={e => update({ type: e.target.value })}
-      >
-        <option value="TextInput">Text input</option>
-        <option value="MultipleChoice">Multiple Choice</option>
-        <option value="SlidingScale">Sliding Scale</option>
-      </select>
+      <div className={styles.questionCard__section}>
+        <label>Question type:</label>
+        <select
+          name="questionType"
+          value={type}
+          onChange={e => update({ type: e.target.value })}
+        >
+          <option value="TextInput">Text input</option>
+          <option value="MultipleChoice">Multiple Choice</option>
+          <option value="SlidingScale">Sliding Scale</option>
+        </select>
+      </div>
 
       {type === "MultipleChoice" && (
-        <div className={styles.alternatives}>
-          <label>Alternatives:</label>
+        <div className={styles.questionCard__alternatives}>
+          <label>Question Alternatives:</label>
           {alternatives.map((alt, i) => (
-            <div key={i} className={styles.alternativeRow}>
+            <div key={i} className={styles.questionCard__alternatives__alternativeRow}>
               <input
                 type="text"
                 value={alt}
@@ -47,6 +51,7 @@ export default function NewQuestionCard({ card, onChange }) {
                 }}
               />
               <button
+                className={styles.questionCard__alternatives__alternativeRow__deleteBtn}
                 type="button"
                 onClick={() => {
                   const newAlts = alternatives.filter((_, j) => j !== i);

@@ -3,12 +3,12 @@
 .container {
     display: flex;
     justify-content: center;
-    height: 100vh;
 }
 
 .newStudy {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 
     &__form {
         display: flex;
@@ -37,6 +37,37 @@
 
         &__submit {
             align-self: center;
+            background-color: var(--secondary-btn-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: box-shadow 0.2s ease-in-out;
+
+            &:hover {
+                -webkit-box-shadow: inset 0px 0px 13px -4px rgba(0,0,0,0.75);
+                -moz-box-shadow: inset 0px 0px 13px -4px rgba(0,0,0,0.75);
+                box-shadow: inset 0px 0px 13px -4px rgba(0,0,0,0.75);
+            }
+
+            &_updateFront {
+                align-self: center;
+                margin: 1rem;
+                font-size: 1rem;
+                background-color: var(--secondary-btn-color);
+                color: white;
+                border: 0;
+                cursor: pointer;
+
+                &:hover {
+                    -webkit-box-shadow: inset 0px 0px 13px -4px rgba(0,0,0,0.75);
+                    -moz-box-shadow: inset 0px 0px 13px -4px rgba(0,0,0,0.75);
+                    box-shadow: inset 0px 0px 13px -4px rgba(0,0,0,0.75);
+            }
+            }
+        }
+
+        &__checkbox {
+            cursor: pointer;
         }
     }
 }

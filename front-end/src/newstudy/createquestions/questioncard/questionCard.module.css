@@ -1,87 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+:root {
+  --text-color: #1e1e1e;
+  --bg-color: #fafafa;
+  --bg-color--secondary: #dceeff;
+  --border-color: #8FA6CB;
+  --header-color: #93827F;
+  --primary-btn-color: #457B9D;
+  --secondary-btn-color: #395B50;
+  --delete-btn-color: #E63956;
+}
+
+* {
+  color: var(--text-color);
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: var(--bg-color);
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  padding: 1rem;
+}
+
+a {
+  font-weight: bold;
+  font-size: 12pt;
+  text-decoration: none;
+}
+a:visited {
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.react__link {
+  color: white;
+}
+
+p {
+  color: var(--text-color);
+}
+
 .card {
-  margin: 20px auto;
-  border: 2px solid #457b9d;
+  border: 2px solid var(--border-color);
   border-radius: 5px;
   padding: 1rem;
   margin-bottom: 1rem;
   width: 70vw;
-  max-width: 800px;
   opacity: 0.7;
   transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
-  text-align: center;
 }
-.card button {
-  width: 20%;
-  height: 3rem;
-}
-.card label {
-  display: block;
-  font-weight: bold;
-  margin: 20px auto;
-  font-size: 1.2rem;
-}
-.card h2 {
-  font-size: 2rem;
-}
-.card h3 {
-  font-size: 1.5rem;
-}
-.card textarea {
-  display: block;
-  margin: 20px auto;
-  max-width: 90%;
-  width: 70%;
-  height: 70px;
-  border-radius: 5px;
-}
-.card input {
-  border-radius: 5px;
-}
-.card .submit {
-  min-height: 40px;
-  max-width: 50%;
-  font-size: 1.5rem;
-  font-weight: bold;
-  opacity: 0.8;
-}
-.card .submit:hover {
+.card:hover {
+  transform: scale(1.008);
   opacity: 1;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
 }
-
-.card button, .card label {
-  display: block;
-  margin: 10px auto;
-}
-
-input {
-  width: 60%;
-  min-height: 20px;
-  font-weight: bold;
-}
-
-select {
-  min-height: 30px;
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
-.alternativeRow {
+.card__buttons {
   display: flex;
-  align-items: center;
-  margin-bottom: 8px;
+  max-width: 40%;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-left: 0;
+  padding-left: 0;
 }
-.alternativeRow input {
-  flex: 1;
-  margin-right: 10px;
-}
-.alternativeRow button {
-  margin: 0;
+.card__buttons > button {
+  padding: 0.4rem;
+  width: 100%;
 }
 
-.slidingscale input {
-  width: 10%;
+button {
+  background-color: var(--secondary-btn-color);
+  font-size: 16pt;
+  border: 0;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease-in-out;
+}
+button:hover {
+  box-shadow: inset 0px 0px 13px -4px rgba(0, 0, 0, 0.75);
+}
+
+header {
+  background-color: var(--header-color);
+}
+
+.questionCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.questionCard__header {
   text-align: center;
-  height: 40px;
-  font-size: 1.5rem;
-  margin: 10px auto;
+  margin-bottom: 0;
+  margin-top: 3rem;
+}
+.questionCard__section {
+  width: 60rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+}
+.questionCard__section > label {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.questionCard__section > select {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.questionCard__alternatives {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  position: absolute;
+}
+.questionCard__alternatives > label {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.questionCard__alternatives__alternativeRow {
+  position: relative;
+  display: flex;
+  justify-content: center;
 }/*# sourceMappingURL=questionCard.module.css.map */

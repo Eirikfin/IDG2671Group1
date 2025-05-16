@@ -1,66 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+:root {
+  --text-color: #1e1e1e;
+  --bg-color: #fafafa;
+  --bg-color--secondary: #dceeff;
+  --border-color: #8FA6CB;
+  --header-color: #93827F;
+  --primary-btn-color: #457B9D;
+  --secondary-btn-color: #395B50;
+  --delete-btn-color: #E63956;
+}
+
+* {
+  color: var(--text-color);
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: var(--bg-color);
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  padding: 1rem;
+}
+
+a {
+  font-weight: bold;
+  font-size: 12pt;
+  text-decoration: none;
+}
+a:visited {
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.react__link {
+  color: white;
+}
+
+p {
+  color: var(--text-color);
+}
+
 .card {
-  margin: 20px auto;
-  border: 2px solid #457b9d;
+  border: 2px solid var(--border-color);
   border-radius: 5px;
   padding: 1rem;
   margin-bottom: 1rem;
   width: 70vw;
-  max-width: 800px;
   opacity: 0.7;
   transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: scale(1.008);
+  opacity: 1;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+.card__buttons {
+  display: flex;
+  max-width: 40%;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-left: 0;
+  padding-left: 0;
+}
+.card__buttons > button {
+  padding: 0.4rem;
+  width: 100%;
+}
+
+button {
+  background-color: var(--secondary-btn-color);
+  font-size: 16pt;
+  border: 0;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease-in-out;
+}
+button:hover {
+  box-shadow: inset 0px 0px 13px -4px rgba(0, 0, 0, 0.75);
+}
+
+header {
+  background-color: var(--header-color);
+}
+
+.container {
+  display: flex;
+  height: -moz-fit-content;
+  height: fit-content;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.createSections {
+  display: flex;
+  flex-direction: column;
+}
+.createSections__artifacts {
+  display: flex;
+  gap: 1rem;
+}
+.createSections__header {
   text-align: center;
 }
-.card button {
-  width: 20%;
-  height: 3rem;
+.createSections__artifactDisplay {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
-.card label {
-  display: block;
-  font-weight: bold;
-  margin: 20px auto;
-  font-size: 1.2rem;
-}
-.card h2 {
-  font-size: 2rem;
-}
-.card h3 {
-  font-size: 1.5rem;
-}
-.card textarea {
-  display: block;
-  margin: 20px auto;
-  max-width: 90%;
-  width: 70%;
-  height: 70px;
-  border-radius: 5px;
-}
-.card input {
-  border-radius: 5px;
-}
-.card .submit {
-  min-height: 40px;
-  max-width: 50%;
-  font-size: 1.5rem;
-  font-weight: bold;
-  opacity: 0.8;
-}
-.card .submit:hover {
-  opacity: 1;
-}
-
-.buttons {
+.createSections__upload {
+  display: flex;
   justify-content: center;
-  gap: 2rem;
-  margin-bottom: 3rem;
-}
-
-.card .artifactDisplay * {
-  max-width: 60%;
-}
-
-.remove__btn {
-  max-width: 30px !important;
-  max-height: 30px !important;
-  border-radius: 200px;
-  position: absolute;
+  margin-bottom: 1rem;
 }/*# sourceMappingURL=AttachArtifact.module.css.map */

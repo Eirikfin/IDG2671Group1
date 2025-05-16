@@ -1,5 +1,4 @@
 @import '../../assets/global-styles/App.scss';
-@import '../../assets/global-styles/App.scss';
 
 .study {
     padding: 1rem;
@@ -14,8 +13,8 @@
     &__description {
         padding: 0;
     }
+}
 
-    &__publish {
-        background-color: rgb(255, 255, 129);
-    }
+.editBtn {
+    color: white;
 }

@@ -1,43 +1,51 @@
-@use '../../newstudy.module.scss';
+@use '../../../assets/global-styles/App.scss';
 
-.card button, .card label{
-    display: block;
-    margin: 10px auto;
-}
-input{
-    width: 60%;
-    min-height: 20px;
-    font-weight: bold;
-}
-select{
-  min-height: 30px;
-  font-weight: bold;
-  font-size: 1.2rem;
-}
+.questionCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
 
-
-.alternativeRow {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px;
-  
-    input {
-      flex: 1;
-      margin-right: 10px;
+    &__header {
+      text-align: center;
+      margin-bottom: 0;
+      margin-top: 3rem;
     }
-  
-    button {
-      margin: 0; 
-    }
-  }
 
-.slidingscale{
-    & input{
-        width: 10%;
-        text-align: center;
-        height: 40px;
-        font-size: 1.5rem;
-        margin: 10px auto;
+    &__section {
+      width: 60rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 1rem;
+
+      &>label {
+        font-size: 1.3rem;
+        font-weight: 600;
+      }
+
+      &>select {
+        width: fit-content;
+      }
+    }
+
+    &__alternatives {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      position: absolute;
+
+      &>label {
+        font-size: 1.3rem;
+        font-weight: 600;
+      }
+
+      &__alternativeRow {
+        position: relative;
+        display: flex;
+        justify-content: center;
+      }
+
     }
 }
-

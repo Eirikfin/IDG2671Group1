@@ -81,30 +81,34 @@ export default function NewArtifactCard() {
   
   return (
     <>
-    <div className={styles.card}>
-      <h2>Artifacts:</h2>
-      <form>
-      <div className={styles.buttons}>
-        <button type="button" id="uploadArtifact__button" onClick={triggerFileInput}>
-          Upload Artifact
-        </button>
-        <input
-          type="file"
-          ref={fileInputRef}
+    <div className={styles.container}>
+      <div className={styles.createSections}>
+        <h2 className={styles.createSections__header}>Artifacts:</h2>
+        <form>
+        <div className={styles.createSections__upload}>
+          <button type="button" id="uploadArtifact__button" onClick={triggerFileInput}>
+            Upload Artifact
+          </button>
+        </div>
+        <div className={styles.createSections__artifacts}>
+          <input
+            type="file"
+            ref={fileInputRef}
 
-          style={{ display: 'none' }}
-          onChange={handleFileChange}
-        />
-        {file && <p id="artifact_name">Selected file: {file.name}</p>}
-        {error && <p>Error: {error.message}</p>}
-        {uploadedArtifact.map((artifactData, index) => (
-  <div className={styles.artifactDisplay} key={index}>
-    <ArtifactRender apiUrl={apiUrl} artifact={artifactData}/>
-    <button className={styles.remove__btn} type="button" onClick={() => removeArtifact(artifactData)}>X</button>
-  </div>
-))}
-         </div>
-      </form>
+            style={{ display: 'none' }}
+            onChange={handleFileChange}
+          />
+          {file && <p id="artifact_name">Selected file: {file.name}</p>}
+          {error && <p>Error: {error.message}</p>}
+          {uploadedArtifact.map((artifactData, index) => (
+          <div className={styles.createSections__artifactDisplay} key={index}>
+            <ArtifactRender apiUrl={apiUrl} artifact={artifactData}/>
+            <button className={styles.remove__btn} type="button" onClick={() => removeArtifact(artifactData)}>X</button>
+          </div>
+          ))}
+        </div>
+        </form>
+      </div>
     </div>
     </>
   );

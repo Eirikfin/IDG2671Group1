@@ -94,9 +94,6 @@ export default function CreateStudy() {
       prev.filter(card => card.id !== idToRemove)
     );
   };
-  const previewPage = () => {
-    return;
-  };
   //submits section to backand and reroutes to dashboard
   const publishStudy = () => {
     submitSection()
@@ -149,29 +146,29 @@ export default function CreateStudy() {
   //render components
   return (
     <div className={styles.container}>
-    <>
-      {submitMsg && <p>Section was submitted!</p>}
-      <h1>Section {sectionCount}</h1>
-      <NewArtifactCard key={sectionCount}/>
-      {questionCards.map((card, id) => (
-  <div className={styles.card} key={card.id}>
-    <button
-      className={styles.remove_btn}
-      onClick={() => deleteQuestion(card.id)}
-    >
-      X
-    </button>
-    <NewQuestionCard
-      card={card}
-      onChange={(updatedCard) => {
-        setQuestionCards(prev =>
-          prev.map(c => (c.id === updatedCard.id ? updatedCard : c))
-        );
-      }}
-    />
-  </div>
-))}
-{error && <p>{error}</p>}
+      <>
+        {submitMsg && <p>Section was submitted!</p>}
+        <h1>Section {sectionCount}</h1>
+        <NewArtifactCard key={sectionCount}/>
+        {questionCards.map((card, id) => (
+        <div className={styles.newQuestion} key={card.id}>
+          <button
+            className={styles.remove_btn}
+            onClick={() => deleteQuestion(card.id)}
+          >
+            X
+          </button>
+          <NewQuestionCard
+            card={card}
+            onChange={(updatedCard) => {
+              setQuestionCards(prev =>
+              prev.map(c => (c.id === updatedCard.id ? updatedCard : c))
+            );
+          }}
+          />
+        </div>
+        ))}
+      {error && <p>{error}</p>}
       <div className={styles.buttonscontainer}>
         <button 
         className={styles.addQuestion__btn} 
@@ -186,13 +183,6 @@ export default function CreateStudy() {
         className={styles.addQuestion__btn}
         >
           Add new section
-        </button>
-
-        <button 
-        onClick={previewPage}
-        className={styles.addQuestion__btn}
-        >
-          Preview page
         </button>
 
         <button 

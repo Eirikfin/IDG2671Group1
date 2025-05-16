@@ -171,7 +171,7 @@ export function UpdateSection() {
 
     {questionCards.length === 0 && <p>No questions in this section yet.</p>}
     {questionCards.map((card, id) => (
-        <div className={styles.card} key={card.id || id}>
+        <div key={card.id || id}>
         
           <button className={styles.remove_btn} onClick={() => deleteQuestion(card.id)}>X</button>
         <NewQuestionCard 
@@ -183,14 +183,16 @@ export function UpdateSection() {
         />
         </div>
     ))}
-
-     <button className={styles.addQuestion__btn} id="addQuestion__btn" onClick={addQuestion}>
-             Add Question
-           </button>
-     <button onClick={updateProject}>Update Project</button>
-     <button onClick={addSection}>Add new Section</button>
-     <button onClick={previousSection}>Previous Section</button>
-     <button onClick={nextSection}>Next section</button>
+    
+      <div className={styles.buttonscontainer}>
+        <button className={styles.addQuestion__btn} id="addQuestion__btn" onClick={addQuestion}>
+                Add Question
+              </button>
+        <button className={styles.addQuestion__btn} onClick={updateProject}>Update Project</button>
+        <button className={styles.addQuestion__btn} onClick={addSection}>Add new Section</button>
+        <button className={styles.addQuestion__btn} onClick={previousSection}>Previous Section</button>
+        <button className={styles.addQuestion__btn} onClick={nextSection}>Next section</button>
+      </div>
      </div>
     </>
 

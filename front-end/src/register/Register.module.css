@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #F1FAEE;
+  background-color: #fafafa;
 }
 .register__container {
   display: flex;
@@ -14,7 +14,7 @@
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  background-color: #FFFFFF;
+  background-color: #dceeff;
   width: 90%;
   max-width: 400px;
 }
@@ -32,16 +32,16 @@
   margin-bottom: 1rem;
   padding: 0.5rem;
   border-radius: 5px;
-  border: 1px solid #457b9d;
+  border: 1px solid #8FA6CB;
   font-size: 1rem;
 }
 .register__container__form__input:focus {
-  border-color: #F1FAEE;
+  border-color: #fafafa;
   outline: none;
 }
 .register__container__form__button {
   padding: 0.5rem;
-  background-color: #A8DADC;
+  background-color: #395B50;
   color: white;
   border-radius: 5px;
   border: none;

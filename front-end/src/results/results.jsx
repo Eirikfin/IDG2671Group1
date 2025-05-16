@@ -99,21 +99,23 @@ const femaleParticipants = () => {
 }
     return(
         <>
-        <h1>Study results</h1>
-        {error && <p>{error}</p>}
-        {data && <h3>Number of participant that has answered: {data.length}</h3>}
-        {data && <p>The average age of participants were: {averageAge()}</p>}
-        {data && <p>Number of participants that were male: {maleParticipants()}</p>}
-        {data && <p>Number of participants that were female: {femaleParticipants()}</p>}
-        <h3>Download .CSV of answers:</h3>
-        <button onClick={handleFileDownload}>Download</button>
-        
-        {/*}
-        <Demographics></Demographics>
-        <Participants></Participants>
-        <Sessions></Sessions>
-        <Answers></Answers>
-        */}
+        <div className={`container`}>
+            <h1>Study results</h1>
+            {error && <p>{error}</p>}
+            {data && <h3>Number of participant that has answered: {data.length}</h3>}
+            {data && <p>The average age of participants were: {averageAge()}</p>}
+            {data && <p>Number of participants that were male: {maleParticipants()}</p>}
+            {data && <p>Number of participants that were female: {femaleParticipants()}</p>}
+            <h3>Download .CSV of answers:</h3>
+            <button onClick={handleFileDownload}>Download</button>
+            
+            {/*}
+            <Demographics></Demographics>
+            <Participants></Participants>
+            <Sessions></Sessions>
+            <Answers></Answers>
+            */}
+        </div>
         </>
     );
 }
