@@ -96,11 +96,15 @@ header {
 
 .page {
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 .page__questions {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 2rem;
 }
 .page__questions__question {
@@ -138,5 +142,7 @@ header {
   padding: 0.4rem;
 }
 .page__artifact * {
-  max-width: 40%;
+  width: 40%;
+  align-self: center;
+  border: 1px solid red;
 }/*# sourceMappingURL=ParticipantPage.module.css.map */
