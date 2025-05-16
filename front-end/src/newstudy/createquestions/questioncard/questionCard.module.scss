@@ -34,7 +34,6 @@
       flex-direction: column;
       align-items: center;
       gap: 0.4rem;
-      position: absolute;
 
       &>label {
         font-size: 1.3rem;
@@ -42,7 +41,6 @@
       }
 
       &__alternativeRow {
-        position: relative;
         display: flex;
         justify-content: center;
       }

@@ -159,8 +159,6 @@ header {
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
-  height: -moz-fit-content;
-  height: fit-content;
 }
 
 .remove_btn {

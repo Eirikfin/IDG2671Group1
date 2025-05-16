@@ -21,6 +21,13 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 h1 {
   padding: 1rem;
 }
@@ -36,7 +43,7 @@ a:visited {
 }
 
 .react__link {
-  color: white;
+  color: white !important;
 }
 
 p {
@@ -72,7 +79,7 @@ p {
 
 button {
   background-color: var(--secondary-btn-color);
-  font-size: 16pt;
+  font-size: 1rem;
   border: 0;
   font-weight: bold;
   color: white;
@@ -89,8 +96,6 @@ header {
 
 .container {
   display: flex;
-  height: -moz-fit-content;
-  height: fit-content;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -99,19 +104,25 @@ header {
 .createSections {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid red;
 }
 .createSections__artifacts {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
 }
 .createSections__header {
   text-align: center;
 }
 .createSections__artifactDisplay {
-  width: 30%;
+  max-width: 30%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
 }
 .createSections__upload {
   display: flex;
