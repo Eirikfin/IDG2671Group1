@@ -1,11 +1,36 @@
 .container {
   display: flex;
   justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  background: var(--bg-color, #fafafa);
 }
 
-.profilePage__ info {
+.profilePage {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 2.5rem 3rem;
+  min-width: 320px;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+}
+
+.profilePage__title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--primary-btn-color, #457B9D);
+}
+
+.profilePage__info p {
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+  color: var(--text-color, #1e1e1e);
+}
+
+.profilePage__info strong {
+  color: var(--primary-btn-color, #457B9D);
 }/*# sourceMappingURL=ProfilePage.module.css.map */
